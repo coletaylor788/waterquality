@@ -21,6 +21,13 @@ public class Main extends Application {
         ApacheShiroAuthenticate auth = new ApacheShiroAuthenticate();
 
         auth.login("user", "pass");
+        System.out.println(auth.getCurrentUsername());
+        System.out.println(auth.isLoggedIn());
+        auth.logout();
+        auth.login("user1", "pass");
+        System.out.println(auth.getCurrentUsername());
+        auth.logout();
+        System.out.println(auth.isLoggedIn());
     }
 
 

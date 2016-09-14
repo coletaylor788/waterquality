@@ -4,7 +4,10 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.apache.shiro.util.Factory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +16,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by Cole on 9/14/16.
  */
-public class ApacheShiroAuthenticate {
+public class ApacheShiroAuthenticate implements Authenticate {
 
     private static final transient Logger log = LoggerFactory.getLogger(ApacheShiroAuthenticate.class);
 
@@ -23,8 +26,21 @@ public class ApacheShiroAuthenticate {
         SecurityUtils.setSecurityManager(securityManager);
     }
 
-    public String getCurentUsername() {
-        return null;
+    public String getCurrentUsername() {
+        Subject currentUser = SecurityUtils.getSubject();
+        return getUsername(currentUser);
+    }
+
+    public String getUsername(Subject user) {
+        Session session = user.getSession(true);
+
+        SimplePrincipalCollection p = (SimplePrincipalCollection)
+                session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+        if (p != null) {
+            return p.getPrimaryPrincipal().toString();
+        } else {
+            return null;
+        }
     }
 
     public Subject getCurrentUser() {
@@ -36,32 +52,24 @@ public class ApacheShiroAuthenticate {
         return currentUser.isAuthenticated();
     }
 
-    /**
-     * Logs a user in. This will set the user to the "logged-in" state
-     *
-     * @param username The username to login
-     * @param password The password of that user
-     * @throws UnknownAccountException will be thrown if username doesn't exist
-     * @throws IncorrectCredentialsException will be thrown if username and password don't match
-     * @throws AuthenticationException will be thrown if another execption occurs when logging in
-     */
-    public void login(String username, String password) throws
-            UnknownAccountException, IncorrectCredentialsException, AuthenticationException {
+    public void login(String username, String password) {
 
         Subject currentUser = SecurityUtils.getSubject();
 
         if (!currentUser.isAuthenticated()) {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(true);
-
             currentUser.login(token);
         } else {
-            //TODO something...
+            throw new ConcurrentAccessException("User: " + username
+                    + " is already authenticated. Cannot authenticate more than one user");
         }
     }
 
     public Subject logout() {
-        return null;
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        return currentUser;
     }
 
 }
