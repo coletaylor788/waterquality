@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-//TODO
-import model.ApacheShiroAuthenticate;
-
 public class Main extends Application {
 
     @Override
@@ -17,17 +14,6 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
-
-        ApacheShiroAuthenticate auth = new ApacheShiroAuthenticate();
-
-        auth.login("user", "pass");
-        System.out.println(auth.getCurrentUsername());
-        System.out.println(auth.isLoggedIn());
-        auth.logout();
-        auth.login("user1", "pass");
-        System.out.println(auth.getCurrentUsername());
-        auth.logout();
-        System.out.println(auth.isLoggedIn());
     }
 
 
