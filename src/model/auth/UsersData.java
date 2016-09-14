@@ -10,7 +10,7 @@ import java.security.SecureRandom;
  */
 public class UsersData {
     private static HashMap<String, User> users = new HashMap<>();
-    private static String currentUserName = null;
+    private static User currentUser = null;
 
     public static void addUser(String username, String password, String firstName, String lastName, String email) throws UnableToCreateUserException {
         // Generate random Salt
@@ -25,14 +25,20 @@ public class UsersData {
         users.put(username, new User(username, passwordHash, salt, firstName, lastName, email));
     }
 
-    public static boolean login(String username, String password) throws NoSuchAlgorithmException {
+    public static boolean login(String username, String password) throws AuthenticationException {
         User user = users.get(username);
-        boolean isValid = hashPassword(password, user.getSalt()).equals(user.getPasswordHash());
-        if (isValid) {
-            currentUserName = username;
+        try {
+            boolean isValid = hashPassword(password, user.getSalt()).equals(user.getPasswordHash());
+            if (isValid) {
+                currentUser = user;
+            }
+            return isValid;
+        } catch (UnableToCreateUserException e) {
+            throw new AuthenticationException(e.getMessage());
         }
-        return isValid;
     }
+
+    private static String
 
     private static String hashPassword(String password, String salt) throws UnableToCreateUserException {
         String saltedPassword = salt + password;
