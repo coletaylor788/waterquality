@@ -18,6 +18,8 @@ import java.security.SecureRandom;
  *   ud.add(...)
  *   User currentUser = ud.login(username, password)
  *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class UsersData {
 

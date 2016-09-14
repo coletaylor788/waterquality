@@ -1,7 +1,10 @@
 package model.auth;
 
 /**
- * Created by cole on 9/14/16.
+ * Contains information for a User
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class User {
     private String username;
