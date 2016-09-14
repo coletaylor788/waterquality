@@ -14,7 +14,8 @@ public class User {
     private String lastName;
     private String email;
 
-    public User(String username, String passwordHash, String salt, String firstName, String lastName, String email) {
+    public User(String username, String passwordHash, String salt,
+                String firstName, String lastName, String email) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.salt = salt;
