@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.auth.User;
 import model.auth.UsersData;
 
 public class Main extends Application {
@@ -17,6 +18,10 @@ public class Main extends Application {
         primaryStage.show();
 
         UsersData.addUser("user", "pass", "John", "Smith", "email");
+        System.out.println(UsersData.getCurrentUser());
+        System.out.println(UsersData.login("user", "pass").getFirstName());
+        System.out.println(UsersData.getCurrentUser().getLastName());
+
     }
 
 

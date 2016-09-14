@@ -1,4 +1,6 @@
-package model.auth;
+package model.auth.exceptions;
+
+import model.auth.exceptions.AuthenticationException;
 
 /**
  * Created by cole on 9/14/16.

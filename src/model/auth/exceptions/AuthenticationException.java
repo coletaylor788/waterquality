@@ -1,4 +1,4 @@
-package model.auth;
+package model.auth.exceptions;
 
 /**
  * Created by cole on 9/14/16.
