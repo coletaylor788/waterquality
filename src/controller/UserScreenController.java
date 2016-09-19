@@ -24,6 +24,8 @@ public class UserScreenController {
     @FXML
     private void handleLogoutPressed() throws Exception {
         try {
+            mainController.getUsersData().logout();
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/LoginScreen.fxml"));
             BorderPane loginScreen = loader.load();

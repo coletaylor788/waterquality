@@ -27,7 +27,6 @@ public class LoginScreenController {
     private TextField passwordField;
 
     private User user;
-    private UsersData usersdata = new UsersData();
     private Stage _dialogStage;
     private MainController mainController;
 
@@ -47,7 +46,24 @@ public class LoginScreenController {
     @FXML
     private void handleLoginPressed() {
         try {
-            user = usersdata.login(usernameField.getText(), passwordField.getText());
+            user = mainController.getUsersData().login(usernameField.getText(), passwordField.getText());
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
+                BorderPane userScreen = loader.load();
+                UserScreenController controller = loader.getController();
+                controller.setMainController(mainController);
+
+                // Sets the scene
+                Stage primaryStage = mainController.getPrimaryStage();
+                primaryStage.setTitle("User: "
+                        + mainController.getUsersData().getCurrentUser().getFirstName());
+                primaryStage.setScene(new Scene(userScreen));
+                primaryStage.show();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
         } catch (InvalidUsernameException e) { // Catches all exceptions; Change to catch individual exceptions
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);

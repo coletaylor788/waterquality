@@ -34,7 +34,6 @@ public class RegisterScreenController {
     private TextField passwordField;
 
     private User user;
-    private UsersData usersdata = new UsersData();
     private MainController mainController;
     private Stage _dialogStage;
 
@@ -45,34 +44,33 @@ public class RegisterScreenController {
     @FXML
     private void handleRegisterPressed() {
         try {
-            usersdata.addUser(usernameField.getText(),
+            mainController.getUsersData().addUser(usernameField.getText(),
                                 passwordField.getText(),
                                 firstNameField.getText(),
                                 lastNameField.getText(),
                                 emailField.getText());
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
+                BorderPane userScreen = loader.load();
+                UserScreenController controller = loader.getController();
+                controller.setMainController(mainController);
+
+                // Sets the scene
+                Stage primaryStage = mainController.getPrimaryStage();
+                primaryStage.setTitle("User: " + firstNameField.getText());
+                primaryStage.setScene(new Scene(userScreen));
+                primaryStage.show();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
 
         } catch (UnableToCreateUserException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);
             alert.setTitle("Cannot Create User");
-            alert.setHeaderText("Try again with different information.");
+            alert.setHeaderText(e.getMessage());
             alert.showAndWait();
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
-            BorderPane userScreen = loader.load();
-            UserScreenController controller = loader.getController();
-            controller.setMainController(mainController);
-
-            //sets the scene
-            Stage primaryStage = mainController.getPrimaryStage();
-            primaryStage.setTitle("User: " + firstNameField.getText());
-            primaryStage.setScene(new Scene(userScreen));
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
     }
 

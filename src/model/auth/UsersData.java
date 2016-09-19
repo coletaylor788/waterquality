@@ -9,6 +9,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.security.SecureRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Forward facing authentication class
@@ -26,6 +28,9 @@ public class UsersData {
     private HashMap<String, User> users;
     private User currentUser;
 
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
     public UsersData() {
         users = new HashMap<>();
         try {
@@ -34,7 +39,6 @@ public class UsersData {
             System.out.println("[WARN] unable to add sample user");
         }
         currentUser = null;
-
     }
 
     /**
@@ -50,6 +54,12 @@ public class UsersData {
     public void addUser(String username, String password, String firstName, String lastName,
                                String email) throws UnableToCreateUserException {
 
+        if (username.isEmpty() || password.isEmpty() || firstName.isEmpty()
+                || lastName.isEmpty() || email.isEmpty()) {
+            throw new UnableToCreateUserException("Please fill in all fields.");
+        } else if (!validate(email)) {
+            throw new UnableToCreateUserException("Email address is not valid.");
+        }
         // Generate random Salt
         SecureRandom randomGen = new SecureRandom();
         int saltInt = randomGen.nextInt();
@@ -149,5 +159,16 @@ public class UsersData {
         } catch (NoSuchAlgorithmException e) {
             throw new UnableToCreateUserException("Unable to get provider for SHA-256 algorithm");
         }
+    }
+
+    /**
+     * Validate an email string against a regex
+     *
+     * @param emailStr is the email to validate
+     * @return true if the email is valid, false otherwise
+     */
+    private static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
     }
 }

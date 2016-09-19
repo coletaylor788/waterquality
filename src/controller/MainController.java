@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import model.auth.User;
+import model.auth.UsersData;
 
 import java.io.IOException;
 
@@ -13,10 +15,17 @@ import java.io.IOException;
 public class MainController extends Application {
 
     private Stage primaryStage;
+    private UsersData usersData;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
+        usersData = new UsersData();
         stageAssignment(primaryStage);
+    }
+
+    public UsersData getUsersData() {
+        return usersData;
     }
 
     public Stage getPrimaryStage() {
