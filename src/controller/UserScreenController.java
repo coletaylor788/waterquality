@@ -21,6 +21,7 @@ public class UserScreenController {
         this.mainController = mainController;
     }
 
+    @FXML
     private void handleLogoutPressed() throws Exception {
         try {
             FXMLLoader loader = new FXMLLoader();

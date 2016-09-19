@@ -63,7 +63,7 @@ public class RegisterScreenController {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
             BorderPane userScreen = loader.load();
-            LoginScreenController controller = loader.getController();
+            UserScreenController controller = loader.getController();
             controller.setMainController(mainController);
 
             //sets the scene
