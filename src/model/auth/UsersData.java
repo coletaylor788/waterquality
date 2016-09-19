@@ -59,6 +59,8 @@ public class UsersData {
             throw new UnableToCreateUserException("Please fill in all fields.");
         } else if (!validate(email)) {
             throw new UnableToCreateUserException("Email address is not valid.");
+        } else if (users.containsKey(username)) {
+            throw new UnableToCreateUserException("Username: " + username + " already exists.");
         }
         // Generate random Salt
         SecureRandom randomGen = new SecureRandom();
