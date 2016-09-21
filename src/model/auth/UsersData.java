@@ -28,8 +28,7 @@ public class UsersData {
     private HashMap<String, User> users;
     private User currentUser;
 
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 
     public UsersData() {
         users = new HashMap<>();
@@ -129,48 +128,5 @@ public class UsersData {
         return currentUser != null;
     }
 
-    /**
-     * Hashes the password
-     *
-     * @param password is the password to hash
-     * @param salt is the salt (randomly generated number) to prepend to the password
-     * @return the hashed password
-     * @throws UnableToCreateUserException if hashing algorithm isn't available from provider
-     */
-    private String hashPassword(String password, String salt) throws UnableToCreateUserException {
-        String saltedPassword = salt + password;
-        return sha256(saltedPassword);
-    }
 
-    /**
-     * Returns the SHA-256 hash of a string
-     * @param input is the string to hash
-     * @return the hashed string
-     * @throws UnableToCreateUserException if the SHA-256 algorithm isn't provided from provider
-     */
-    private String sha256(String input) throws UnableToCreateUserException {
-        try {
-            MessageDigest mDigest = MessageDigest.getInstance("SHA-256");
-            byte[] result = mDigest.digest(input.getBytes());
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < result.length; i++) {
-                sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
-            }
-
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new UnableToCreateUserException("Unable to get provider for SHA-256 algorithm");
-        }
-    }
-
-    /**
-     * Validate an email string against a regex
-     *
-     * @param emailStr is the email to validate
-     * @return true if the email is valid, false otherwise
-     */
-    private static boolean validate(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
-        return matcher.find();
-    }
 }
