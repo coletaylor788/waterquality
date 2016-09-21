@@ -10,10 +10,12 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import model.auth.Role;
 import model.auth.User;
 import model.auth.UsersData;
 import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.UnableToCreateUserException;
+import model.exceptions.EmptyRequiredFieldException;
 
 import java.io.IOException;
 
@@ -48,6 +50,7 @@ public class RegisterScreenController {
                                 passwordField.getText(),
                                 firstNameField.getText(),
                                 lastNameField.getText(),
+                                Role.USER,
                                 emailField.getText());
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -65,10 +68,10 @@ public class RegisterScreenController {
                 System.out.println(e.getMessage());
             }
 
-        } catch (UnableToCreateUserException e) {
+        } catch (AuthenticationException | EmptyRequiredFieldException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);
-            alert.setTitle("Cannot Create User");
+            alert.setTitle(e.getMessage());
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
         }

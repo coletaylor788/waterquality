@@ -4,13 +4,9 @@ import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.InvalidPasswordException;
 import model.auth.exceptions.InvalidUsernameException;
 import model.auth.exceptions.UnableToCreateUserException;
+import model.exceptions.EmptyRequiredFieldException;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.security.SecureRandom;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Forward facing authentication class
@@ -21,23 +17,57 @@ import java.util.regex.Pattern;
  *   User currentUser = ud.login(username, password)
  *
  * @author Cole Taylor
- * @version 1.0
+ * @version 1.1
+ *
+ * Change Log:
+ *
+ * 1.1
+ * - Removed password hashing ability (moved to User)
+ * - Removed data validation (moved to User)
+ * - Restructured to only create and authenticate users, not manage them.
  */
 public class UsersData {
 
     private HashMap<String, User> users;
     private User currentUser;
 
-
-
     public UsersData() {
         users = new HashMap<>();
-        try {
-            addUser("user", "pass", "Sample", "User", "sampleuser@sample.com");
-        } catch (UnableToCreateUserException e) {
-            System.out.println("[WARN] unable to add sample user");
-        }
         currentUser = null;
+    }
+
+    /**
+     * Adds a user account with the minimum requirements
+     *
+     * @param username is the username of the user
+     * @param password is the password of the user. It will be hashed
+     * @param firstName is the first name of the user.
+     * @param lastName is the last name of the user.
+     * @param role is the role of the user.
+     * @throws AuthenticationException if there is a problem with authentication.
+     * @throws EmptyRequiredFieldException if a required field is empty
+     */
+    public void addUser(String username, String password, String firstName,
+                        String lastName, Role role)
+            throws AuthenticationException, EmptyRequiredFieldException {
+        addUser(username, password, firstName, lastName, role, "", "", "", "", null, 0);
+    }
+
+    /**
+     * Adds a user account with requirements + email. (backwards compatibility)
+     *
+     * @param username is the username of the user
+     * @param password is the password of the user. It will be hashed
+     * @param firstName is the first name of the user.
+     * @param lastName is the last name of the user.
+     * @param role is the role of the user.
+     * @throws AuthenticationException if there is a problem with authentication.
+     * @throws EmptyRequiredFieldException if a required field is empty
+     */
+    public void addUser(String username, String password, String firstName,
+                        String lastName, Role role, String email)
+            throws AuthenticationException, EmptyRequiredFieldException {
+        addUser(username, password, firstName, lastName, role, email, "", "", "", null, 0);
     }
 
     /**
@@ -47,30 +77,31 @@ public class UsersData {
      * @param password is the password of the user. It will be hashed
      * @param firstName is the first name of the user.
      * @param lastName is the last name of the user.
+     * @param role is the role of the user
      * @param email is the email of the user.
-     * @throws UnableToCreateUserException if user creation failed
+     * @param title is the title of the user
+     * @param address is the address of the user
+     * @param city is the city of the user
+     * @param state is the state of the user
+     * @param zipCode is the zipCode of the user
+     * @throws AuthenticationException if there is a problem with authentication.
+     * @throws EmptyRequiredFieldException if a required field is empty
      */
     public void addUser(String username, String password, String firstName, String lastName,
-                               String email) throws UnableToCreateUserException {
+                        Role role, String email, String title, String address, String city,
+                        State state, int zipCode)
+            throws AuthenticationException, EmptyRequiredFieldException {
 
-        if (username.isEmpty() || password.isEmpty() || firstName.isEmpty()
-                || lastName.isEmpty() || email.isEmpty()) {
-            throw new UnableToCreateUserException("Please fill in all fields.");
-        } else if (!validate(email)) {
-            throw new UnableToCreateUserException("Email address is not valid.");
+        if (username.isEmpty()) {
+            throw new EmptyRequiredFieldException("Username cannot be empty");
         } else if (users.containsKey(username)) {
             throw new UnableToCreateUserException("Username: " + username + " already exists.");
         }
-        // Generate random Salt
-        SecureRandom randomGen = new SecureRandom();
-        int saltInt = randomGen.nextInt();
-        String salt = Integer.toString(saltInt);
 
-        // Apply the SHA-256 hashing algorithm to the password
-        String passwordHash = hashPassword(password, salt);
+        User newUser = new User(username, password, firstName, lastName, role, email, title, address, city, state, zipCode);
 
         // Add user to users map
-        users.put(username, new User(username, passwordHash, salt, firstName, lastName, email));
+        users.put(username, newUser);
     }
 
     /**
@@ -86,15 +117,12 @@ public class UsersData {
             throw new InvalidUsernameException("Username is incorrect");
         }
         User user = users.get(username);
-        try {
-            if (hashPassword(password, user.getSalt()).equals(user.getPasswordHash())) {
-                currentUser = user;
-                return currentUser;
-            } else {
-                throw new InvalidPasswordException("Password is incorrect");
-            }
-        } catch (UnableToCreateUserException e) {
-            throw new AuthenticationException(e.getMessage());
+
+        if (user.isPasswordValid(password)) {
+            currentUser = user;
+            return currentUser;
+        } else {
+            throw new InvalidPasswordException("Password is incorrect");
         }
     }
 
@@ -113,7 +141,8 @@ public class UsersData {
     }
 
     /**
-     * Returns the logged in user
+     * Returns the logged in user. This method can be used to edit
+     * the mutable instance variables of a user.
      *
      * @return the currently logged in user, null if no one is logged in
      */

@@ -1,5 +1,11 @@
 package model.auth;
 
+/**
+ * Contains states to be used with the street address
+ *
+ * @author Cole Taylor
+ * @version 1.0
+ */
 public enum State {
 
     ALABAMA("Alabama", "AL"),
