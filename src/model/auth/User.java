@@ -1,5 +1,7 @@
 package model.auth;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.InvalidEmailException;
 import model.auth.exceptions.UnableToCreateUserException;
@@ -38,7 +40,9 @@ public class User {
     private String city;
     private State state;
     private int zipCode;
-    private Role role;
+    //private Role role;
+
+    private ObjectProperty<Role> role = new SimpleObjectProperty<>();
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -57,7 +61,8 @@ public class User {
         this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
-        this.role = role;
+        //this.role = role;
+        this.role.set(role);
         setEmail(email);
         this.title = title;
         this.address = address;
@@ -83,7 +88,8 @@ public class User {
         return lastName;
     }
     public Role getRole() {
-        return role;
+        //return role;
+        return role.get();
     }
     public String getEmail() {
         return email;
@@ -136,7 +142,8 @@ public class User {
         this.lastName = lastName;
     }
     public void setRole(Role role) {
-        this.role = role;
+        //this.role = role;
+        this.role.set(role);
     }
 
     public void setEmail(String email) throws InvalidEmailException {

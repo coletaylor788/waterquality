@@ -47,7 +47,6 @@ public class RegisterScreenController {
 
     @FXML
     private void initialize() {
-        role = new ComboBox<>();
         role.getItems().addAll(generateRoles());
     }
 
@@ -71,8 +70,9 @@ public class RegisterScreenController {
                                 passwordField.getText(),
                                 firstNameField.getText(),
                                 lastNameField.getText(),
-                                Role.USER,
+                                role.getValue(),
                                 emailField.getText());
+
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));

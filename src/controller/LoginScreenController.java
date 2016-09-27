@@ -47,6 +47,7 @@ public class LoginScreenController {
     private void handleLoginPressed() {
         try {
             user = mainController.getUsersData().login(usernameField.getText(), passwordField.getText());
+            System.out.println(mainController.getUsersData().getCurrentUser().getRole());
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
