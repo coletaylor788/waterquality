@@ -1,11 +1,14 @@
 package controller;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import javafx.collections.ObservableList;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,9 +38,27 @@ public class RegisterScreenController {
     @FXML
     private TextField passwordField;
 
+    @FXML
+    private ComboBox<Role> role;
+
     private User user;
     private MainController mainController;
     private Stage _dialogStage;
+
+    @FXML
+    private void initialize() {
+        role = new ComboBox<>();
+        role.getItems().addAll(generateRoles());
+    }
+
+    private static ObservableList generateRoles() {
+        Role[] roles = Role.values();
+        ObservableList<Role> roleList = FXCollections.observableArrayList();
+        for (Role role : roles) {
+            roleList.add(role);
+        }
+        return roleList;
+    }
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;

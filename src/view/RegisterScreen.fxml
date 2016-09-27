@@ -47,7 +47,7 @@
             <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Role:      " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox prefHeight="25.0" prefWidth="283.0" promptText="Select Role" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <ComboBox fx:id="role" prefHeight="25.0" prefWidth="283.0" promptText="Select Role" GridPane.columnIndex="2" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </center>

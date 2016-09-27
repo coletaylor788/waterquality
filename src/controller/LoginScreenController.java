@@ -67,13 +67,13 @@ public class LoginScreenController {
         } catch (InvalidUsernameException e) { // Catches all exceptions; Change to catch individual exceptions
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);
-            alert.setTitle("Invalid Fields");
+            alert.setTitle("Invalid Username");
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
         } catch (InvalidPasswordException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);
-            alert.setTitle("Invalid Fields");
+            alert.setTitle("Invalid Password");
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
         } catch (AuthenticationException e) {
