@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
  *
  * 1.2
  * - Changed instance variables to Properties (StringProperty, ObjectProperty, and IntegerProperty)
+ * - Made role a required field. (Need to know what role a user is)
  */
 public class User {
 
@@ -63,8 +64,8 @@ public class User {
         this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
-        this.role.set(role);
 
+        setRole(role);
         setEmail(email);
 
         this.title.set(title);
@@ -144,7 +145,10 @@ public class User {
         }
         this.lastName.set(lastName);
     }
-    public void setRole(Role role) {
+    public void setRole(Role role) throws EmptyRequiredFieldException {
+        if (role == null) {
+            throw new EmptyRequiredFieldException("Role cannot be empty");
+        }
         this.role.set(role);
     }
 
