@@ -1,7 +1,6 @@
 package model.auth;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.InvalidEmailException;
 import model.auth.exceptions.UnableToCreateUserException;
@@ -18,7 +17,7 @@ import java.util.regex.Pattern;
  * Contains information for a User
  *
  * @author Cole Taylor
- * @version 1.1
+ * @version 1.2
  *
  * Change Log:
  *
@@ -27,21 +26,23 @@ import java.util.regex.Pattern;
  * - Added data validation functionality with exceptions. (moved from UsersData)
  * - Added password hashing ability. (moved from UsersData)
  * - Added setters to allow the user object to be changed after registration.
+ *
+ * 1.2
+ * - Changed instance variables to Properties (StringProperty, ObjectProperty, and IntegerProperty)
  */
 public class User {
-    private String username;
-    private String passwordHash;
-    private String salt;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String title;
-    private String address;
-    private String city;
-    private State state;
-    private int zipCode;
-    //private Role role;
 
+    private StringProperty username = new SimpleStringProperty();
+    private StringProperty passwordHash = new SimpleStringProperty();
+    private StringProperty salt = new SimpleStringProperty();
+    private StringProperty firstName = new SimpleStringProperty();
+    private StringProperty lastName = new SimpleStringProperty();
+    private StringProperty email = new SimpleStringProperty();
+    private StringProperty title = new SimpleStringProperty();
+    private StringProperty address = new SimpleStringProperty();
+    private StringProperty city = new SimpleStringProperty();
+    private ObjectProperty<State> state = new SimpleObjectProperty<>();
+    private IntegerProperty zipCode = new SimpleIntegerProperty();
     private ObjectProperty<Role> role = new SimpleObjectProperty<>();
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
@@ -57,62 +58,64 @@ public class User {
                 Role role, String email, String title, String address, String city,
                 State state, int zipCode)
             throws AuthenticationException, EmptyRequiredFieldException {
-        this.username = username;
+        this.username.set(username);
+
         this.setPassword(password);
         this.setFirstName(firstName);
         this.setLastName(lastName);
-        //this.role = role;
         this.role.set(role);
+
         setEmail(email);
-        this.title = title;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
+
+        this.title.set(title);
+        this.address.set(address);
+        this.city.set(city);
+        this.state.set(state);
+        this.zipCode.set(zipCode);
     }
 
     /* ====== GETTERS ====== */
     public String getUsername() {
-        return username;
+        return username.get();
     }
     public String getPasswordHash() {
-        return passwordHash;
+        return passwordHash.get();
     }
     public String getSalt() {
-        return salt;
+        return salt.get();
     }
     public String getFirstName() {
-        return firstName;
+        return firstName.get();
     }
     public String getLastName() {
-        return lastName;
+        return lastName.get();
     }
     public Role getRole() {
-        //return role;
         return role.get();
     }
     public String getEmail() {
-        return email;
+        return email.get();
     }
     public String getTitle() {
-        return title;
+        return title.get();
     }
     public String getAddress() {
-        return address;
+        return address.get();
     }
     public String getCity() {
-        return city;
+        return city.get();
     }
     public State getState() {
-        return state;
+        return state.get();
     }
     public int getZipCode() {
-        return zipCode;
+        return zipCode.get();
     }
 
     public boolean isPasswordValid(String password) throws UnableToHashPasswordException {
-        String enteredPasswordHash = hashPassword(password, this.salt);
-        return enteredPasswordHash.equals(this.passwordHash);
+        String enteredPasswordHash = hashPassword(password, this.salt.get());
+
+        return enteredPasswordHash.equals(this.passwordHash.get());
     }
 
     /* ====== SETTERS ====== */
@@ -125,24 +128,23 @@ public class User {
         SecureRandom randomGen = new SecureRandom();
         int saltInt = randomGen.nextInt();
         String salt = Integer.toString(saltInt);
-        this.salt = salt;
-        this.passwordHash = hashPassword(password, salt);
+        this.salt.set(salt);
+        this.passwordHash.set(hashPassword(password, salt));
     }
 
     public void setFirstName(String firstName) throws EmptyRequiredFieldException {
         if (firstName.isEmpty()) {
             throw new EmptyRequiredFieldException("First name cannot be empty");
         }
-        this.firstName = firstName;
+        this.firstName.set(firstName);
     }
     public void setLastName(String lastName) throws EmptyRequiredFieldException {
         if (lastName.isEmpty()) {
             throw new EmptyRequiredFieldException("Last name cannot be empty");
         }
-        this.lastName = lastName;
+        this.lastName.set(lastName);
     }
     public void setRole(Role role) {
-        //this.role = role;
         this.role.set(role);
     }
 
@@ -150,23 +152,23 @@ public class User {
         if (!email.isEmpty() && !validate(email)) {
             throw new InvalidEmailException("Email has an invalid format");
         }
-        this.email = email;
+        this.email.set(email);
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title.set(title);
     }
     public void setAddress(String address) {
-        this.address = address;
+        this.address.set(address);
     }
     public void setCity(String city) {
-        this.city = city;
+        this.city.set(city);
     }
     public void setState(State state) {
-        this.state = state;
+        this.state.set(state);
     }
     public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+        this.zipCode.set(zipCode);
     }
 
     /**
