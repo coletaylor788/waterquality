@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileScreenControl">
    <bottom>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="97.0" prefWidth="499.0" BorderPane.alignment="CENTER">
          <items>
@@ -49,7 +49,7 @@
             <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" />
             <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="emailField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="usernameField" editable="false" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <ComboBox fx:id="role" prefHeight="25.0" prefWidth="283.0" promptText="Select Role" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Address:      " GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -59,7 +59,7 @@
             <TextField fx:id="addressField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <TextField fx:id="cityField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <ComboBox fx:id="state" prefHeight="25.0" prefWidth="283.0" promptText="Select State" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <TextField fx:id="zipcodeField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <TextField fx:id="zipCodeField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
          </children>
       </GridPane>
    </center>

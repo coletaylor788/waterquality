@@ -47,22 +47,21 @@ public class UserScreenController {
     @FXML
     private void handleEditPressed() {
         user = mainController.getUsersData().getCurrentUser();
-        System.out.println(mainController.getUsersData().getCurrentUser().getRole());
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/EditProfileScreen.fxml"));
-            BorderPane userScreen = loader.load();
-            UserScreenController controller = loader.getController();
+            BorderPane editScreen = loader.load();
+            EditProfileScreenControl controller = loader.getController();
             controller.setMainController(mainController);
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();
             primaryStage.setTitle("Edit User: "
                     + mainController.getUsersData().getCurrentUser().getFirstName());
-            primaryStage.setScene(new Scene(userScreen));
+            primaryStage.setScene(new Scene(editScreen));
             primaryStage.show();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
 
     }

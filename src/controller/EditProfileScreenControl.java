@@ -57,12 +57,12 @@ public class EditProfileScreenControl {
 
     @FXML
     private void initialize() {
-        user = mainController.getUsersData().getCurrentUser();
-        firstNameField.setText(user.getFirstName());
-        lastNameField.setText(user.getLastName());
-        emailField.setText(user.getEmail());
-        usernameField.setText(user.getUsername());
-        passwordField.setText(user.getPasswordHash());
+//        user = mainController.getUsersData().getCurrentUser();
+//        firstNameField.setText(user.getFirstName());
+//        lastNameField.setText(user.getLastName());
+//        emailField.setText(user.getEmail());
+//        usernameField.setText(user.getUsername());
+//        passwordField.setText(user.getPasswordHash());
 
     }
 
@@ -71,9 +71,17 @@ public class EditProfileScreenControl {
     }
 
     @FXML
-    private void handleSavePressed() {
+    private void handleSavePressed() throws Exception {
         try {
-            
+            user.setFirstName(firstNameField.getText());
+            user.setLastName(lastNameField.getText());
+            user.setEmail(emailField.getText());
+            user.setPassword(passwordField.getText());
+            user.setRole(role.getValue());
+            user.setAddress(addressField.getText());
+            user.setCity(cityField.getText());
+            user.setState(state.getValue());
+            user.setZipCode(Integer.parseInt(zipCodeField.getText()));
 
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -97,6 +105,25 @@ public class EditProfileScreenControl {
             alert.setTitle(e.getMessage());
             alert.setHeaderText(e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleCancelPressed() throws Exception {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
+            BorderPane userScreen = loader.load();
+            UserScreenController controller = loader.getController();
+            controller.setMainController(mainController);
+
+            // Sets the scene
+            Stage primaryStage = mainController.getPrimaryStage();
+            primaryStage.setTitle("User: " + firstNameField.getText());
+            primaryStage.setScene(new Scene(userScreen));
+            primaryStage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
