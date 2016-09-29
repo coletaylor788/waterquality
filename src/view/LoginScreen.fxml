@@ -5,6 +5,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="351.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <bottom>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="116.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <ToolBar maxHeight="70.0" minHeight="70.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="116.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <items>
           <Button mnemonicParsing="false" onAction="#handleLoginPressed" prefHeight="48.0" prefWidth="182.0" text="Login" textAlignment="RIGHT" />
             <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="48.0" prefWidth="182.0" text="Register" />
@@ -20,7 +22,7 @@
       </ToolBar>
    </bottom>
    <center>
-      <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="301.0" prefWidth="112.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" maxHeight="200.0" minHeight="146.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="146.0" prefWidth="390.0" BorderPane.alignment="BOTTOM_CENTER">
         <columnConstraints>
           <ColumnConstraints />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.66668701171875" minWidth="10.0" prefWidth="221.99996948242188" />
@@ -48,4 +50,11 @@
         </rowConstraints>
       </GridPane>
    </right>
+   <top>
+      <ImageView fitHeight="148.0" fitWidth="443.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@login%20screen.png" />
+         </image>
+      </ImageView>
+   </top>
 </BorderPane>
