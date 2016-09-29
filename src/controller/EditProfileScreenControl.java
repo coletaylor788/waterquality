@@ -53,17 +53,13 @@ public class EditProfileScreenControl {
     private MainController mainController;
     private Stage _dialogStage;
 
-
-
-    @FXML
-    private void initialize() {
-//        user = mainController.getUsersData().getCurrentUser();
-//        firstNameField.setText(user.getFirstName());
-//        lastNameField.setText(user.getLastName());
-//        emailField.setText(user.getEmail());
-//        usernameField.setText(user.getUsername());
-//        passwordField.setText(user.getPasswordHash());
-
+    public void setDefaultFields() {
+        user = mainController.getUsersData().getCurrentUser();
+        firstNameField.setText(user.getFirstName());
+        lastNameField.setText(user.getLastName());
+        emailField.setText(user.getEmail());
+        usernameField.setText(user.getUsername());
+        passwordField.setText(user.getPasswordHash());
     }
 
     public void setMainController(MainController mainController) {

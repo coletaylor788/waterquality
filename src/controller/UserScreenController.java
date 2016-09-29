@@ -53,9 +53,11 @@ public class UserScreenController {
             BorderPane editScreen = loader.load();
             EditProfileScreenControl controller = loader.getController();
             controller.setMainController(mainController);
+            controller.setDefaultFields();
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();
+            System.out.println(mainController.getUsersData().getCurrentUser());
             primaryStage.setTitle("Edit User: "
                     + mainController.getUsersData().getCurrentUser().getFirstName());
             primaryStage.setScene(new Scene(editScreen));

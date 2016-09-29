@@ -72,6 +72,7 @@ public class RegisterScreenController {
                                 lastNameField.getText(),
                                 role.getValue(),
                                 emailField.getText());
+            mainController.getUsersData().login(usernameField.getText(), passwordField.getText());
 
             try {
                 FXMLLoader loader = new FXMLLoader();
