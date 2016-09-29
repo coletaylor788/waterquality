@@ -86,7 +86,7 @@ public class EditProfileScreenControl {
         emailField.setText(user.getEmail());
         usernameField.setText(user.getUsername());
         role.setValue(user.getRole());
-        addressField.setText(user.getUsername());
+        addressField.setText(user.getAddress());
         cityField.setText(user.getCity());
         state.setValue(user.getState());
         zipCodeField.setText(((Integer) user.getZipCode()).toString());
