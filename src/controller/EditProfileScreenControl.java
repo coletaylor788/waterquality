@@ -85,7 +85,11 @@ public class EditProfileScreenControl {
         lastNameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
         usernameField.setText(user.getUsername());
-        passwordField.setText(user.getPasswordHash());
+        role.setValue(user.getRole());
+        addressField.setText(user.getUsername());
+        cityField.setText(user.getCity());
+        state.setValue(user.getState());
+        zipCodeField.setText(((Integer) user.getZipCode()).toString());
     }
 
     public void setMainController(MainController mainController) {
@@ -98,6 +102,9 @@ public class EditProfileScreenControl {
             user.setFirstName(firstNameField.getText());
             user.setLastName(lastNameField.getText());
             user.setEmail(emailField.getText());
+            if (!passwordField.getText().equals("")) {
+                user.setPassword(passwordField.getText());
+            }
             user.setPassword(passwordField.getText());
             user.setRole(role.getValue());
             user.setAddress(addressField.getText());
