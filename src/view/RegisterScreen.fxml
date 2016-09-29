@@ -6,12 +6,14 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterScreenController">
+<BorderPane maxHeight="460.0" maxWidth="450.0" minHeight="-Infinity" minWidth="400.0" prefHeight="460.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterScreenController">
    <bottom>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="97.0" prefWidth="499.0" BorderPane.alignment="CENTER">
          <items>
@@ -21,7 +23,7 @@
       </ToolBar>
    </bottom>
    <center>
-      <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="301.0" prefWidth="112.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" maxHeight="200.0" minHeight="200.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="500.0" BorderPane.alignment="BOTTOM_CENTER">
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.66668701171875" minWidth="10.0" prefWidth="221.99996948242188" />
@@ -61,4 +63,11 @@
          </rowConstraints>
       </GridPane>
    </right>
+   <top>
+      <ImageView fitHeight="150.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@register.png" />
+         </image>
+      </ImageView>
+   </top>
 </BorderPane>
