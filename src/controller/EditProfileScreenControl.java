@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -52,6 +54,30 @@ public class EditProfileScreenControl {
     private User user;
     private MainController mainController;
     private Stage _dialogStage;
+
+    @FXML
+    private void initialize() {
+        role.getItems().addAll(generateRoles());
+        state.getItems().addAll(generateState());
+    }
+
+    private static ObservableList generateRoles() {
+        Role[] roles = Role.values();
+        ObservableList<Role> roleList = FXCollections.observableArrayList();
+        for (Role role : roles) {
+            roleList.add(role);
+        }
+        return roleList;
+    }
+
+    private static ObservableList generateState() {
+        State[] states = State.values();
+        ObservableList<State> stateList = FXCollections.observableArrayList();
+        for (State state : states) {
+            stateList.add(state);
+        }
+        return stateList;
+    }
 
     public void setDefaultFields() {
         user = mainController.getUsersData().getCurrentUser();
