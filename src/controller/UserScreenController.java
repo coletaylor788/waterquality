@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import model.auth.User;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 public class UserScreenController {
 
     private MainController mainController;
+    private User user;
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -40,5 +42,28 @@ public class UserScreenController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleEditPressed() {
+        user = mainController.getUsersData().getCurrentUser();
+        System.out.println(mainController.getUsersData().getCurrentUser().getRole());
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("../view/EditProfileScreen.fxml"));
+            BorderPane userScreen = loader.load();
+            UserScreenController controller = loader.getController();
+            controller.setMainController(mainController);
+
+            // Sets the scene
+            Stage primaryStage = mainController.getPrimaryStage();
+            primaryStage.setTitle("Edit User: "
+                    + mainController.getUsersData().getCurrentUser().getFirstName());
+            primaryStage.setScene(new Scene(userScreen));
+            primaryStage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
