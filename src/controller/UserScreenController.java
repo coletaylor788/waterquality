@@ -57,7 +57,6 @@ public class UserScreenController {
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();
-            System.out.println(mainController.getUsersData().getCurrentUser());
             primaryStage.setTitle("Edit User: "
                     + mainController.getUsersData().getCurrentUser().getFirstName());
             primaryStage.setScene(new Scene(editScreen));

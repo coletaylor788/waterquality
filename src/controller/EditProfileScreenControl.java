@@ -105,7 +105,6 @@ public class EditProfileScreenControl {
             if (!passwordField.getText().equals("")) {
                 user.setPassword(passwordField.getText());
             }
-            user.setPassword(passwordField.getText());
             user.setRole(role.getValue());
             user.setAddress(addressField.getText());
             user.setCity(cityField.getText());
