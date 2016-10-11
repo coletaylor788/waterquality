@@ -36,6 +36,10 @@ public class LoginScreenController {
         System.exit(0);
     }
 
+    /**
+     * Passes in the Main Controller in order to preserve several properties
+     * @param mainController the class with the properties
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }

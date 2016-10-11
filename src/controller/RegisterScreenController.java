@@ -46,10 +46,17 @@ public class RegisterScreenController {
     private Stage _dialogStage;
 
     @FXML
+    /**
+     * populates combo boxes
+     */
     private void initialize() {
         role.getItems().addAll(generateRoles());
     }
 
+    /**
+     * Creates an observable list to put in the ComboBox
+     * @return list with all the roles
+     */
     private static ObservableList generateRoles() {
         Role[] roles = Role.values();
         ObservableList<Role> roleList = FXCollections.observableArrayList();
@@ -59,11 +66,18 @@ public class RegisterScreenController {
         return roleList;
     }
 
+    /**
+     * Passes in the Main Controller in order to preserve several properties
+     * @param mainController the class with the properties
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
     @FXML
+    /**
+     * handles Register button
+     */
     private void handleRegisterPressed() {
         try {
             mainController.getUsersData().addUser(usernameField.getText(),
@@ -100,6 +114,9 @@ public class RegisterScreenController {
     }
 
     @FXML
+    /**
+     * handles Cancel button
+     */
     private void handleCancelPressed() throws Exception {
         try {
             FXMLLoader loader = new FXMLLoader();
