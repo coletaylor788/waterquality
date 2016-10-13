@@ -27,6 +27,7 @@ public class UserScreenController {
     private MainController mainController;
     private User user;
 
+<<<<<<< HEAD
 
 
     @FXML
@@ -57,6 +58,11 @@ public class UserScreenController {
     /**
      * Sets the main controller
      * @param mainController controller passed
+=======
+    /**
+     * Passes in the Main Controller in order to preserve several properties
+     * @param mainController the class with the properties
+>>>>>>> 62de37d4ed8c1e69e362f72a2e576cd70cad4bd6
      */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
@@ -64,6 +70,9 @@ public class UserScreenController {
     }
 
     @FXML
+    /**
+     * handles Logout button
+     */
     private void handleLogoutPressed() throws Exception {
         try {
             mainController.getUsersData().logout();
@@ -85,6 +94,9 @@ public class UserScreenController {
     }
 
     @FXML
+    /**
+     * handles Edit button
+     */
     private void handleEditPressed() {
         user = mainController.getUsersData().getCurrentUser();
         try {

@@ -56,11 +56,18 @@ public class EditProfileScreenControl {
     private Stage _dialogStage;
 
     @FXML
+    /**
+     * populates combo boxes
+     */
     private void initialize() {
         role.getItems().addAll(generateRoles());
         state.getItems().addAll(generateState());
     }
 
+    /**
+     * Creates an observable list to put in the ComboBox
+     * @return list with all the roles
+     */
     private static ObservableList generateRoles() {
         Role[] roles = Role.values();
         ObservableList<Role> roleList = FXCollections.observableArrayList();
@@ -70,6 +77,10 @@ public class EditProfileScreenControl {
         return roleList;
     }
 
+    /**
+     * Creates an observable list to put in the ComboBox
+     * @return list with all the states
+     */
     private static ObservableList generateState() {
         State[] states = State.values();
         ObservableList<State> stateList = FXCollections.observableArrayList();
@@ -92,11 +103,18 @@ public class EditProfileScreenControl {
         zipCodeField.setText(((Integer) user.getZipCode()).toString());
     }
 
+    /**
+     * Passes in the Main Controller in order to preserve several properties
+     * @param mainController the class with the properties
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
     @FXML
+    /**
+     * handles Save button
+     */
     private void handleSavePressed() throws Exception {
         try {
             user.setFirstName(firstNameField.getText());
@@ -137,6 +155,9 @@ public class EditProfileScreenControl {
     }
 
     @FXML
+    /**
+     * handles Cancel button
+     */
     private void handleCancelPressed() throws Exception {
         try {
             FXMLLoader loader = new FXMLLoader();
