@@ -1,17 +1,25 @@
 package controller;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import model.auth.ReportType;
+import model.auth.Role;
 import model.auth.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class UserScreenController {
@@ -19,8 +27,40 @@ public class UserScreenController {
     private MainController mainController;
     private User user;
 
+
+
+    @FXML
+    private ComboBox<ReportType> reportType;
+
+    private ObservableList generateReports() {
+        user = mainController.getUsersData().getCurrentUser();
+        Role role = user.getRole();
+        ArrayList<ReportType> repList = new ArrayList<>();
+        if(role == Role.ADMIN) {
+            repList.add(ReportType.VIEWUSERS);
+            repList.add(ReportType.VIEWSECUR);
+        } else {
+            repList.add(ReportType.MAKEAVAI);
+            repList.add(ReportType.VIEWAVAI);
+            if( role != Role.USER) {
+                repList.add(ReportType.MAKEPURI);
+                if( role != Role.WORKER) {
+                    repList.add(ReportType.VIEWHIST);
+                    repList.add(ReportType.VIEWREPS);
+                }
+            }
+        }
+        ObservableList<ReportType> repsList = FXCollections.observableArrayList(repList);
+        return repsList;
+    }
+
+    /**
+     * Sets the main controller
+     * @param mainController controller passed
+     */
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+        reportType.getItems().addAll(generateReports());
     }
 
     @FXML
@@ -60,6 +100,26 @@ public class UserScreenController {
             primaryStage.setTitle("Edit User: "
                     + mainController.getUsersData().getCurrentUser().getFirstName());
             primaryStage.setScene(new Scene(editScreen));
+            primaryStage.show();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void handleActivatePressed() {
+        user = mainController.getUsersData().getCurrentUser();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource(reportType.getValue().getPath()));
+            BorderPane reportScreen = loader.load();
+            WaterAvailabilityReportController controller = loader.getController();
+            controller.setMainController(mainController);
+
+            // Sets the scene
+            Stage primaryStage = mainController.getPrimaryStage();
+            primaryStage.setTitle(reportType.getValue().getTitle());
+            primaryStage.setScene(new Scene(reportScreen));
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e);

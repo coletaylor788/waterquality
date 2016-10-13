@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import model.auth.User;
 import model.auth.UsersData;
+import model.reports.WaterSourceReports;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class MainController extends Application {
 
     private Stage primaryStage;
     private UsersData usersData;
+    private WaterSourceReports waterSourceReports;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -30,6 +32,10 @@ public class MainController extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public WaterSourceReports getWaterSourceReports() {
+        return waterSourceReports;
     }
 
     //sets main stage and assigns stage instance so we can reuse

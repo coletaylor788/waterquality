@@ -119,4 +119,26 @@ public class SourceReport {
         return waterCondition.get();
     }
 
+    //***************** Setters **************
+    /**
+     * @param waterType type passed
+     */
+    public void setWaterType(WaterType waterType) {
+        this.waterType.set(waterType);
+    }
+
+    /**
+     * @param location type passed
+     */
+    public void setLocation (Location location) {
+        this.location.set(location);
+    }
+
+    /**
+     * @param condition type passed
+     */
+    public void setCondition (WaterCondition condition) {
+        this.waterCondition.set(condition);
+    }
+
 }

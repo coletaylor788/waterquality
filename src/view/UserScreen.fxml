@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="351.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserScreenController">
    <bottom>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="116.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
          <items>
-            <Button mnemonicParsing="false" onAction="#handleLogoutPressed" prefHeight="48.0" prefWidth="182.0" text="Logout" textAlignment="RIGHT" />
-            <Button layoutX="10.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleEditPressed" prefHeight="48.0" prefWidth="182.0" text="Edit Profile" textAlignment="RIGHT" />
+            <Button mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout" textAlignment="RIGHT" />
+            <Button layoutX="10.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleEditPressed" text="Edit Profile" textAlignment="RIGHT" />
+            <Button mnemonicParsing="false" onAction="#handleActivatePressed" text="Activate Report" textAlignment="RIGHT" />
+            <ComboBox fx:id="reportType" prefWidth="150.0" promptText="Choose Report Type" />
          </items>
       </ToolBar>
    </bottom>
