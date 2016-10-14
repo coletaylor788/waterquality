@@ -27,9 +27,6 @@ public class UserScreenController {
     private MainController mainController;
     private User user;
 
-<<<<<<< HEAD
-
-
     @FXML
     private ComboBox<ReportType> reportType;
 
