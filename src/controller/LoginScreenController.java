@@ -28,7 +28,6 @@ public class LoginScreenController {
 
     private User user;
     private Stage _dialogStage;
-    private MainController mainController;
 
     //closes dialogue box
     @FXML
@@ -37,39 +36,14 @@ public class LoginScreenController {
     }
 
     /**
-     * Passes in the Main Controller in order to preserve several properties
-     * @param mainController the class with the properties
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
-    /**
      * Called when the user clicks ok.
      */
     @FXML
     private void handleLoginPressed() {
         try {
-            user = mainController.getUsersData().login(usernameField.getText(), passwordField.getText());
-            System.out.println(mainController.getUsersData().getCurrentUser().getRole());
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
-                BorderPane userScreen = loader.load();
-                UserScreenController controller = loader.getController();
-                controller.setMainController(mainController);
-
-                // Sets the scene
-                Stage primaryStage = mainController.getPrimaryStage();
-                primaryStage.setTitle("User: "
-                        + mainController.getUsersData().getCurrentUser().getFirstName());
-                primaryStage.setScene(new Scene(userScreen));
-                primaryStage.show();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-
-        } catch (InvalidUsernameException e) { // Catches all exceptions; Change to catch individual exceptions
+            user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
+            MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
+        } catch (InvalidUsernameException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);
             alert.setTitle("Invalid Username");
@@ -92,20 +66,6 @@ public class LoginScreenController {
 
     @FXML
     private void handleRegisterPressed() throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("../view/RegisterScreen.fxml"));
-            BorderPane registerScreen = loader.load();
-            RegisterScreenController controller = loader.getController();
-            controller.setMainController(mainController);
-
-            //sets the scene
-            Stage primaryStage = mainController.getPrimaryStage();
-            primaryStage.setTitle("Register Screen");
-            primaryStage.setScene(new Scene(registerScreen));
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        MainController.getInstance().changeScene("../view/RegisterScreen.fxml", "Register");
     }
 }

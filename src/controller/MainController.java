@@ -6,9 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import model.Facade;
 import model.auth.User;
 import model.auth.UsersData;
 import model.reports.WaterSourceReports;
+import sample.Main;
 
 import java.io.IOException;
 
@@ -16,46 +18,55 @@ import java.io.IOException;
 public class MainController extends Application {
 
     private Stage primaryStage;
-    private UsersData usersData;
-    private WaterSourceReports waterSourceReports;
+    private Facade facade = Facade.getInstance();
+    private static MainController mainController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        usersData = new UsersData();
+        //usersData = new UsersData();
         stageAssignment(primaryStage);
+        mainController = this;
     }
 
-    public UsersData getUsersData() {
-        return usersData;
+    public Facade getFacade() {
+        return facade;
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public WaterSourceReports getWaterSourceReports() {
-        return waterSourceReports;
-    }
-
     //sets main stage and assigns stage instance so we can reuse
     private void stageAssignment(Stage primaryStage) {
         //This block of code is needed to change layouts
         //in getResource you put in the path to the next FXML file
+        changeScene("../view/LoginScreen.fxml", "Login Screen");
+    }
+
+    public void changeScene(String scenePath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("../view/LoginScreen.fxml"));
-            BorderPane loginScreen = loader.load();
-            LoginScreenController controller = loader.getController();
-            controller.setMainController(this);
+            loader.setLocation(MainController.class.getResource(scenePath));
+            Parent screen = loader.load();
 
             //sets the scene
-            primaryStage.setTitle("Login Screen");
-            primaryStage.setScene(new Scene(loginScreen));
+            Stage primaryStage = getPrimaryStage();
+            primaryStage.setTitle(title);
+            primaryStage.setScene(new Scene(screen));
             primaryStage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Used to get the Main Controller of the application
+     *
+     * @return the main controller instance
+     */
+    public static MainController getInstance() {
+        return mainController;
     }
 
     public static void main(String[] args) {

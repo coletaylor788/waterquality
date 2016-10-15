@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileScreenControl">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileScreenControl">
    <bottom>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="65.0" prefWidth="499.0" BorderPane.alignment="CENTER">
          <items>
@@ -116,7 +116,7 @@
             </TextField>
             <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                <image>
-                  <Image url="@water%20quality.png" />
+                  <Image url="@water_quality.png" />
                </image>
             </ImageView>
          </children>

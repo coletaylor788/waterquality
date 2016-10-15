@@ -1,5 +1,7 @@
-package controller;
+package controller.unused;
 
+import controller.MainController;
+import controller.UserScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -104,11 +106,11 @@ public class WaterAvailabilityReportController {
      * autogenerates necessary fields
      */
     private void generateFields() {
-        user = mainController.getUsersData().getCurrentUser();
+        user = mainController.getFacade().getUsers().getCurrentUser();
         String usersName = ""+user.getFirstName()+" "+user.getLastName();
         reportersName.setText(usersName);
         location = new Location(0.0,0.0);
-        sourceReport = new SourceReport(user,location,WaterType.BOTTLED,WaterCondition.POTABLE);
+        //sourceReport = new SourceReport(user,location,WaterType.BOTTLED,WaterCondition.POTABLE);
         date.setValue(sourceReport.getTimestamp().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         time.setText(sourceReport.getStringTimestamp());
         reportNum.setText(""+sourceReport.getID());
@@ -127,13 +129,13 @@ public class WaterAvailabilityReportController {
 
     @FXML
     void handleCancelPressed() {
-        user = mainController.getUsersData().getCurrentUser();
+        user = mainController.getFacade().getUsers().getCurrentUser();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
             BorderPane userScreen = loader.load();
             UserScreenController controller = loader.getController();
-            controller.setMainController(mainController);
+            //controller.setMainController(mainController);
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();
@@ -147,19 +149,19 @@ public class WaterAvailabilityReportController {
 
     @FXML
     void handleSubmitPressed() {
-        user = mainController.getUsersData().getCurrentUser();
+        user = mainController.getFacade().getUsers().getCurrentUser();
         sourceReport.setCondition(waterCondition.getValue());
         sourceReport.setWaterType(waterType.getValue());
         location = new Location(Double.parseDouble(lattitudeEnter.getText()),
                 Double.parseDouble(longitudeEnter.getText()));
         sourceReport.setLocation(location);
-        mainController.getWaterSourceReports().addSourceReport(sourceReport);
+        mainController.getFacade().getSourceReports().addSourceReport(sourceReport);
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
             BorderPane userScreen = loader.load();
             UserScreenController controller = loader.getController();
-            controller.setMainController(mainController);
+            //controller.setMainController(mainController);
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();

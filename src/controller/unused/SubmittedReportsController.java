@@ -1,8 +1,10 @@
-package controller;
+package controller.unused;
 
 /**
  * Created by Nkosi Kee on 10/13/2016.
  */
+import controller.MainController;
+import controller.UserScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -42,7 +44,7 @@ public class SubmittedReportsController {
      * @return an observable list of reports
      */
     private ObservableList generateReports() {
-        List<SourceReport> reports =mainController.getWaterSourceReports().getSourceReports();
+        List<SourceReport> reports =mainController.getFacade().getSourceReports().getSourceReports();
         ObservableList<SourceReport> sourceReports = FXCollections.observableArrayList();
         for (SourceReport report : reports) {
             sourceReports.add(report);
@@ -52,13 +54,13 @@ public class SubmittedReportsController {
 
     @FXML
     void handleCancelPressed() {
-        user = mainController.getUsersData().getCurrentUser();
+        user = mainController.getFacade().getUsers().getCurrentUser();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
             BorderPane userScreen = loader.load();
             UserScreenController controller = loader.getController();
-            controller.setMainController(mainController);
+            //controller.setMainController(mainController);
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();

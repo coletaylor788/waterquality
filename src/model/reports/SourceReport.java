@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 import model.auth.User;
+import model.exceptions.EmptyRequiredFieldException;
 
 import javax.xml.transform.Source;
 import java.text.DateFormat;
@@ -39,12 +40,18 @@ public class SourceReport {
      * @param waterCondition is the waterCondition of the SourceReport
      */
     public SourceReport(User reportedUser, Location location, WaterType waterType,
-                        WaterCondition waterCondition) {
+                        WaterCondition waterCondition) throws EmptyRequiredFieldException {
         this(new Date(), reportedUser, location, waterType, waterCondition);
     }
 
     private SourceReport(Date timestamp, User reportedUser, Location location,
-                        WaterType waterType, WaterCondition waterCondition) {
+                        WaterType waterType, WaterCondition waterCondition) throws EmptyRequiredFieldException {
+        if (waterType == null) {
+            throw new EmptyRequiredFieldException("Water type cannot be empty");
+        } else if (waterCondition == null) {
+            throw new EmptyRequiredFieldException("Water condition cannot be empty");
+        }
+
         this.id.set(nextID);
         nextID++;
 

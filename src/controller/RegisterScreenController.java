@@ -42,7 +42,6 @@ public class RegisterScreenController {
     private ComboBox<Role> role;
 
     private User user;
-    private MainController mainController;
     private Stage _dialogStage;
 
     @FXML
@@ -66,43 +65,21 @@ public class RegisterScreenController {
         return roleList;
     }
 
-    /**
-     * Passes in the Main Controller in order to preserve several properties
-     * @param mainController the class with the properties
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
     @FXML
     /**
      * handles Register button
      */
     private void handleRegisterPressed() {
         try {
-            mainController.getUsersData().addUser(usernameField.getText(),
+            MainController.getInstance().getFacade().getUsers().addUser(usernameField.getText(),
                                 passwordField.getText(),
                                 firstNameField.getText(),
                                 lastNameField.getText(),
                                 role.getValue(),
                                 emailField.getText());
-            mainController.getUsersData().login(usernameField.getText(), passwordField.getText());
+            MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
 
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
-                BorderPane userScreen = loader.load();
-                UserScreenController controller = loader.getController();
-                controller.setMainController(mainController);
-
-                // Sets the scene
-                Stage primaryStage = mainController.getPrimaryStage();
-                primaryStage.setTitle("User: " + firstNameField.getText());
-                primaryStage.setScene(new Scene(userScreen));
-                primaryStage.show();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -118,20 +95,6 @@ public class RegisterScreenController {
      * handles Cancel button
      */
     private void handleCancelPressed() throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("../view/LoginScreen.fxml"));
-            BorderPane loginScreen = loader.load();
-            LoginScreenController controller = loader.getController();
-            controller.setMainController(mainController);
-
-            //sets the scene
-            Stage primaryStage = mainController.getPrimaryStage();
-            primaryStage.setTitle("Login Screen");
-            primaryStage.setScene(new Scene(loginScreen));
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        MainController.getInstance().changeScene("../view/LoginScreen.fxml", "Login");
     }
 }

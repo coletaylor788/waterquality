@@ -52,7 +52,6 @@ public class EditProfileScreenControl {
     private TextField zipCodeField;
 
     private User user;
-    private MainController mainController;
     private Stage _dialogStage;
 
     @FXML
@@ -62,6 +61,7 @@ public class EditProfileScreenControl {
     private void initialize() {
         role.getItems().addAll(generateRoles());
         state.getItems().addAll(generateState());
+        setDefaultFields();
     }
 
     /**
@@ -91,7 +91,7 @@ public class EditProfileScreenControl {
     }
 
     public void setDefaultFields() {
-        user = mainController.getUsersData().getCurrentUser();
+        user = MainController.getInstance().getFacade().getUsers().getCurrentUser();
         firstNameField.setText(user.getFirstName());
         lastNameField.setText(user.getLastName());
         emailField.setText(user.getEmail());
@@ -101,14 +101,6 @@ public class EditProfileScreenControl {
         cityField.setText(user.getCity());
         state.setValue(user.getState());
         zipCodeField.setText(((Integer) user.getZipCode()).toString());
-    }
-
-    /**
-     * Passes in the Main Controller in order to preserve several properties
-     * @param mainController the class with the properties
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     @FXML
@@ -129,21 +121,7 @@ public class EditProfileScreenControl {
             user.setState(state.getValue());
             user.setZipCode(Integer.parseInt(zipCodeField.getText()));
 
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
-                BorderPane userScreen = loader.load();
-                UserScreenController controller = loader.getController();
-                controller.setMainController(mainController);
-
-                // Sets the scene
-                Stage primaryStage = mainController.getPrimaryStage();
-                primaryStage.setTitle("User: " + firstNameField.getText());
-                primaryStage.setScene(new Scene(userScreen));
-                primaryStage.show();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -159,20 +137,6 @@ public class EditProfileScreenControl {
      * handles Cancel button
      */
     private void handleCancelPressed() throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
-            BorderPane userScreen = loader.load();
-            UserScreenController controller = loader.getController();
-            controller.setMainController(mainController);
-
-            // Sets the scene
-            Stage primaryStage = mainController.getPrimaryStage();
-            primaryStage.setTitle("User: " + firstNameField.getText());
-            primaryStage.setScene(new Scene(userScreen));
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
     }
 }
