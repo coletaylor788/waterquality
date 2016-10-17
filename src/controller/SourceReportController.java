@@ -1,11 +1,13 @@
 package controller;
 
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +53,18 @@ public class SourceReportController {
     private void initialize() {
         waterConditions.getItems().addAll(generateWaterConditions());
         waterTypes.getItems().addAll(generateWaterTypes());
+        waterConditions.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                waterConditions.requestFocus();
+            }
+        });
+        waterTypes.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                waterTypes.requestFocus();
+            }
+        });
     }
 
     /**
