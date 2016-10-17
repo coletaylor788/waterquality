@@ -1,10 +1,12 @@
 package controller;
 
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +52,12 @@ public class RegisterScreenController {
      */
     private void initialize() {
         role.getItems().addAll(generateRoles());
+        role.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                role.requestFocus();
+            }
+        });
     }
 
     /**

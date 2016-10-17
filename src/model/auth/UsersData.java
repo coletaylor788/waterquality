@@ -61,6 +61,7 @@ public class UsersData {
      * @param firstName is the first name of the user.
      * @param lastName is the last name of the user.
      * @param role is the role of the user.
+     * @param email is the email of the user
      * @throws AuthenticationException if there is a problem with authentication.
      * @throws EmptyRequiredFieldException if a required field is empty
      */

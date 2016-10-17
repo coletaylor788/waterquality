@@ -2,11 +2,13 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.auth.Role;
@@ -62,6 +64,18 @@ public class EditProfileScreenControl {
         role.getItems().addAll(generateRoles());
         state.getItems().addAll(generateState());
         setDefaultFields();
+        role.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                role.requestFocus();
+            }
+        });
+        state.setOnMousePressed(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                state.requestFocus();
+            }
+        });
     }
 
     /**
