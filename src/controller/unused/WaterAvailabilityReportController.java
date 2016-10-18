@@ -1,7 +1,6 @@
 package controller.unused;
 
 import controller.MainController;
-import controller.UserScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.auth.Role;
 import model.auth.User;
 import model.reports.Location;
 import model.reports.SourceReport;

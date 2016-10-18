@@ -4,7 +4,6 @@ package controller.unused;
  * Created by Nkosi Kee on 10/13/2016.
  */
 import controller.MainController;
-import controller.UserScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,11 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.auth.Role;
 import model.auth.User;
 import model.reports.SourceReport;
-import model.reports.WaterSourceReports;
-import model.reports.WaterType;
 
 import java.io.IOException;
 import java.util.List;

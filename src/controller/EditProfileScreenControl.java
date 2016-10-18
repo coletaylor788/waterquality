@@ -135,7 +135,7 @@ public class EditProfileScreenControl {
             user.setState(state.getValue());
             user.setZipCode(Integer.parseInt(zipCodeField.getText()));
 
-            MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
+            MainController.getInstance().changeScene("../view/Home.fxml", "Home");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -151,6 +151,6 @@ public class EditProfileScreenControl {
      * handles Cancel button
      */
     private void handleCancelPressed() throws Exception {
-        MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
+        MainController.getInstance().changeScene("../view/Home.fxml", "Home");
     }
 }

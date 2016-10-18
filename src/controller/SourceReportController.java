@@ -104,20 +104,18 @@ public class SourceReportController {
             double lon = Double.parseDouble(longitude.getText());
             if (lat < -90 || lat > 90) {
                 throw new LocationOutOfRangeException("Latitude must be a value between -90 and 90");
-            } else if (lon < 0 || lon > 180) {
+            } else if (lon < -180 || lon > 180) {
                 throw new LocationOutOfRangeException("Longitude must be a value between 0 and 180");
             }
 
             Location loc = new Location(lat, lon);
-
-            System.out.println(waterTypes.getValue() + ", " + waterConditions.getValue());
 
             SourceReport srcReport = new SourceReport(
                     MainController.getInstance().getFacade().getUsers().getCurrentUser(),
                     loc, waterTypes.getValue(), waterConditions.getValue());
 
             MainController.getInstance().getFacade().getSourceReports().addSourceReport(srcReport);
-            MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
+            MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (NumberFormatException e) {
             message = "Latitude and Longitude values must be decimal values";
         } catch (LocationOutOfRangeException | EmptyRequiredFieldException e) {
@@ -138,6 +136,6 @@ public class SourceReportController {
      */
     @FXML
     private void handleCancelPressed() {
-        MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
+        MainController.getInstance().changeScene("../view/Home.fxml", "Home");
     }
 }

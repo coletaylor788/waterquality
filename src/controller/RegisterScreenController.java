@@ -87,7 +87,7 @@ public class RegisterScreenController {
                                 emailField.getText());
             MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
 
-            MainController.getInstance().changeScene("../view/UserScreen.fxml", "User Screen");
+            MainController.getInstance().changeScene("../view/Home.fxml", "Home");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
