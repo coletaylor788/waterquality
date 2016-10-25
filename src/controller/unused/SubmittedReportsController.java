@@ -1,8 +1,9 @@
-package controller;
+package controller.unused;
 
 /**
  * Created by Nkosi Kee on 10/13/2016.
  */
+import controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,11 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.auth.Role;
 import model.auth.User;
 import model.reports.SourceReport;
-import model.reports.WaterSourceReports;
-import model.reports.WaterType;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,7 +40,7 @@ public class SubmittedReportsController {
      * @return an observable list of reports
      */
     private ObservableList generateReports() {
-        List<SourceReport> reports =mainController.getWaterSourceReports().getSourceReports();
+        List<SourceReport> reports =mainController.getFacade().getSourceReports().getSourceReports();
         ObservableList<SourceReport> sourceReports = FXCollections.observableArrayList();
         for (SourceReport report : reports) {
             sourceReports.add(report);
@@ -52,13 +50,13 @@ public class SubmittedReportsController {
 
     @FXML
     void handleCancelPressed() {
-        user = mainController.getUsersData().getCurrentUser();
+        user = mainController.getFacade().getUsers().getCurrentUser();
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
             BorderPane userScreen = loader.load();
             UserScreenController controller = loader.getController();
-            controller.setMainController(mainController);
+            //controller.setMainController(mainController);
 
             // Sets the scene
             Stage primaryStage = mainController.getPrimaryStage();

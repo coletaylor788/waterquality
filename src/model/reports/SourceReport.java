@@ -6,12 +6,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 import model.auth.User;
+import model.exceptions.EmptyRequiredFieldException;
 
-import javax.xml.transform.Source;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.SortedMap;
 
 /**
  * A report about a water source which can be created by users
@@ -39,12 +38,18 @@ public class SourceReport {
      * @param waterCondition is the waterCondition of the SourceReport
      */
     public SourceReport(User reportedUser, Location location, WaterType waterType,
-                        WaterCondition waterCondition) {
+                        WaterCondition waterCondition) throws EmptyRequiredFieldException {
         this(new Date(), reportedUser, location, waterType, waterCondition);
     }
 
     private SourceReport(Date timestamp, User reportedUser, Location location,
-                        WaterType waterType, WaterCondition waterCondition) {
+                        WaterType waterType, WaterCondition waterCondition) throws EmptyRequiredFieldException {
+        if (waterType == null) {
+            throw new EmptyRequiredFieldException("Water type cannot be empty");
+        } else if (waterCondition == null) {
+            throw new EmptyRequiredFieldException("Water condition cannot be empty");
+        }
+
         this.id.set(nextID);
         nextID++;
 
@@ -53,6 +58,24 @@ public class SourceReport {
         this.location.set(location);
         this.waterType.set(waterType);
         this.waterCondition.set(waterCondition);
+    }
+
+    /**
+     * Returns the water type as the title of the water source
+     * @return the waterType
+     */
+    public String getTitle() {
+        return waterType.get().toString();
+    }
+
+    public String getDescription() {
+        return "<b>ID:</b> " + id.get() + "<br />"
+                + "<b>Date/Time:</b> " + timestamp.get() + "<br />"
+                + "<b>User:</b> " + reportedUser.get() + "<br />"
+                + "<b>Location:</b> " + location.get() + "<br />"
+                + "<b>Water Type:</b> " + waterType.get() + "<br />"
+                + "<b>Water Condition:</b> " + waterCondition.get() + "<br />";
+
     }
 
     /**

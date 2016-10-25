@@ -26,4 +26,10 @@ public class Location {
     public double getLongitude() {
         return this.longitude;
     }
+
+    @Override
+    public String toString() {
+        String degree = "\u00b0";
+        return "Lat: " + latitude + degree + ", Long: " + longitude + degree;
+    }
 }
