@@ -76,9 +76,9 @@ public class HomeController implements Initializable, MapComponentInitializedLis
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
-                .scaleControl(false)
+                .scaleControl(true)
                 .streetViewControl(false)
-                .zoomControl(false)
+                .zoomControl(true)
                 .mapType(MapTypeIdEnum.TERRAIN);
 
         map = mapView.createMap(options);
