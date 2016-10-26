@@ -1,6 +1,7 @@
 package model;
 
 import model.auth.UsersData;
+import model.reports.SourceReport;
 import model.reports.WaterSourceReports;
 
 /**
@@ -12,6 +13,7 @@ import model.reports.WaterSourceReports;
 public class Facade {
     private UsersData users = new UsersData();
     private WaterSourceReports sourceReports;
+    private SourceReport currSourceReport;
 
     private static Facade instance = null;
 
@@ -21,6 +23,7 @@ public class Facade {
     private Facade() {
         users = new UsersData();
         sourceReports = WaterSourceReports.getInstance();
+        currSourceReport = SourceReport.
     }
 
     /* ============== GETTERS ============== */

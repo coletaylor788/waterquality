@@ -32,6 +32,7 @@ public class SourceReport {
     private ObjectProperty<Location> location = new SimpleObjectProperty<>();
     private ObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
     private ObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
+    private static WaterSourceReports instance = null;
 
     private List<PurityReport> purityReports;
 
@@ -193,6 +194,13 @@ public class SourceReport {
      */
     public void setCondition (WaterCondition condition) {
         this.waterCondition.set(condition);
+    }
+
+    public static WaterSourceReports getInstance() {
+        if (instance == null) {
+            instance = new SourceReport();
+        }
+        return instance;
     }
 
 }
