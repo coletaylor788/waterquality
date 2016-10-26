@@ -1,8 +1,10 @@
 package model.reports;
 
 import javafx.beans.property.*;
+import model.auth.Role;
 import model.auth.User;
 
+import java.security.AccessControlException;
 import java.util.Date;
 
 /**
@@ -29,14 +31,17 @@ public class PurityReport {
      * @param overallCondition the condition of the water
      * @param virusPPM amount of viruses in PPM
      * @param contaminantPPM amount of contaminants in PPM
+     *
+     * @throws NumberFormatException when virus or contaminant PPM is negative
+     * @throws AccessControlException if a USER or ADMIN attempts to create a purity report
      */
     public PurityReport(User reportedWorker, OverallCondition overallCondition,
-                        double virusPPM, double contaminantPPM) {
+                        double virusPPM, double contaminantPPM) throws AccessControlException, NumberFormatException {
         this(new Date(), reportedWorker, overallCondition, virusPPM, contaminantPPM);
     }
 
     private PurityReport(Date timestamp, User reportedWorker, OverallCondition overallCondition,
-                         double virusPPM, double contaminantPPM) {
+                         double virusPPM, double contaminantPPM) throws AccessControlException, NumberFormatException {
         this.timestamp.set(timestamp);
         this.id.set(nextID);
         nextID++;
@@ -51,8 +56,13 @@ public class PurityReport {
     /**
      * Sets the reported worker
      * @param reportedWorker is the worker to set it to
+     * @throws AccessControlException when a User or Admin attempts to create a purity report
      */
-    public void setReportedWorker(User reportedWorker) {
+    public void setReportedWorker(User reportedWorker) throws AccessControlException {
+        if (!reportedWorker.getRole().equals(Role.WORKER)
+                || !reportedWorker.getRole().equals(Role.MANAGER)) {
+            throw new AccessControlException("Must be a Worker or Manager to create a Purity report");
+        }
         this.reportedWorker.set(reportedWorker);
     }
 
@@ -67,16 +77,24 @@ public class PurityReport {
     /**
      * Sets the virus PPM
      * @param virusPPM is the decimal value for virus PPM
+     * @throws NumberFormatException when virusPPM is negative
      */
-    public void setVirusPPM(double virusPPM) {
+    public void setVirusPPM(double virusPPM) throws NumberFormatException {
+        if (virusPPM < 0) {
+            throw new NumberFormatException("Virus PPM cannot be negative");
+        }
         this.virusPPM.set(virusPPM);
     }
 
     /**
      * Sets the contaminant PPM
      * @param contaminantPPM is the decimal value for contaminant PPM
+     * @throws NumberFormatException when contaminantPPM is negative
      */
-    public void setContaminantPPM(double contaminantPPM) {
+    public void setContaminantPPM(double contaminantPPM) throws NumberFormatException {
+        if (contaminantPPM < 0) {
+            throw new NumberFormatException("Contaminant PPM cannot be negative");
+        }
         this.contaminantPPM.set(contaminantPPM);
     }
 
