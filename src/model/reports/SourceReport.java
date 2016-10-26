@@ -10,7 +10,9 @@ import model.exceptions.EmptyRequiredFieldException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * A report about a water source which can be created by users
@@ -28,6 +30,8 @@ public class SourceReport {
     private ObjectProperty<Location> location = new SimpleObjectProperty<>();
     private ObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
     private ObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
+
+    private List<PurityReport> purityReports;
 
     /**
      * Create a new SourceReport
@@ -58,6 +62,16 @@ public class SourceReport {
         this.location.set(location);
         this.waterType.set(waterType);
         this.waterCondition.set(waterCondition);
+
+        this.purityReports = new ArrayList<>();
+    }
+
+    /**
+     * Adds a purity report
+     * @param purityReport is the purity report to add
+     */
+    public void addPurityReport(PurityReport purityReport) {
+        purityReports.add(purityReport);
     }
 
     /**
@@ -92,6 +106,14 @@ public class SourceReport {
     }
 
     // ************** GETTERS **************
+
+    /**
+     * @return list of purity reports
+     */
+    public List<PurityReport> getPurityReports() {
+        return this.purityReports;
+    }
+
     /**
      * @return Time the report was created as a Date object
      */
