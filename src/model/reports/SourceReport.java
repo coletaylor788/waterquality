@@ -5,6 +5,8 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.auth.User;
 import model.exceptions.EmptyRequiredFieldException;
 
@@ -112,6 +114,13 @@ public class SourceReport {
      */
     public List<PurityReport> getPurityReports() {
         return this.purityReports;
+    }
+
+    /**
+     * @return an observable list containing the purity reports for Java FX
+     */
+    public ObservableList<PurityReport> getObservablePurityReports() {
+        return FXCollections.observableList(purityReports);
     }
 
     /**
