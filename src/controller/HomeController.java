@@ -41,6 +41,9 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     @FXML
     Button submitPurityReport;
 
+    @FXML
+    Button viewPurityReport;
+
     /**
      * Initializes the Map Listener to communicate with Google Maps
      * @param url
@@ -57,15 +60,19 @@ public class HomeController implements Initializable, MapComponentInitializedLis
         if (currUser.getRole().equals(Role.USER)) {
             submitSourceReport.setVisible(true);
             submitPurityReport.setVisible(false);
+            viewPurityReport.setVisible(false);
         } else if (currUser.getRole().equals(Role.WORKER)) {
             submitSourceReport.setVisible(true);
             submitPurityReport.setVisible(true);
+            viewPurityReport.setVisible(false);
         } else if (currUser.getRole().equals(Role.MANAGER)) {
             submitSourceReport.setVisible(true);
             submitPurityReport.setVisible(true);
+            viewPurityReport.setVisible(true);
         } else { // Admin
             submitSourceReport.setVisible(false);
             submitPurityReport.setVisible(false);
+            viewPurityReport.setVisible(false);
         }
     }
 
