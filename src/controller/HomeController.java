@@ -33,7 +33,7 @@ public class HomeController implements Initializable, MapComponentInitializedLis
 
     private Stage _dialogStage;
 
-    private SourceReport currReport = null;
+    SourceReport currReport;
 
     @FXML
     Button submitSourceReport;
@@ -110,7 +110,6 @@ public class HomeController implements Initializable, MapComponentInitializedLis
             map.addUIEventHandler(marker,
                     UIEventType.click,
                     (JSObject obj) -> {
-                        currReport = report;
                         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                         infoWindowOptions.content(report.getDescription());
                         InfoWindow window = new InfoWindow(infoWindowOptions);
