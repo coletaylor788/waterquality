@@ -6,7 +6,9 @@ import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import model.auth.Role;
 import model.auth.User;
 import model.reports.SourceReport;
@@ -29,8 +31,15 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     private GoogleMapView mapView;
     private GoogleMap map;
 
+    private Stage _dialogStage;
+
+    private SourceReport currReport = null;
+
     @FXML
     Button submitSourceReport;
+
+    @FXML
+    Button submitPurityReport;
 
     /**
      * Initializes the Map Listener to communicate with Google Maps
@@ -47,12 +56,16 @@ public class HomeController implements Initializable, MapComponentInitializedLis
         User currUser = MainController.getInstance().getFacade().getUsers().getCurrentUser();
         if (currUser.getRole().equals(Role.USER)) {
             submitSourceReport.setVisible(true);
+            submitPurityReport.setVisible(false);
         } else if (currUser.getRole().equals(Role.WORKER)) {
             submitSourceReport.setVisible(true);
+            submitPurityReport.setVisible(true);
         } else if (currUser.getRole().equals(Role.MANAGER)) {
             submitSourceReport.setVisible(true);
+            submitPurityReport.setVisible(true);
         } else { // Admin
             submitSourceReport.setVisible(false);
+            submitPurityReport.setVisible(false);
         }
     }
 
@@ -97,9 +110,9 @@ public class HomeController implements Initializable, MapComponentInitializedLis
             map.addUIEventHandler(marker,
                     UIEventType.click,
                     (JSObject obj) -> {
+                        currReport = report;
                         InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                         infoWindowOptions.content(report.getDescription());
-
                         InfoWindow window = new InfoWindow(infoWindowOptions);
                         window.open(map, marker);
                     });
@@ -130,5 +143,22 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     @FXML
     private void handleSubmitSourceReportPressed() {
         MainController.getInstance().changeScene("../view/WaterSourceReport.fxml", "Water Source Report");
+    }
+
+    @FXML
+    public void handleSubmitPurityReportPressed() {
+        if(currReport != null) {
+            MainController.getInstance().changeScene("../view/WaterPurityReport.fxml", "Water Purity Report");
+        } else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(_dialogStage);
+            alert.setTitle("Error");
+            alert.setHeaderText("No Location Selected");
+            alert.showAndWait();
+        }
+    }
+
+    public void handlePurityReport() {
+        MainController.getInstance().changeScene("../view/WaterPurityReport.fxml", "Water Purity Report");
     }
 }

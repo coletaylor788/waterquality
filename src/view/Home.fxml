@@ -25,6 +25,11 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="submitPurityReport" mnemonicParsing="false" onAction="#handleSubmitPurityReportPressed" prefHeight="25.0" prefWidth="170.0" text="New Purity Report">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Historical Report" visible="false">
                <VBox.margin>
                   <Insets top="10.0" />

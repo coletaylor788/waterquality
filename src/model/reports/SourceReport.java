@@ -4,7 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.auth.User;
@@ -91,8 +90,8 @@ public class SourceReport {
                 + "<b>User:</b> " + reportedUser.get() + "<br />"
                 + "<b>Location:</b> " + location.get() + "<br />"
                 + "<b>Water Type:</b> " + waterType.get() + "<br />"
-                + "<b>Water Condition:</b> " + waterCondition.get() + "<br />";
-
+                + "<b>Water Condition:</b> " + waterCondition.get() + "<br />"
+                + "<button onclick=\"handlePurityReport()\">Add a purity report</button>";
     }
 
     /**
@@ -195,12 +194,4 @@ public class SourceReport {
     public void setCondition (WaterCondition condition) {
         this.waterCondition.set(condition);
     }
-
-    public static WaterSourceReports getInstance() {
-        if (instance == null) {
-            instance = new SourceReport();
-        }
-        return instance;
-    }
-
 }

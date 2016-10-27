@@ -23,7 +23,6 @@ public class Facade {
     private Facade() {
         users = new UsersData();
         sourceReports = WaterSourceReports.getInstance();
-        currSourceReport = SourceReport.
     }
 
     /* ============== GETTERS ============== */
