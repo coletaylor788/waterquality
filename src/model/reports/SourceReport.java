@@ -4,16 +4,12 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.auth.User;
 import model.exceptions.EmptyRequiredFieldException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * A report about a water source which can be created by users
@@ -32,8 +28,6 @@ public class SourceReport {
     private ObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
     private ObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
     private static WaterSourceReports instance = null;
-
-    private List<PurityReport> purityReports;
 
     /**
      * Create a new SourceReport
@@ -64,16 +58,6 @@ public class SourceReport {
         this.location.set(location);
         this.waterType.set(waterType);
         this.waterCondition.set(waterCondition);
-
-        this.purityReports = new ArrayList<>();
-    }
-
-    /**
-     * Adds a purity report
-     * @param purityReport is the purity report to add
-     */
-    public void addPurityReport(PurityReport purityReport) {
-        purityReports.add(purityReport);
     }
 
     /**
@@ -90,8 +74,7 @@ public class SourceReport {
                 + "<b>User:</b> " + reportedUser.get() + "<br />"
                 + "<b>Location:</b> " + location.get() + "<br />"
                 + "<b>Water Type:</b> " + waterType.get() + "<br />"
-                + "<b>Water Condition:</b> " + waterCondition.get() + "<br />"
-                + "<button onclick=\"handlePurityReport()\">Add a purity report</button>";
+                + "<b>Water Condition:</b> " + waterCondition.get() + "<br />";
     }
 
     /**
@@ -108,21 +91,6 @@ public class SourceReport {
     }
 
     // ************** GETTERS **************
-
-    /**
-     * @return list of purity reports
-     */
-    public List<PurityReport> getPurityReports() {
-        return this.purityReports;
-    }
-
-    /**
-     * @return an observable list containing the purity reports for Java FX
-     */
-    public ObservableList<PurityReport> getObservablePurityReports() {
-        return FXCollections.observableList(purityReports);
-    }
-
     /**
      * @return Time the report was created as a Date object
      */

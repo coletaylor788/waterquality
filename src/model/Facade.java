@@ -1,7 +1,7 @@
 package model;
 
 import model.auth.UsersData;
-import model.reports.SourceReport;
+import model.reports.WaterPurityReports;
 import model.reports.WaterSourceReports;
 
 /**
@@ -13,7 +13,7 @@ import model.reports.WaterSourceReports;
 public class Facade {
     private UsersData users = new UsersData();
     private WaterSourceReports sourceReports;
-    private SourceReport currSourceReport;
+    private WaterPurityReports purityReports;
 
     private static Facade instance = null;
 
@@ -23,6 +23,7 @@ public class Facade {
     private Facade() {
         users = new UsersData();
         sourceReports = WaterSourceReports.getInstance();
+        purityReports = WaterPurityReports.getInstance();
     }
 
     /* ============== GETTERS ============== */
@@ -32,6 +33,7 @@ public class Facade {
     public WaterSourceReports getSourceReports() {
         return sourceReports;
     }
+    public WaterPurityReports getPurityReports() { return purityReports; }
 
     /**
      * Returns the single instance of the class
