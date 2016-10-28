@@ -55,7 +55,7 @@ public class WaterPurityReportController {
             PurityReport purReport = new PurityReport(MainController.getInstance().getFacade().getUsers()
                     .getCurrentUser(),(OverallCondition) conditionBox.getValue(), virus,purity);
 
-            MainController.getInstance().getFacade().getSourceReports().getSourceReports().get(1).addPurityReport(purReport);
+            MainController.getInstance().getFacade().getPurityReports().addPurityReport(purReport);
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (NumberFormatException e) {
             message = "Virus PPM and Purity PPM must be decimal values";
