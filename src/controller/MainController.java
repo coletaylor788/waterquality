@@ -5,12 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.layout.BorderPane;
 import model.Facade;
-import model.auth.User;
-import model.auth.UsersData;
-import model.reports.WaterSourceReports;
-import sample.Main;
 
 import java.io.IOException;
 

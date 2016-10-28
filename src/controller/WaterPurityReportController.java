@@ -2,10 +2,12 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.reports.OverallCondition;
 import model.reports.PurityReport;
@@ -25,14 +27,12 @@ public class WaterPurityReportController {
 
     private void initialize() {
         conditionBox.getItems().addAll(generateOverallConditions());
-        /**
         conditionBox.setOnMousePressed(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
                 conditionBox.requestFocus();
             }
         });
-         */
     }
 
     private static ObservableList generateOverallConditions() {

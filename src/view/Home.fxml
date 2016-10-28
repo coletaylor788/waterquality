@@ -30,7 +30,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="viewPurityReport" mnemonicParsing="false" prefHeight="39.0" prefWidth="154.0" text="View Purity Reports">
+            <Button fx:id="viewPurityReport" mnemonicParsing="false" onAction ="#handleViewPurityReportPressed" prefHeight="39.0" prefWidth="154.0" text="View Purity Reports">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
