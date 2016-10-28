@@ -6,7 +6,6 @@ import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.auth.Role;
@@ -32,8 +31,6 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     private GoogleMap map;
 
     private Stage _dialogStage;
-
-    SourceReport currReport;
 
     @FXML
     Button submitSourceReport;
@@ -153,18 +150,6 @@ public class HomeController implements Initializable, MapComponentInitializedLis
 
     @FXML
     public void handleSubmitPurityReportPressed() {
-        if(currReport != null) {
-            MainController.getInstance().changeScene("../view/WaterPurityReport.fxml", "Water Purity Report");
-        } else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle("Error");
-            alert.setHeaderText("No Location Selected");
-            alert.showAndWait();
-        }
-    }
-
-    public void handlePurityReport() {
         MainController.getInstance().changeScene("../view/WaterPurityReport.fxml", "Water Purity Report");
     }
 }
