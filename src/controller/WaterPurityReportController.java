@@ -15,7 +15,7 @@ import model.reports.PurityReport;
 public class WaterPurityReportController {
 
     @FXML
-    private ComboBox<?> conditionBox;
+    private ComboBox<OverallCondition> conditionBox;
 
     @FXML
     private TextField purittyPPM;
@@ -25,6 +25,7 @@ public class WaterPurityReportController {
 
     private Stage _dialogStage;
 
+    @FXML
     private void initialize() {
         conditionBox.getItems().addAll(generateOverallConditions());
         conditionBox.setOnMousePressed(new EventHandler<MouseEvent>(){
