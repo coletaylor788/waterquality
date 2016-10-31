@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoricalReportController">
    <top>
       <ImageView fitHeight="113.0" fitWidth="432.0" BorderPane.alignment="CENTER">
          <image>
@@ -25,7 +25,7 @@
    <bottom>
       <HBox prefHeight="39.0" prefWidth="462.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleCancelPress" text="Cancel">
+            <Button mnemonicParsing="false" onAction="#handleCancelPressed" text="Cancel">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -43,7 +43,7 @@
             </Label>
             <TextField fx:id="latitude">
                <VBox.margin>
-                  <Insets bottom="10.0" right="10.0" top="10.0" />
+                  <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
             <Label text="Longitude">
@@ -51,14 +51,24 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="latitude1">
+            <TextField fx:id="longitude">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="31.0" text="Year">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="year">
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Enter">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </Button>
          </children>
