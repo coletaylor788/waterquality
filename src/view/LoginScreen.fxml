@@ -12,12 +12,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="351.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="351.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginScreenController">
    <bottom>
       <ToolBar maxHeight="70.0" minHeight="70.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="116.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" onAction="#handleLoginPressed" prefHeight="48.0" prefWidth="182.0" text="Login" textAlignment="RIGHT" />
-            <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="48.0" prefWidth="182.0" text="Register" />
+          <Button mnemonicParsing="false" onAction="#handleLoginPressed" prefHeight="48.0" prefWidth="100.0" text="Login" textAlignment="RIGHT" />
+            <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="48.0" prefWidth="100.0" text="Register" />
+            <Button fx:id="load" mnemonicParsing="false" onAction="#handleLoadPressed" prefHeight="48.0" prefWidth="100.0" text="Load" />
+            <Button fx:id="save" mnemonicParsing="false" onAction="#handleSavePressed" prefHeight="48.0" prefWidth="100.0" text="Save" />
         </items>
       </ToolBar>
    </bottom>
