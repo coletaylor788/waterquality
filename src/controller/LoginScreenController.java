@@ -65,7 +65,18 @@ public class LoginScreenController {
     }
 
     @FXML
-    private void handleRegisterPressed() throws Exception {
+    private void handleRegisterPressed() {
         MainController.getInstance().changeScene("../view/RegisterScreen.fxml", "Register");
+    }
+
+    @FXML
+    private void handleLoadPressed() {
+        //MainController.getInstance().getPersistenceManager().loadFromBinary(file);
+    }
+
+    @FXML
+    private void handleSavePressed() {
+        //MainController.getInstance().getPersistenceManager().saveFromBinary(file);
+
     }
 }

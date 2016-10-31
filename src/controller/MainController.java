@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Facade;
+import model.PersistenceManager;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class MainController extends Application {
     private Stage primaryStage;
     private Stage dialogStage;
     private Facade facade = Facade.getInstance();
+    private PersistenceManager persistenceManager;
     private static MainController mainController;
 
     @Override
@@ -24,6 +26,7 @@ public class MainController extends Application {
         //usersData = new UsersData();
         stageAssignment(primaryStage);
         mainController = this;
+        persistenceManager = new PersistenceManager(facade);
     }
 
     public Facade getFacade() {
@@ -32,6 +35,10 @@ public class MainController extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public PersistenceManager getPersistenceManager() {
+        return persistenceManager;
     }
 
     //sets main stage and assigns stage instance so we can reuse

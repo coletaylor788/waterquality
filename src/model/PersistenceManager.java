@@ -11,16 +11,16 @@ import java.io.*;
  * @author Cole Taylor
  * @version 1.0
  */
-public class PersistanceManager {
+public class PersistenceManager {
 
     private Facade model;
 
     /**
-     * Creates a PersistanceManager
+     * Creates a PersistenceManager
      *
      * @param model is the model to save/load
      */
-    public PersistanceManager(Facade model) {
+    public PersistenceManager(Facade model) {
         this.model = model;
     }
 
