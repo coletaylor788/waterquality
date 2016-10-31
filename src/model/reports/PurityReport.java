@@ -5,6 +5,8 @@ import model.auth.Role;
 import model.auth.User;
 
 import java.security.AccessControlException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,6 +23,7 @@ public class PurityReport {
     private IntegerProperty id = new SimpleIntegerProperty();
     private ObjectProperty<User> reportedWorker = new SimpleObjectProperty<>();
     private ObjectProperty<OverallCondition> overallCondition = new SimpleObjectProperty<>();
+    private ObjectProperty<Location> location = new SimpleObjectProperty<>();
     private DoubleProperty virusPPM = new SimpleDoubleProperty();
     private DoubleProperty contaminantPPM = new SimpleDoubleProperty();
 
@@ -35,20 +38,35 @@ public class PurityReport {
      * @throws NumberFormatException when virus or contaminant PPM is negative
      * @throws AccessControlException if a USER or ADMIN attempts to create a purity report
      */
-    public PurityReport(User reportedWorker, OverallCondition overallCondition,
+    public PurityReport(User reportedWorker, OverallCondition overallCondition, Location location,
                         double virusPPM, double contaminantPPM) throws AccessControlException, NumberFormatException {
-        this(new Date(), reportedWorker, overallCondition, virusPPM, contaminantPPM);
+        this(new Date(), reportedWorker, overallCondition, location, virusPPM, contaminantPPM);
     }
 
     private PurityReport(Date timestamp, User reportedWorker, OverallCondition overallCondition,
-                         double virusPPM, double contaminantPPM) throws AccessControlException, NumberFormatException {
+                         Location location, double virusPPM, double contaminantPPM)
+            throws AccessControlException, NumberFormatException {
         this.timestamp.set(timestamp);
         this.id.set(nextID);
+        this.location.set(location);
         nextID++;
         setReportedWorker(reportedWorker);
         setOverallCondition(overallCondition);
         setVirusPPM(virusPPM);
         setContaminantPPM(contaminantPPM);
+    }
+
+    /**
+     * String Representation of the Source Report
+     * This will probably only be used for the list and testing
+     *
+     * @return ID | Timestamp | Location | WaterType | WaterLocation | ReportedUser
+     */
+    @Override
+    public String toString() {
+        return getID() + " | " + getStringTimestamp() + " | " + getLocation()
+                + " | " + getOverallCondition() + " | Virus: " + getVirusPPM() + " | Contaminant: "
+                + getContaminantPPM() + " | " + getReportedWorker();
     }
 
     // ============= SETTERS =============
@@ -59,8 +77,8 @@ public class PurityReport {
      * @throws AccessControlException when a User or Admin attempts to create a purity report
      */
     public void setReportedWorker(User reportedWorker) throws AccessControlException {
-        if (!reportedWorker.getRole().equals(Role.WORKER)
-                || !reportedWorker.getRole().equals(Role.MANAGER)) {
+        if (reportedWorker.getRole() != Role.WORKER
+                && reportedWorker.getRole() != Role.MANAGER) {
             throw new AccessControlException("Must be a Worker or Manager to create a Purity report");
         }
         this.reportedWorker.set(reportedWorker);
@@ -108,6 +126,14 @@ public class PurityReport {
     }
 
     /**
+     * @return Time the report was created as a formatted string
+     */
+    public String getStringTimestamp() {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        return dateFormat.format(timestamp.get());
+    }
+
+    /**
      * @return the id
      */
     public int getID() {
@@ -141,5 +167,12 @@ public class PurityReport {
      */
     public double getContaminantPPM() {
         return contaminantPPM.get();
+    }
+
+    /**
+     * @return the location
+     */
+    public Location getLocation() {
+        return location.get();
     }
 }
