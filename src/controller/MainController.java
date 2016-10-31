@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Facade;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class MainController extends Application {
 
     private Stage primaryStage;
+    private Stage dialogStage;
     private Facade facade = Facade.getInstance();
     private static MainController mainController;
 
@@ -62,6 +64,20 @@ public class MainController extends Application {
      */
     public static MainController getInstance() {
         return mainController;
+    }
+
+    /**
+     * Displays an alert dialog box
+     *
+     * @param message is the message to display
+     * @param alertType is the type of alert box to generate
+     */
+    public void showAlertMessage(String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.initOwner(dialogStage);
+        alert.setTitle(alertType.toString());
+        alert.setHeaderText(message);
+        alert.showAndWait();
     }
 
     public static void main(String[] args) {

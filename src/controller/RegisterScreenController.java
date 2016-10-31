@@ -90,11 +90,7 @@ public class RegisterScreenController {
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle(e.getMessage());
-            alert.setHeaderText(e.getMessage());
-            alert.showAndWait();
+            MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
