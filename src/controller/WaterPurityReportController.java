@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.exceptions.EmptyRequiredFieldException;
 import model.reports.Location;
 import model.reports.OverallCondition;
 import model.reports.PurityReport;
@@ -77,7 +78,7 @@ public class WaterPurityReportController {
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (NumberFormatException e) {
             message = "Virus PPM, Purity PPM, Longitude, and Latitude must be decimal values";
-        } catch (LocationOutOfRangeException e) {
+        } catch (LocationOutOfRangeException | EmptyRequiredFieldException e) {
             message = e.getMessage();
         }
 

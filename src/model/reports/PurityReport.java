@@ -3,6 +3,7 @@ package model.reports;
 import javafx.beans.property.*;
 import model.auth.Role;
 import model.auth.User;
+import model.exceptions.EmptyRequiredFieldException;
 
 import java.security.AccessControlException;
 import java.text.DateFormat;
@@ -39,13 +40,14 @@ public class PurityReport {
      * @throws AccessControlException if a USER or ADMIN attempts to create a purity report
      */
     public PurityReport(User reportedWorker, OverallCondition overallCondition, Location location,
-                        double virusPPM, double contaminantPPM) throws AccessControlException, NumberFormatException {
+                        double virusPPM, double contaminantPPM)
+            throws AccessControlException, NumberFormatException, EmptyRequiredFieldException {
         this(new Date(), reportedWorker, overallCondition, location, virusPPM, contaminantPPM);
     }
 
     private PurityReport(Date timestamp, User reportedWorker, OverallCondition overallCondition,
                          Location location, double virusPPM, double contaminantPPM)
-            throws AccessControlException, NumberFormatException {
+            throws AccessControlException, NumberFormatException, EmptyRequiredFieldException {
         this.timestamp.set(timestamp);
         this.id.set(nextID);
         this.location.set(location);
@@ -88,7 +90,11 @@ public class PurityReport {
      * Sets the overall condition
      * @param overallCondition is the overall condition to set it to
      */
-    public void setOverallCondition(OverallCondition overallCondition) {
+    public void setOverallCondition(OverallCondition overallCondition)
+            throws EmptyRequiredFieldException {
+        if (overallCondition == null) {
+            throw new EmptyRequiredFieldException("Overall condition cannot be empty");
+        }
         this.overallCondition.set(overallCondition);
     }
 

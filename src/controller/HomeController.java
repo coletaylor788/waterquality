@@ -41,6 +41,9 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     @FXML
     Button viewPurityReport;
 
+    @FXML
+    Button historicalReport;
+
     /**
      * Initializes the Map Listener to communicate with Google Maps
      * @param url
@@ -58,14 +61,17 @@ public class HomeController implements Initializable, MapComponentInitializedLis
             submitSourceReport.setVisible(true);
             submitPurityReport.setVisible(false);
             viewPurityReport.setVisible(false);
+            historicalReport.setVisible(false);
         } else if (currUser.getRole().equals(Role.WORKER)) {
             submitSourceReport.setVisible(true);
             submitPurityReport.setVisible(true);
             viewPurityReport.setVisible(false);
+            historicalReport.setVisible(false);
         } else if (currUser.getRole().equals(Role.MANAGER)) {
             submitSourceReport.setVisible(true);
             submitPurityReport.setVisible(true);
             viewPurityReport.setVisible(true);
+            historicalReport.setVisible(true);
         } else { // Admin
             submitSourceReport.setVisible(false);
             submitPurityReport.setVisible(false);
@@ -156,5 +162,10 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     @FXML
     public void handleViewPurityReportPressed() {
         MainController.getInstance().changeScene("../view/ViewWaterPurityReport.fxml", "Water Purity Reports");
+    }
+
+    @FXML
+    public void handleHistoricalReportPressed() {
+        MainController.getInstance().changeScene("../view/HistoricalReport.fxml", "Historical Report");
     }
 }

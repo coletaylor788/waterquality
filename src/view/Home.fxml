@@ -30,12 +30,12 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="viewPurityReport" mnemonicParsing="false" onAction ="#handleViewPurityReportPressed" prefHeight="39.0" prefWidth="154.0" text="View Purity Reports">
+            <Button fx:id="viewPurityReport" mnemonicParsing="false" onAction="#handleViewPurityReportPressed" prefHeight="39.0" prefWidth="154.0" text="View Purity Reports">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Historical Report" visible="false">
+            <Button fx:id="historicalReport" mnemonicParsing="false" onAction="#handleHistoricalReportPressed" prefHeight="25.0" prefWidth="160.0" text="Historical Report">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -59,6 +59,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Button>
+            <Button mnemonicParsing="false" text="Button" visible="false" />
             <Button mnemonicParsing="false" text="Admin Access" visible="false">
                <HBox.margin>
                   <Insets left="10.0" />
