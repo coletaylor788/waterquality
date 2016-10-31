@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import model.reports.OverallCondition;
 import model.reports.PurityReport;
 
-public class WaterPurityReportController {
+public class PurityReportController {
 
     @FXML
     private ComboBox<OverallCondition> conditionBox;
@@ -53,8 +53,8 @@ public class WaterPurityReportController {
             double purity = Double.parseDouble(purittyPPM.getText());
 
 
-            PurityReport purReport = new PurityReport(MainController.getInstance().getFacade().getUsers()
-                    .getCurrentUser(),(OverallCondition) conditionBox.getValue(), virus,purity);
+            PurityReport purReport = new PurityReport(MainController.getInstance().getFacade().getUsers().getCurrentUser()
+                    ,(OverallCondition) conditionBox.getValue(), virus,purity);
 
             MainController.getInstance().getFacade().getPurityReports().addPurityReport(purReport);
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
