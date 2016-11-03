@@ -71,7 +71,7 @@
                   <Insets right="10.0" top="20.0" />
                </VBox.margin>
             </ComboBox>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Enter">
+            <Button mnemonicParsing="false" onAction="#handleEnterPressed" prefHeight="25.0" prefWidth="80.0" text="Enter">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
