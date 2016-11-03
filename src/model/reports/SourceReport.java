@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import model.auth.User;
 import model.exceptions.EmptyRequiredFieldException;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,16 +18,16 @@ import java.util.Date;
  * @author Cole Taylor
  * @version 1.0
  */
-public class SourceReport {
+public class SourceReport implements Serializable {
 
     private static int nextID = 1;
 
-    private ObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
-    private IntegerProperty id = new SimpleIntegerProperty();
-    private ObjectProperty<User> reportedUser = new SimpleObjectProperty<>();
-    private ObjectProperty<Location> location = new SimpleObjectProperty<>();
-    private ObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
-    private ObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
+    private SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private SimpleObjectProperty<User> reportedUser = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<Location> location = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
     private static WaterSourceReports instance = null;
 
     /**

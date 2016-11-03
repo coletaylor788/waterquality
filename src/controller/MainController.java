@@ -10,27 +10,26 @@ import model.Facade;
 import model.PersistenceManager;
 
 import java.io.IOException;
+import java.net.URL;
 
 
 public class MainController extends Application {
 
     private Stage primaryStage;
     private Stage dialogStage;
-    private Facade facade = Facade.getInstance();
     private PersistenceManager persistenceManager;
     private static MainController mainController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        //usersData = new UsersData();
         stageAssignment(primaryStage);
         mainController = this;
-        persistenceManager = new PersistenceManager(facade);
+        persistenceManager = new PersistenceManager(Facade.getInstance());
     }
 
     public Facade getFacade() {
-        return facade;
+        return Facade.getInstance();
     }
 
     public Stage getPrimaryStage() {
@@ -48,6 +47,12 @@ public class MainController extends Application {
         changeScene("../view/LoginScreen.fxml", "Login Screen");
     }
 
+    /**
+     * Changes the scene given the scene name (in view)
+     *
+     * @param scenePath is the path of the fxml file (i.e. ../view/LoginScreen.fxml)
+     * @param title is the title of the scene
+     */
     public void changeScene(String scenePath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -60,7 +65,7 @@ public class MainController extends Application {
             primaryStage.setScene(new Scene(screen));
             primaryStage.show();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
     }
 

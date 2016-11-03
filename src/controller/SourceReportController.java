@@ -115,6 +115,7 @@ public class SourceReportController {
                     loc, waterTypes.getValue(), waterConditions.getValue());
 
             MainController.getInstance().getFacade().getSourceReports().addSourceReport(srcReport);
+
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (NumberFormatException e) {
             message = "Latitude and Longitude values must be decimal values";

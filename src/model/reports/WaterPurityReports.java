@@ -3,13 +3,14 @@ package model.reports;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Nkosi Kee on 10/27/2016.
  */
-public class WaterPurityReports {
+public class WaterPurityReports implements Serializable {
 
     private List<PurityReport> purityReports;
     private static WaterPurityReports instance = null;

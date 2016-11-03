@@ -4,13 +4,15 @@ import model.auth.UsersData;
 import model.reports.WaterPurityReports;
 import model.reports.WaterSourceReports;
 
+import java.io.Serializable;
+
 /**
  * Main Facade that connects the controllers to the model
  *
  * @author Cole Taylor
  * @version 1.0
  */
-public class Facade {
+public class Facade implements Serializable {
     private UsersData users = new UsersData();
     private WaterSourceReports sourceReports;
     private WaterPurityReports purityReports;
@@ -44,5 +46,14 @@ public class Facade {
             instance = new Facade();
         }
         return instance;
+    }
+
+    /**
+     * Used to load the Facade from a JSON file
+     *
+     * @param instance is the instance to load
+     */
+    public static void setInstance(Facade instance) {
+        Facade.instance = instance;
     }
 }

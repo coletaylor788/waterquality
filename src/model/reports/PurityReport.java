@@ -5,6 +5,7 @@ import model.auth.Role;
 import model.auth.User;
 import model.exceptions.EmptyRequiredFieldException;
 
+import java.io.Serializable;
 import java.security.AccessControlException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,17 +17,17 @@ import java.util.Date;
  * @author Cole Taylor
  * @version 1.0
  */
-public class PurityReport {
+public class PurityReport implements Serializable {
 
     private static int nextID = 1;
 
-    private ObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
-    private IntegerProperty id = new SimpleIntegerProperty();
-    private ObjectProperty<User> reportedWorker = new SimpleObjectProperty<>();
-    private ObjectProperty<OverallCondition> overallCondition = new SimpleObjectProperty<>();
-    private ObjectProperty<Location> location = new SimpleObjectProperty<>();
-    private DoubleProperty virusPPM = new SimpleDoubleProperty();
-    private DoubleProperty contaminantPPM = new SimpleDoubleProperty();
+    private SimpleObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
+    private SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private SimpleObjectProperty<User> reportedWorker = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<OverallCondition> overallCondition = new SimpleObjectProperty<>();
+    private SimpleObjectProperty<Location> location = new SimpleObjectProperty<>();
+    private SimpleDoubleProperty virusPPM = new SimpleDoubleProperty();
+    private SimpleDoubleProperty contaminantPPM = new SimpleDoubleProperty();
 
     /**
      * Creates a Purity report

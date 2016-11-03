@@ -78,7 +78,8 @@ public class LoginScreenController {
         fc.setTitle("Open Binary File");
         File file  = fc.showOpenDialog(MainController.getInstance().getPrimaryStage());
         if (file != null) {
-            MainController.getInstance().getPersistenceManager().loadFromBinary(file);
+            //MainController.getInstance().getPersistenceManager().loadFromBinary(file);
+            MainController.getInstance().getPersistenceManager().loadFromJsonfile(file);
         }
     }
 
@@ -86,9 +87,10 @@ public class LoginScreenController {
     private void handleSavePressed() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open Binary File");
-        File file  = fc.showOpenDialog(MainController.getInstance().getPrimaryStage());
+        File file  = fc.showSaveDialog(MainController.getInstance().getPrimaryStage());
         if (file != null) {
-            MainController.getInstance().getPersistenceManager().saveToBinary(file);
+            //MainController.getInstance().getPersistenceManager().saveToBinary(file);
+            MainController.getInstance().getPersistenceManager().saveToJson(file);
         }
     }
 }

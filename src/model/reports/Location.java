@@ -1,9 +1,11 @@
 package model.reports;
 
+import java.io.Serializable;
+
 /**
  * Created by cole on 9/30/16.
  */
-public class Location {
+public class Location implements Serializable {
 
     private double latitude;
     private double longitude;

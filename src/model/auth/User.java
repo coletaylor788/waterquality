@@ -7,6 +7,7 @@ import model.auth.exceptions.UnableToCreateUserException;
 import model.auth.exceptions.UnableToHashPasswordException;
 import model.exceptions.EmptyRequiredFieldException;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -31,20 +32,20 @@ import java.util.regex.Pattern;
  * - Changed instance variables to Properties (StringProperty, ObjectProperty, and IntegerProperty)
  * - Made role a required field. (Need to know what role a user is)
  */
-public class User {
+public class User implements Serializable {
 
-    private StringProperty username = new SimpleStringProperty();
-    private StringProperty passwordHash = new SimpleStringProperty();
-    private StringProperty salt = new SimpleStringProperty();
-    private StringProperty firstName = new SimpleStringProperty();
-    private StringProperty lastName = new SimpleStringProperty();
-    private StringProperty email = new SimpleStringProperty();
-    private StringProperty title = new SimpleStringProperty();
-    private StringProperty address = new SimpleStringProperty();
-    private StringProperty city = new SimpleStringProperty();
-    private ObjectProperty<State> state = new SimpleObjectProperty<>();
-    private IntegerProperty zipCode = new SimpleIntegerProperty();
-    private ObjectProperty<Role> role = new SimpleObjectProperty<>();
+    private SimpleStringProperty username = new SimpleStringProperty();
+    private SimpleStringProperty passwordHash = new SimpleStringProperty();
+    private SimpleStringProperty salt = new SimpleStringProperty();
+    private SimpleStringProperty firstName = new SimpleStringProperty();
+    private SimpleStringProperty lastName = new SimpleStringProperty();
+    private SimpleStringProperty email = new SimpleStringProperty();
+    private SimpleStringProperty title = new SimpleStringProperty();
+    private SimpleStringProperty address = new SimpleStringProperty();
+    private SimpleStringProperty city = new SimpleStringProperty();
+    private SimpleObjectProperty<State> state = new SimpleObjectProperty<>();
+    private SimpleIntegerProperty zipCode = new SimpleIntegerProperty();
+    private SimpleObjectProperty<Role> role = new SimpleObjectProperty<>();
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);

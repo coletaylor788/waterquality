@@ -85,7 +85,8 @@ public class HomeController implements Initializable, MapComponentInitializedLis
      */
     @Override
     public void mapInitialized() {
-        List<SourceReport> sourceReports = WaterSourceReports.getInstance().getSourceReports();
+        List<SourceReport> sourceReports = MainController.getInstance().getFacade()
+                .getSourceReports().getSourceReports();
 
         // Center map at Atlanta
         double atlanta_lat = 33.7;
