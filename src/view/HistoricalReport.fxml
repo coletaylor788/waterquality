@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoricalReportController">
    <top>
       <ImageView fitHeight="113.0" fitWidth="432.0" BorderPane.alignment="CENTER">
@@ -81,7 +80,7 @@
       </VBox>
    </right>
    <center>
-      <LineChart fx:id="graph" prefHeight="280.0" prefWidth="362.0" BorderPane.alignment="CENTER">
+      <LineChart fx:id="graph" animated="false" prefHeight="280.0" prefWidth="362.0" title="Historical Report" BorderPane.alignment="CENTER">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
