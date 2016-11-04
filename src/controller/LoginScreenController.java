@@ -45,6 +45,7 @@ public class LoginScreenController {
     private void handleLoginPressed() {
         try {
             user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
+            //Facade.getInstance().getPurityReports().createSampleReports();
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (InvalidUsernameException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -24,7 +24,8 @@ public class PurityReportGraph {
      */
     public PurityReportGraph(double latitude, double longitude, boolean isVirusPPM) throws EmptyRequiredFieldException {
         reportsToGraph = new HashMap<>();
-        purityReports = (List<PurityReport>) MainController.getInstance().getFacade().getPurityReports();
+        purityReports = MainController.getInstance().getFacade()
+                .getPurityReports().getPurityReports();
         Location location = new Location(latitude, longitude);
 
         for (PurityReport report: purityReports) {

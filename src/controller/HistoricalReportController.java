@@ -35,7 +35,7 @@ public class HistoricalReportController {
     private ComboBox<String> ppm;
 
     private Map<String, Double> coordinates;
-    XYChart.Series series;
+    XYChart.Series<String, Number> series = new XYChart.Series<>();
 
     private double lat;
     private double lon;
@@ -76,13 +76,17 @@ public class HistoricalReportController {
 
         for (Map.Entry<String, Double> entry : coordinates.entrySet()) {
             XYChart.Data data = new XYChart.Data(entry.getKey(), entry.getValue());
+            //System.out.println(entry + " " + data);
             series.getData().add(data);
         }
 
+        //TODO what if there are no elements to display. Currently get NullPointerException
+        System.out.println(series.getData());
         graph.getData().add(series);
 
     }
 
+    @FXML
     private void handleEnterPressed() {
         try {
             lat = Double.parseDouble(latitude.getCharacters().toString());

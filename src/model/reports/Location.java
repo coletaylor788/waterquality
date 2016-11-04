@@ -34,4 +34,22 @@ public class Location implements Serializable {
         String degree = "\u00b0";
         return "Lat: " + latitude + degree + ", Long: " + longitude + degree;
     }
+
+    /**
+     * Checks if two Location objects are equal
+     *
+     * @param other is the other object to check
+     * @return true if lat and long are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        } else if (!(other instanceof Location)) {
+            return false;
+        } else {
+            Location otherLoc = (Location) other;
+            return this.latitude == otherLoc.latitude && this.longitude == otherLoc.longitude;
+        }
+    }
 }

@@ -46,7 +46,20 @@ public class PurityReport implements Serializable {
         this(new Date(), reportedWorker, overallCondition, location, virusPPM, contaminantPPM);
     }
 
-    private PurityReport(Date timestamp, User reportedWorker, OverallCondition overallCondition,
+    /**
+     * Creates a purity report w/o auto variable assignment
+     *
+     * @param timestamp is the time of the report
+     * @param reportedWorker is the worker who submitted the report
+     * @param overallCondition is the condition of the report
+     * @param location is the location of the report
+     * @param virusPPM is the virus amount in the report
+     * @param contaminantPPM is the contaminant amount in the report
+     * @throws AccessControlException When a User or Admin attempts to create
+     * @throws NumberFormatException if there are invalid numbers passed in
+     * @throws EmptyRequiredFieldException if a required field is omitted.
+     */
+    public PurityReport(Date timestamp, User reportedWorker, OverallCondition overallCondition,
                          Location location, double virusPPM, double contaminantPPM)
             throws AccessControlException, NumberFormatException, EmptyRequiredFieldException {
         this.timestamp.set(timestamp);
