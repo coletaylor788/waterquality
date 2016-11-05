@@ -1,4 +1,10 @@
 package model.reports;
+import static org.junit.Assert.assertEquals;
+
+import model.auth.Role;
+import model.auth.State;
+import org.junit.Test;
+
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
