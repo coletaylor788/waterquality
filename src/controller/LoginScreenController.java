@@ -4,18 +4,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import model.Facade;
 import model.auth.User;
 import model.auth.UsersData;
 import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.InvalidPasswordException;
 import model.auth.exceptions.InvalidUsernameException;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -28,7 +31,6 @@ public class LoginScreenController {
 
     private User user;
     private Stage _dialogStage;
-    private MainController mainController;
 
     //closes dialogue box
     @FXML
@@ -37,39 +39,15 @@ public class LoginScreenController {
     }
 
     /**
-     * Passes in the Main Controller in order to preserve several properties
-     * @param mainController the class with the properties
-     */
-    public void setMainController(MainController mainController) {
-        this.mainController = mainController;
-    }
-
-    /**
      * Called when the user clicks ok.
      */
     @FXML
     private void handleLoginPressed() {
         try {
-            user = mainController.getUsersData().login(usernameField.getText(), passwordField.getText());
-            System.out.println(mainController.getUsersData().getCurrentUser().getRole());
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(MainController.class.getResource("../view/UserScreen.fxml"));
-                BorderPane userScreen = loader.load();
-                UserScreenController controller = loader.getController();
-                controller.setMainController(mainController);
-
-                // Sets the scene
-                Stage primaryStage = mainController.getPrimaryStage();
-                primaryStage.setTitle("User: "
-                        + mainController.getUsersData().getCurrentUser().getFirstName());
-                primaryStage.setScene(new Scene(userScreen));
-                primaryStage.show();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-
-        } catch (InvalidUsernameException e) { // Catches all exceptions; Change to catch individual exceptions
+            user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
+            //Facade.getInstance().getPurityReports().createSampleReports();
+            MainController.getInstance().changeScene("../view/Home.fxml", "Home");
+        } catch (InvalidUsernameException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(_dialogStage);
             alert.setTitle("Invalid Username");
@@ -91,21 +69,29 @@ public class LoginScreenController {
     }
 
     @FXML
-    private void handleRegisterPressed() throws Exception {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("../view/RegisterScreen.fxml"));
-            BorderPane registerScreen = loader.load();
-            RegisterScreenController controller = loader.getController();
-            controller.setMainController(mainController);
+    private void handleRegisterPressed() {
+        MainController.getInstance().changeScene("../view/RegisterScreen.fxml", "Register");
+    }
 
-            //sets the scene
-            Stage primaryStage = mainController.getPrimaryStage();
-            primaryStage.setTitle("Register Screen");
-            primaryStage.setScene(new Scene(registerScreen));
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+    @FXML
+    private void handleLoadPressed() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Binary File");
+        File file  = fc.showOpenDialog(MainController.getInstance().getPrimaryStage());
+        if (file != null) {
+            //MainController.getInstance().getPersistenceManager().loadFromBinary(file);
+            MainController.getInstance().getPersistenceManager().loadFromJsonfile(file);
+        }
+    }
+
+    @FXML
+    private void handleSavePressed() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open Binary File");
+        File file  = fc.showSaveDialog(MainController.getInstance().getPrimaryStage());
+        if (file != null) {
+            //MainController.getInstance().getPersistenceManager().saveToBinary(file);
+            MainController.getInstance().getPersistenceManager().saveToJson(file);
         }
     }
 }

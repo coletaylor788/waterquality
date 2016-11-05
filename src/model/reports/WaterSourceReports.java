@@ -3,6 +3,7 @@ package model.reports;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * @author Cole Taylor
  * @version 1.0
  */
-public class WaterSourceReports {
+public class WaterSourceReports implements Serializable {
 
     private List<SourceReport> sourceReports;
     private static WaterSourceReports instance = null;

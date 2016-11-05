@@ -6,6 +6,7 @@ import model.auth.exceptions.InvalidUsernameException;
 import model.auth.exceptions.UnableToCreateUserException;
 import model.exceptions.EmptyRequiredFieldException;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -26,7 +27,7 @@ import java.util.HashMap;
  * - Removed data validation (moved to User)
  * - Restructured to only create and authenticate users, not manage them.
  */
-public class UsersData {
+public class UsersData implements Serializable {
 
     private HashMap<String, User> users;
     private User currentUser;
@@ -34,6 +35,10 @@ public class UsersData {
     public UsersData() {
         users = new HashMap<>();
         currentUser = null;
+    }
+
+    public HashMap<String, User> getUserMap() {
+        return users;
     }
 
     /**
@@ -61,6 +66,7 @@ public class UsersData {
      * @param firstName is the first name of the user.
      * @param lastName is the last name of the user.
      * @param role is the role of the user.
+     * @param email is the email of the user
      * @throws AuthenticationException if there is a problem with authentication.
      * @throws EmptyRequiredFieldException if a required field is empty
      */
