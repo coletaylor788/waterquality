@@ -46,6 +46,9 @@ public class HistoricalReportController {
      */
     private void initialize() {
         ppm.getItems().addAll(generatePPM());
+        xAxis.setLowerBound(1);
+        xAxis.setUpperBound(12);
+        xAxis.setTickUnit(1);
         //graph.setVisible(false);
     }
 
@@ -87,7 +90,6 @@ public class HistoricalReportController {
             }
         }
 
-        //TODO handle year
         if (data) {
             graph.getData().add(series);
         }
@@ -115,9 +117,6 @@ public class HistoricalReportController {
                     isVirusPPM = false;
                 }
                 setGraph(year, lat, lon, isVirusPPM);
-                xAxis.setLowerBound(1);
-                xAxis.setUpperBound(12);
-                xAxis.setTickUnit(1);
                 graph.setVisible(true);
             } catch (EmptyRequiredFieldException | NumberFormatException e) {
                 MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
