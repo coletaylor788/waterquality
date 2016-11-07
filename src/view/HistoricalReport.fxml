@@ -82,10 +82,10 @@
    <center>
       <LineChart fx:id="graph" animated="false" prefHeight="280.0" prefWidth="362.0" title="Historical Report" BorderPane.alignment="CENTER">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <NumberAxis fx:id="xAxis" lowerBound="1" upperBound="12" tickUnit="1" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="yAxis" side="LEFT" />
         </yAxis>
       </LineChart>
    </center>

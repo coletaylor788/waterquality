@@ -29,18 +29,16 @@ public class HistoricalReportController {
     private TextField year;
 
     @FXML
-    private LineChart<String, Number> graph;
+    NumberAxis xAxis;
+
+    @FXML
+    NumberAxis yAxis;
+
+    @FXML
+    private LineChart<Number, Number> graph;// = new LineChart<>(xAxis, yAxis);
 
     @FXML
     private ComboBox<String> ppm;
-
-    private Map<String, Double> coordinates;
-    XYChart.Series<String, Number> series = new XYChart.Series<>();
-
-    private double lat;
-    private double lon;
-    private boolean isVirusPPM;
-
 
     @FXML
     /**
@@ -48,7 +46,7 @@ public class HistoricalReportController {
      */
     private void initialize() {
         ppm.getItems().addAll(generatePPM());
-        graph.setVisible(false);
+        //graph.setVisible(false);
     }
 
     /**
@@ -62,43 +60,68 @@ public class HistoricalReportController {
         return strList;
     }
 
-    private void setGraph(double lat, double lon, boolean isVirusPPM) throws EmptyRequiredFieldException {
-        final CategoryAxis xAxis = new CategoryAxis();
-        final NumberAxis yAxis = new NumberAxis();
+    private void setGraph(int year, double lat, double lon, boolean isVirusPPM) throws EmptyRequiredFieldException {
         xAxis.setLabel("Month");
         yAxis.setLabel("PPM");
-
-        graph = new LineChart<String, Number>(xAxis, yAxis);
-        //XYChart.Series series = new XYChart.Series();
-
-        PurityReportGraph coordSetup = new PurityReportGraph(lat, lon, isVirusPPM);
-        coordinates = coordSetup.getCoordinates();
-
-        for (Map.Entry<String, Double> entry : coordinates.entrySet()) {
-            XYChart.Data data = new XYChart.Data(entry.getKey(), entry.getValue());
-            //System.out.println(entry + " " + data);
-            series.getData().add(data);
+        if (isVirusPPM) {
+            graph.setTitle("Virus PPM");
+        } else {
+            graph.setTitle("Contaminant PPM");
         }
 
-        //TODO what if there are no elements to display. Currently get NullPointerException
-        System.out.println(series.getData());
-        graph.getData().add(series);
+        graph.getData().clear();
+        XYChart.Series<Number, Number> series = new XYChart.Series();
+
+        PurityReportGraph coordSetup = new PurityReportGraph(year, lat, lon, isVirusPPM);
+        Map<String, Double> coordinates = coordSetup.getCoordinates();
+
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+        boolean data = false;
+        for (int i = 0; i < months.length; i++) {
+            if (coordinates.containsKey(months[i])) {
+                series.getData().add(new XYChart.Data<>(
+                        i + 1, coordinates.get(months[i])));
+                data = true;
+            }
+        }
+
+        //TODO handle year
+        if (data) {
+            graph.getData().add(series);
+        }
 
     }
 
     @FXML
     private void handleEnterPressed() {
+        boolean cont = true;
+        int year = 0;
         try {
-            lat = Double.parseDouble(latitude.getCharacters().toString());
-            lon = Double.parseDouble(longitude.getCharacters().toString());
-            isVirusPPM = true;
-            if (ppm.getValue().contains("Containment")) {
-                isVirusPPM = false;
+            year = Integer.parseInt(this.year.getText());
+        } catch (NumberFormatException e) {
+            MainController.getInstance().showAlertMessage("Please enter a valid year", Alert.AlertType.ERROR);
+            cont = false;
+        }
+
+        if (cont) {
+            try {
+                double lat = Double.parseDouble(latitude.getCharacters().toString());
+                double lon = Double.parseDouble(longitude.getCharacters().toString());
+
+                boolean isVirusPPM = true;
+                if (ppm.getValue().contains("Containment")) {
+                    isVirusPPM = false;
+                }
+                setGraph(year, lat, lon, isVirusPPM);
+                xAxis.setLowerBound(1);
+                xAxis.setUpperBound(12);
+                xAxis.setTickUnit(1);
+                graph.setVisible(true);
+            } catch (EmptyRequiredFieldException | NumberFormatException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
             }
-            setGraph(lat, lon, isVirusPPM);
-            graph.setVisible(true);
-        } catch (EmptyRequiredFieldException | NumberFormatException e) {
-            MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 

@@ -22,14 +22,14 @@ public class PurityReportGraph {
      * @param longitude of location
      * @param isVirusPPM whether we are checking for Virus or Containment PPM
      */
-    public PurityReportGraph(double latitude, double longitude, boolean isVirusPPM) throws EmptyRequiredFieldException {
+    public PurityReportGraph(int year, double latitude, double longitude, boolean isVirusPPM) throws EmptyRequiredFieldException {
         reportsToGraph = new HashMap<>();
         purityReports = MainController.getInstance().getFacade()
                 .getPurityReports().getPurityReports();
         Location location = new Location(latitude, longitude);
 
         for (PurityReport report: purityReports) {
-            if (report.getLocation().equals(location)) {
+            if (report.getLocation().equals(location) && year == report.getTimestamp().getYear()) {
                 int mon = report.getTimestamp().getMonth() + 1;
                 String month = monthToNumber(mon);
                 double ppm = report.getContaminantPPM();
@@ -51,8 +51,8 @@ public class PurityReportGraph {
      * @param latitude of the location
      * @param longitude of location
      */
-    public PurityReportGraph(double latitude, double longitude) throws EmptyRequiredFieldException {
-        this(latitude, longitude, true);
+    public PurityReportGraph(int year, double latitude, double longitude) throws EmptyRequiredFieldException {
+        this(year, latitude, longitude, true);
     }
 
     /**

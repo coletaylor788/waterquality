@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Facade;
 import model.auth.Role;
 import model.auth.User;
 import model.reports.SourceReport;
@@ -168,5 +169,6 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     @FXML
     public void handleHistoricalReportPressed() {
         MainController.getInstance().changeScene("../view/HistoricalReport.fxml", "Historical Report");
+        Facade.getInstance().getPurityReports().createSampleReports();
     }
 }
