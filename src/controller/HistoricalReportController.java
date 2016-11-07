@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import model.auth.exceptions.AuthenticationException;
 import model.exceptions.EmptyRequiredFieldException;
 import model.reports.PurityReportGraph;
+import model.reports.exceptions.LocationOutOfRangeException;
 
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class HistoricalReportController {
     private ObservableList<String> generatePPM() {
         ObservableList<String> strList = FXCollections.observableArrayList();
         strList.add("Virus PPM");
-        strList.add("Containment PPM");
+        strList.add("Contaminant PPM");
         return strList;
     }
 
@@ -79,7 +80,6 @@ public class HistoricalReportController {
         boolean data = false;
         for (int i = 0; i < months.length; i++) {
             if (coordinates.containsKey(months[i])) {
-                System.out.println(months[i]);
                 series.getData().add(new XYChart.Data<>(
                         i + 1, coordinates.get(months[i])));
                 data = true;
@@ -101,20 +101,40 @@ public class HistoricalReportController {
     private void handleEnterPressed() {
         boolean cont = true;
         int year = 0;
+        double lat = 0;
+        double lon = 0;
         try {
             year = Integer.parseInt(this.year.getText());
         } catch (NumberFormatException e) {
             MainController.getInstance().showAlertMessage("Please enter a valid year", Alert.AlertType.ERROR);
             cont = false;
         }
-
         if (cont) {
             try {
-                double lat = Double.parseDouble(latitude.getCharacters().toString());
-                double lon = Double.parseDouble(longitude.getCharacters().toString());
-
+                lat = Double.parseDouble(latitude.getCharacters().toString());
+                lon = Double.parseDouble(longitude.getCharacters().toString());
+                if (lat < -90 || lat > 90) {
+                    throw new LocationOutOfRangeException("Latitude must be a value between -90 and 90");
+                } else if (lon < -180 || lon > 180) {
+                    throw new LocationOutOfRangeException("Longitude must be a value between -180 and 180");
+                }
+            } catch (NumberFormatException e) {
+                MainController.getInstance().showAlertMessage(
+                        "Please enter a decimal value for latitude and longitude",
+                        Alert.AlertType.ERROR);
+                cont = false;
+            } catch (LocationOutOfRangeException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
+                cont = false;
+            }
+        }
+        if (cont) {
+            try {
                 boolean isVirusPPM = true;
-                if (ppm.getValue().contains("Containment")) {
+                if (ppm.getValue() == null) {
+                    throw new EmptyRequiredFieldException("Please select Virus or Contaminant");
+                }
+                if (ppm.getValue().contains("Contaminant")) {
                     isVirusPPM = false;
                 }
                 setGraph(year, lat, lon, isVirusPPM);
