@@ -14,8 +14,8 @@ import java.io.Serializable;
  */
 public class Facade implements Serializable {
     private UsersData users = new UsersData();
-    private WaterSourceReports sourceReports;
-    private WaterPurityReports purityReports;
+    private final WaterSourceReports sourceReports;
+    private final WaterPurityReports purityReports;
 
     private static Facade instance = null;
 

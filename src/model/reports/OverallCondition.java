@@ -11,7 +11,7 @@ public enum OverallCondition {
     TREATABLE("Treatable"),
     UNSAFE("Unsafe");
 
-    private String condition;
+    private final String condition;
 
     OverallCondition(String condition) {
         this.condition = condition;

@@ -13,7 +13,7 @@ public enum Role {
     MANAGER("Manager"),
     ADMIN("Admin");
 
-    private String title;
+    private final String title;
 
     /**
      * Create role

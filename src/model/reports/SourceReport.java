@@ -16,6 +16,7 @@ import model.exceptions.EmptyRequiredFieldException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -28,13 +29,12 @@ public class SourceReport implements Serializable {
 
     private static int nextID = 1;
 
-    private SimpleObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
-    private SimpleIntegerProperty id = new SimpleIntegerProperty();
-    private SimpleObjectProperty<User> reportedUser = new SimpleObjectProperty<>();
-    private SimpleObjectProperty<Location> location = new SimpleObjectProperty<>();
-    private SimpleObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
-    private SimpleObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
-    private static WaterSourceReports instance = null;
+    private final SimpleObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
+    private final SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private final SimpleObjectProperty<User> reportedUser = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Location> location = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<WaterType> waterType = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<WaterCondition> waterCondition = new SimpleObjectProperty<>();
 
     /**
      * Create a new SourceReport
@@ -108,7 +108,7 @@ public class SourceReport implements Serializable {
     /**
      * @return Time the report was created as a formatted string
      */
-    public String getStringTimestamp() {
+    private String getStringTimestamp() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         return dateFormat.format(timestamp.get());
     }
@@ -116,7 +116,7 @@ public class SourceReport implements Serializable {
     /**
      * @return the ID of the report
      */
-    public int getID() {
+    private int getID() {
         return id.get();
     }
 

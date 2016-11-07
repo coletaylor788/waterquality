@@ -100,13 +100,13 @@ public class ColeCreateUserTest {
     public void testWorkerRole() {
         User u = null;
         try {
-            u = new User("user", "password", "first", "last", Role.WORKER, "c@c.com", "title",
-                    "address", "city", State.ALABAMA, 12345);
+            u = new User("user1", "password1", "first1", "last1", Role.WORKER, "c1@c.com", "title1",
+                    "address1", "city1", State.GEORGIA, 12346);
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
             assert(false);
         }
-        assert(checkUser(u, "user", "password", "first", "last", Role.WORKER, "c@c.com", "title",
-                "address", "city", State.ALABAMA, 12345));
+        assert(checkUser(u, "user1", "password1", "first1", "last1", Role.WORKER, "c1@c.com", "title1",
+                "address1", "city1", State.GEORGIA, 12346));
     }
 
     /**

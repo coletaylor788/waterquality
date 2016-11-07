@@ -54,7 +54,6 @@ public class EditProfileScreenControl {
     private TextField zipCodeField;
 
     private User user;
-    private Stage _dialogStage;
 
     @FXML
     /**
@@ -82,7 +81,7 @@ public class EditProfileScreenControl {
      * Creates an observable list to put in the ComboBox
      * @return list with all the roles
      */
-    private static ObservableList generateRoles() {
+    private static ObservableList<Role> generateRoles() {
         Role[] roles = Role.values();
         ObservableList<Role> roleList = FXCollections.observableArrayList();
         for (Role role : roles) {
@@ -95,7 +94,7 @@ public class EditProfileScreenControl {
      * Creates an observable list to put in the ComboBox
      * @return list with all the states
      */
-    private static ObservableList generateState() {
+    private static ObservableList<State> generateState() {
         State[] states = State.values();
         ObservableList<State> stateList = FXCollections.observableArrayList();
         for (State state : states) {
@@ -104,7 +103,7 @@ public class EditProfileScreenControl {
         return stateList;
     }
 
-    public void setDefaultFields() {
+    private void setDefaultFields() {
         user = MainController.getInstance().getFacade().getUsers().getCurrentUser();
         firstNameField.setText(user.getFirstName());
         lastNameField.setText(user.getLastName());
@@ -138,11 +137,7 @@ public class EditProfileScreenControl {
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle(e.getMessage());
-            alert.setHeaderText(e.getMessage());
-            alert.showAndWait();
+            MainController.getInstance().showAlertMessage(e.getMessage());
         }
     }
 

@@ -32,8 +32,6 @@ public class WaterPurityReportController {
     @FXML
     private TextField virusPPM;
 
-    private Stage _dialogStage;
-
     @FXML
     private void initialize() {
         conditionBox.getItems().addAll(generateOverallConditions());
@@ -45,7 +43,7 @@ public class WaterPurityReportController {
         });
     }
 
-    private static ObservableList generateOverallConditions() {
+    private static ObservableList<OverallCondition> generateOverallConditions() {
         OverallCondition[] overallConditions = OverallCondition.values();
         ObservableList<OverallCondition> conditionList = FXCollections.observableArrayList();
         for (OverallCondition type: overallConditions) {
@@ -84,7 +82,7 @@ public class WaterPurityReportController {
 
         // If there was an error
         if (message != null) {
-            MainController.getInstance().showAlertMessage(message, Alert.AlertType.ERROR);
+            MainController.getInstance().showAlertMessage(message);
         }
     }
 

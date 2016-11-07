@@ -37,7 +37,7 @@ public class PersistenceManager {
             pw.close();
         } catch (IOException e) {
             MainController.getInstance().showAlertMessage(
-                    "Exception working with Json Save File", Alert.AlertType.ERROR);
+                    "Exception working with Json Save File");
         }
     }
 
@@ -55,7 +55,7 @@ public class PersistenceManager {
             br.close();
         } catch (IOException e) {
             MainController.getInstance().showAlertMessage(
-                    "Exception working with Json load file", Alert.AlertType.ERROR);
+                    "Exception working with Json load file");
         }
     }
 }

@@ -23,7 +23,7 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
-        stageAssignment(primaryStage);
+        changeScene("../view/LoginScreen.fxml", "Login");
         mainController = this;
         persistenceManager = new PersistenceManager(Facade.getInstance());
     }
@@ -38,13 +38,6 @@ public class MainController extends Application {
 
     public PersistenceManager getPersistenceManager() {
         return persistenceManager;
-    }
-
-    //sets main stage and assigns stage instance so we can reuse
-    private void stageAssignment(Stage primaryStage) {
-        //This block of code is needed to change layouts
-        //in getResource you put in the path to the next FXML file
-        changeScene("../view/LoginScreen.fxml", "Login Screen");
     }
 
     /**
@@ -65,7 +58,7 @@ public class MainController extends Application {
             primaryStage.setScene(new Scene(screen));
             primaryStage.show();
         } catch (IOException e) {
-            showAlertMessage("Unable to load: " + title, Alert.AlertType.ERROR);
+            showAlertMessage("Unable to load: " + title);
         }
     }
 
@@ -82,12 +75,11 @@ public class MainController extends Application {
      * Displays an alert dialog box
      *
      * @param message is the message to display
-     * @param alertType is the type of alert box to generate
      */
-    public void showAlertMessage(String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
+    public void showAlertMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(dialogStage);
-        alert.setTitle(alertType.toString());
+        alert.setTitle(Alert.AlertType.ERROR.toString());
         alert.setHeaderText(message);
         alert.showAndWait();
     }

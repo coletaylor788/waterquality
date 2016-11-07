@@ -43,9 +43,6 @@ public class RegisterScreenController {
     @FXML
     private ComboBox<Role> role;
 
-    private User user;
-    private Stage _dialogStage;
-
     @FXML
     /**
      * populates combo boxes
@@ -64,7 +61,7 @@ public class RegisterScreenController {
      * Creates an observable list to put in the ComboBox
      * @return list with all the roles
      */
-    private static ObservableList generateRoles() {
+    private static ObservableList<Role> generateRoles() {
         Role[] roles = Role.values();
         ObservableList<Role> roleList = FXCollections.observableArrayList();
         for (Role role : roles) {
@@ -90,7 +87,7 @@ public class RegisterScreenController {
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
 
         } catch (AuthenticationException | EmptyRequiredFieldException e) {
-            MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
+            MainController.getInstance().showAlertMessage(e.getMessage());
         }
     }
 

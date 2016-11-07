@@ -64,12 +64,12 @@ public class HistoricalReportController {
         return strList;
     }
 
-    private void setGraph(int year, double lat, double lon, boolean isVirusPPM) throws EmptyRequiredFieldException {
+    private void setGraph(int year, double lat, double lon, boolean isVirusPPM) {
         xAxis.setLabel("Month");
         yAxis.setLabel("PPM");
 
         graph.getData().clear();
-        XYChart.Series<Number, Number> series = new XYChart.Series();
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
         PurityReportGraph coordSetup = new PurityReportGraph(year, lat, lon, isVirusPPM);
         Map<String, Double> coordinates = coordSetup.getCoordinates();
@@ -106,7 +106,7 @@ public class HistoricalReportController {
         try {
             year = Integer.parseInt(this.year.getText());
         } catch (NumberFormatException e) {
-            MainController.getInstance().showAlertMessage("Please enter a valid year", Alert.AlertType.ERROR);
+            MainController.getInstance().showAlertMessage("Please enter a valid year");
             cont = false;
         }
         if (cont) {
@@ -120,11 +120,10 @@ public class HistoricalReportController {
                 }
             } catch (NumberFormatException e) {
                 MainController.getInstance().showAlertMessage(
-                        "Please enter a decimal value for latitude and longitude",
-                        Alert.AlertType.ERROR);
+                        "Please enter a decimal value for latitude and longitude");
                 cont = false;
             } catch (LocationOutOfRangeException e) {
-                MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
+                MainController.getInstance().showAlertMessage(e.getMessage());
                 cont = false;
             }
         }
@@ -140,7 +139,7 @@ public class HistoricalReportController {
                 setGraph(year, lat, lon, isVirusPPM);
                 graph.setVisible(true);
             } catch (EmptyRequiredFieldException | NumberFormatException e) {
-                MainController.getInstance().showAlertMessage(e.getMessage(), Alert.AlertType.ERROR);
+                MainController.getInstance().showAlertMessage(e.getMessage());
             }
         }
     }

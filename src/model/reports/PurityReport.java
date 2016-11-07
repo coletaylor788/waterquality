@@ -21,13 +21,13 @@ public class PurityReport implements Serializable {
 
     private static int nextID = 1;
 
-    private SimpleObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
-    private SimpleIntegerProperty id = new SimpleIntegerProperty();
-    private SimpleObjectProperty<User> reportedWorker = new SimpleObjectProperty<>();
-    private SimpleObjectProperty<OverallCondition> overallCondition = new SimpleObjectProperty<>();
-    private SimpleObjectProperty<Location> location = new SimpleObjectProperty<>();
-    private SimpleDoubleProperty virusPPM = new SimpleDoubleProperty();
-    private SimpleDoubleProperty contaminantPPM = new SimpleDoubleProperty();
+    private final SimpleObjectProperty<Date> timestamp = new SimpleObjectProperty<>();
+    private final SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private final SimpleObjectProperty<User> reportedWorker = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<OverallCondition> overallCondition = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Location> location = new SimpleObjectProperty<>();
+    private final SimpleDoubleProperty virusPPM = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty contaminantPPM = new SimpleDoubleProperty();
 
     /**
      * Creates a Purity report
@@ -92,7 +92,7 @@ public class PurityReport implements Serializable {
      * @param reportedWorker is the worker to set it to
      * @throws AccessControlException when a User or Admin attempts to create a purity report
      */
-    public void setReportedWorker(User reportedWorker) throws AccessControlException {
+    private void setReportedWorker(User reportedWorker) throws AccessControlException {
         if (reportedWorker.getRole() != Role.WORKER
                 && reportedWorker.getRole() != Role.MANAGER) {
             throw new AccessControlException("Must be a Worker or Manager to create a Purity report");
@@ -104,7 +104,7 @@ public class PurityReport implements Serializable {
      * Sets the overall condition
      * @param overallCondition is the overall condition to set it to
      */
-    public void setOverallCondition(OverallCondition overallCondition)
+    private void setOverallCondition(OverallCondition overallCondition)
             throws EmptyRequiredFieldException {
         if (overallCondition == null) {
             throw new EmptyRequiredFieldException("Overall condition cannot be empty");
@@ -117,7 +117,7 @@ public class PurityReport implements Serializable {
      * @param virusPPM is the decimal value for virus PPM
      * @throws NumberFormatException when virusPPM is negative
      */
-    public void setVirusPPM(double virusPPM) throws NumberFormatException {
+    private void setVirusPPM(double virusPPM) throws NumberFormatException {
         if (virusPPM < 0) {
             throw new NumberFormatException("Virus PPM cannot be negative");
         }
@@ -129,7 +129,7 @@ public class PurityReport implements Serializable {
      * @param contaminantPPM is the decimal value for contaminant PPM
      * @throws NumberFormatException when contaminantPPM is negative
      */
-    public void setContaminantPPM(double contaminantPPM) throws NumberFormatException {
+    private void setContaminantPPM(double contaminantPPM) throws NumberFormatException {
         if (contaminantPPM < 0) {
             throw new NumberFormatException("Contaminant PPM cannot be negative");
         }
@@ -148,7 +148,7 @@ public class PurityReport implements Serializable {
     /**
      * @return Time the report was created as a formatted string
      */
-    public String getStringTimestamp() {
+    private String getStringTimestamp() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         return dateFormat.format(timestamp.get());
     }
@@ -156,7 +156,7 @@ public class PurityReport implements Serializable {
     /**
      * @return the id
      */
-    public int getID() {
+    private int getID() {
         return id.get();
     }
 
@@ -164,14 +164,14 @@ public class PurityReport implements Serializable {
      *
      * @return the reported user
      */
-    public User getReportedWorker() {
+    private User getReportedWorker() {
         return reportedWorker.get();
     }
 
     /**
      * @return the overall condition
      */
-    public OverallCondition getOverallCondition() {
+    private OverallCondition getOverallCondition() {
         return overallCondition.get();
     }
 

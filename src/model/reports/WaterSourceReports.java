@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class WaterSourceReports implements Serializable {
 
-    private List<SourceReport> sourceReports;
+    private final List<SourceReport> sourceReports;
     private static WaterSourceReports instance = null;
 
     /**
@@ -42,15 +42,6 @@ public class WaterSourceReports implements Serializable {
      */
     public List<SourceReport> getSourceReports() {
         return sourceReports;
-    }
-
-    /**
-     * Returns a ObservableList that can be used in JavaFX views
-     *
-     * @return the source reports list wrapped in an ObservableReport
-     */
-    public ObservableList<SourceReport> getObservableSourceReports() {
-        return FXCollections.observableList(sourceReports);
     }
 
     /**

@@ -44,8 +44,6 @@ public class SourceReportController {
     @FXML
     private ComboBox<WaterCondition> waterConditions;
 
-    private Stage _dialogStage;
-
     @FXML
     /**
      * populates combo boxes
@@ -71,7 +69,7 @@ public class SourceReportController {
      * Creates an observable list of water types to populate combo box
      * @return list of all water types
      */
-    private static ObservableList generateWaterTypes() {
+    private static ObservableList<WaterType> generateWaterTypes() {
         WaterType[] waterTypes = WaterType.values();
         ObservableList<WaterType> typeList = FXCollections.observableArrayList();
         for (WaterType type: waterTypes) {
@@ -84,7 +82,7 @@ public class SourceReportController {
      * Creates an observable list of water conditions to populate combo box
      * @return list of all water conditions
      */
-    private static ObservableList generateWaterConditions() {
+    private static ObservableList<WaterCondition> generateWaterConditions() {
         WaterCondition[] waterConditions = WaterCondition.values();
         ObservableList<WaterCondition> conditionList = FXCollections.observableArrayList();
         for (WaterCondition type: waterConditions) {
@@ -124,11 +122,7 @@ public class SourceReportController {
         }
         // If there was an error
         if (message != null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle("Error");
-            alert.setHeaderText(message);
-            alert.showAndWait();
+            MainController.getInstance().showAlertMessage(message);
         }
     }
 

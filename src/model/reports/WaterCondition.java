@@ -13,7 +13,7 @@ public enum WaterCondition {
     TREATABLE_MUDDY("Treatable-Muddy"),
     POTABLE("Potable");
 
-    private String condition;
+    private final String condition;
 
     WaterCondition(String condition) {
         this.condition = condition;

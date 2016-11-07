@@ -10,16 +10,14 @@ import model.exceptions.EmptyRequiredFieldException;
 
 import javax.swing.border.EmptyBorder;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Nkosi Kee on 10/27/2016.
  */
 public class WaterPurityReports implements Serializable {
 
-    private List<PurityReport> purityReports;
+    private final List<PurityReport> purityReports;
     private static WaterPurityReports instance = null;
     private static boolean createdSamples = false;
 
@@ -55,68 +53,79 @@ public class WaterPurityReports implements Serializable {
                 || Facade.getInstance().getUsers().getCurrentUser().getRole() == Role.MANAGER)) {
             createdSamples = true;
             try {
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 0, 01),
+                Calendar cal = Calendar.getInstance();
+                cal.set(2016, 0, 1);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.1,
                         0.8));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 01, 02),
+                cal.set(2016, 1, 2);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.3,
                         0.6));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 01, 15),
+                cal.set(2016, 1, 15);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.5,
                         0.6));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 02, 01),
+                cal.set(2016, 2, 1);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.2,
                         0.4));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 02, 04),
+                cal.set(2016, 2, 4);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.4,
                         0.5));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 02, 20),
+                cal.set(2016, 2, 20);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.5,
                         0.5));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 10, 5),
+                cal.set(2016, 10, 5);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.9,
                         0.2));
-                purityReports.add(new PurityReport(new Date(2016 - 1900, 11, 5),
+                cal.set(2016, 11, 5);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.95,
                         0.1));
-                purityReports.add(new PurityReport(new Date(2015 - 1900, 03, 20),
+                cal.set(2015, 3, 20);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.5,
                         0.1));
-                purityReports.add(new PurityReport(new Date(2015 - 1900, 8, 20),
+                cal.set(2015, 8, 20);
+                purityReports.add(new PurityReport(cal.getTime(),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.5,
                         0.1));
             } catch (EmptyRequiredFieldException e) {
-                MainController.getInstance().showAlertMessage("Required field is empty", Alert.AlertType.ERROR);
+                MainController.getInstance().showAlertMessage("Required field is empty");
             }
         }
     }

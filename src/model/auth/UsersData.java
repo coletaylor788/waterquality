@@ -29,7 +29,7 @@ import java.util.HashMap;
  */
 public class UsersData implements Serializable {
 
-    private HashMap<String, User> users;
+    private final HashMap<String, User> users;
     private User currentUser;
 
     public UsersData() {
@@ -39,23 +39,6 @@ public class UsersData implements Serializable {
 
     public HashMap<String, User> getUserMap() {
         return users;
-    }
-
-    /**
-     * Adds a user account with the minimum requirements
-     *
-     * @param username is the username of the user
-     * @param password is the password of the user. It will be hashed
-     * @param firstName is the first name of the user.
-     * @param lastName is the last name of the user.
-     * @param role is the role of the user.
-     * @throws AuthenticationException if there is a problem with authentication.
-     * @throws EmptyRequiredFieldException if a required field is empty
-     */
-    public void addUser(String username, String password, String firstName,
-                        String lastName, Role role)
-            throws AuthenticationException, EmptyRequiredFieldException {
-        addUser(username, password, firstName, lastName, role, "", "", "", "", null, 0);
     }
 
     /**
@@ -73,38 +56,13 @@ public class UsersData implements Serializable {
     public void addUser(String username, String password, String firstName,
                         String lastName, Role role, String email)
             throws AuthenticationException, EmptyRequiredFieldException {
-        addUser(username, password, firstName, lastName, role, email, "", "", "", null, 0);
-    }
-
-    /**
-     * Adds a user account
-     *
-     * @param username is the username of the user
-     * @param password is the password of the user. It will be hashed
-     * @param firstName is the first name of the user.
-     * @param lastName is the last name of the user.
-     * @param role is the role of the user
-     * @param email is the email of the user.
-     * @param title is the title of the user
-     * @param address is the address of the user
-     * @param city is the city of the user
-     * @param state is the state of the user
-     * @param zipCode is the zipCode of the user
-     * @throws AuthenticationException if there is a problem with authentication.
-     * @throws EmptyRequiredFieldException if a required field is empty
-     */
-    public void addUser(String username, String password, String firstName, String lastName,
-                        Role role, String email, String title, String address, String city,
-                        State state, int zipCode)
-            throws AuthenticationException, EmptyRequiredFieldException {
-
         if (username.isEmpty()) {
             throw new EmptyRequiredFieldException("Username cannot be empty");
         } else if (users.containsKey(username)) {
             throw new UnableToCreateUserException("Username: " + username + " already exists.");
         }
 
-        User newUser = new User(username, password, firstName, lastName, role, email, title, address, city, state, zipCode);
+        User newUser = new User(username, password, firstName, lastName, role, email, "", "", "", null, 0);
 
         // Add user to users map
         users.put(username, newUser);
@@ -120,7 +78,7 @@ public class UsersData implements Serializable {
      */
     public User login(String username, String password) throws AuthenticationException {
         if (!users.containsKey(username)) {
-            throw new InvalidUsernameException("Username is incorrect");
+            throw new InvalidUsernameException();
         }
         User user = users.get(username);
 
@@ -128,7 +86,7 @@ public class UsersData implements Serializable {
             currentUser = user;
             return currentUser;
         } else {
-            throw new InvalidPasswordException("Password is incorrect");
+            throw new InvalidPasswordException();
         }
     }
 
@@ -137,13 +95,8 @@ public class UsersData implements Serializable {
      *
      * @return true if their was a user logged in, false otherwise
      */
-    public boolean logout() {
-        if (currentUser == null) {
-            return false;
-        } else {
-            currentUser = null;
-            return true;
-        }
+    public void logout() {
+        currentUser = null;
     }
 
     /**
@@ -155,13 +108,5 @@ public class UsersData implements Serializable {
     public User getCurrentUser() {
         return currentUser;
     }
-
-    /**
-     * @return true if there is a user logged in
-     */
-    public boolean isUserLoggedIn() {
-        return currentUser != null;
-    }
-
 
 }

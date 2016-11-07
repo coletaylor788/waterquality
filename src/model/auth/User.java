@@ -34,18 +34,18 @@ import java.util.regex.Pattern;
  */
 public class User implements Serializable {
 
-    private SimpleStringProperty username = new SimpleStringProperty();
-    private SimpleStringProperty passwordHash = new SimpleStringProperty();
-    private SimpleStringProperty salt = new SimpleStringProperty();
-    private SimpleStringProperty firstName = new SimpleStringProperty();
-    private SimpleStringProperty lastName = new SimpleStringProperty();
-    private SimpleStringProperty email = new SimpleStringProperty();
-    private SimpleStringProperty title = new SimpleStringProperty();
-    private SimpleStringProperty address = new SimpleStringProperty();
-    private SimpleStringProperty city = new SimpleStringProperty();
-    private SimpleObjectProperty<State> state = new SimpleObjectProperty<>();
-    private SimpleIntegerProperty zipCode = new SimpleIntegerProperty();
-    private SimpleObjectProperty<Role> role = new SimpleObjectProperty<>();
+    private final SimpleStringProperty username = new SimpleStringProperty();
+    private final SimpleStringProperty passwordHash = new SimpleStringProperty();
+    private final SimpleStringProperty salt = new SimpleStringProperty();
+    private final SimpleStringProperty firstName = new SimpleStringProperty();
+    private final SimpleStringProperty lastName = new SimpleStringProperty();
+    private final SimpleStringProperty email = new SimpleStringProperty();
+    private final SimpleStringProperty title = new SimpleStringProperty();
+    private final SimpleStringProperty address = new SimpleStringProperty();
+    private final SimpleStringProperty city = new SimpleStringProperty();
+    private final SimpleObjectProperty<State> state = new SimpleObjectProperty<>();
+    private final SimpleIntegerProperty zipCode = new SimpleIntegerProperty();
+    private final SimpleObjectProperty<Role> role = new SimpleObjectProperty<>();
 
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -155,7 +155,7 @@ public class User implements Serializable {
 
     public void setEmail(String email) throws InvalidEmailException {
         if (!email.isEmpty() && !validate(email)) {
-            throw new InvalidEmailException("Email has an invalid format");
+            throw new InvalidEmailException();
         }
         this.email.set(email);
     }
@@ -206,7 +206,7 @@ public class User implements Serializable {
 
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new UnableToHashPasswordException("Unable to get provider for SHA-256 algorithm");
+            throw new UnableToHashPasswordException();
         }
     }
 

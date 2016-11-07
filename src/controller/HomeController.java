@@ -31,8 +31,6 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     private GoogleMapView mapView;
     private GoogleMap map;
 
-    private Stage _dialogStage;
-
     @FXML
     Button submitSourceReport;
 
@@ -137,6 +135,7 @@ public class HomeController implements Initializable, MapComponentInitializedLis
      * handles Logout button
      */
     private void handleLogoutPressed() throws Exception {
+        Facade.getInstance().getUsers().logout();
         MainController.getInstance().changeScene("../view/LoginScreen.fxml", "Login");
     }
 

@@ -39,7 +39,25 @@
     </properties>
   </component>
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="controller.EditProfileScreenControl void initialize()" />
+      <entry_point TYPE="method" FQNAME="controller.HistoricalReportController void initialize()" />
+      <entry_point TYPE="method" FQNAME="controller.RegisterScreenController void initialize()" />
+      <entry_point TYPE="method" FQNAME="model.reports.SourceReport java.util.Date getTimestamp()" />
+      <entry_point TYPE="method" FQNAME="model.reports.SourceReport void setWaterType(model.reports.WaterType waterType)" />
+      <entry_point TYPE="method" FQNAME="model.reports.SourceReport void setLocation(model.reports.Location location)" />
+      <entry_point TYPE="method" FQNAME="model.reports.SourceReport void setCondition(model.reports.WaterCondition condition)" />
+      <entry_point TYPE="method" FQNAME="controller.SourceReportController void initialize()" />
+      <entry_point TYPE="method" FQNAME="model.auth.State java.lang.String getAbbreviation()" />
+      <entry_point TYPE="method" FQNAME="model.auth.State java.lang.String getName()" />
+      <entry_point TYPE="method" FQNAME="model.auth.User User(java.lang.String username, java.lang.String password, java.lang.String firstName, java.lang.String lastName, model.auth.Role role, java.lang.String email)" />
+      <entry_point TYPE="method" FQNAME="model.auth.User java.lang.String getPasswordHash()" />
+      <entry_point TYPE="method" FQNAME="model.auth.User java.lang.String getSalt()" />
+      <entry_point TYPE="method" FQNAME="model.auth.User void setTitle(java.lang.String title)" />
+      <entry_point TYPE="method" FQNAME="model.auth.UsersData java.util.HashMap&lt;java.lang.String,model.auth.User&gt; getUserMap()" />
+      <entry_point TYPE="method" FQNAME="controller.ViewWaterPurityReportController void initialize()" />
+      <entry_point TYPE="method" FQNAME="controller.WaterPurityReportController void initialize()" />
+    </entry_points>
   </component>
   <component name="ProjectKey">
     <option name="state" value="project://e79810c8-c5c8-43b1-b19c-90c1f4095425" />

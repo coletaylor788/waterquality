@@ -3,17 +3,14 @@ package model.reports;
 import controller.MainController;
 import model.exceptions.EmptyRequiredFieldException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Patrick on 11/3/2016.
  */
 public class PurityReportGraph {
 
-    private Map<String, Double> reportsToGraph;
+    private final Map<String, Double> reportsToGraph;
 
     /**
      * Creates a map that are the coordinates for the graph of the historical report
@@ -21,15 +18,17 @@ public class PurityReportGraph {
      * @param longitude of location
      * @param isVirusPPM whether we are checking for Virus or Containment PPM
      */
-    public PurityReportGraph(int year, double latitude, double longitude, boolean isVirusPPM) throws EmptyRequiredFieldException {
+    public PurityReportGraph(int year, double latitude, double longitude, boolean isVirusPPM) {
         reportsToGraph = new HashMap<>();
         List<PurityReport> purityReports = MainController.getInstance().getFacade()
                 .getPurityReports().getPurityReports();
         Location location = new Location(latitude, longitude);
 
         for (PurityReport report: purityReports) {
-            if (report.getLocation().equals(location) && year -1900 == report.getTimestamp().getYear()) {
-                int mon = report.getTimestamp().getMonth() + 1;
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(report.getTimestamp());
+            if (report.getLocation().equals(location) && year == calendar.get(Calendar.YEAR)) {
+                int mon = calendar.get(Calendar.MONTH) + 1;
                 String month = monthToNumber(mon);
                 double ppm = report.getContaminantPPM();
                 if (isVirusPPM) {
@@ -43,15 +42,6 @@ public class PurityReportGraph {
                 reportsToGraph.put(month, ppm);
             }
         }
-    }
-
-    /**
-     * Nested constructor without Virus PPM boolean, defaults to true
-     * @param latitude of the location
-     * @param longitude of location
-     */
-    public PurityReportGraph(int year, double latitude, double longitude) throws EmptyRequiredFieldException {
-        this(year, latitude, longitude, true);
     }
 
     /**

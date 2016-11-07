@@ -28,13 +28,6 @@ public class LoginScreenController {
 
     @FXML
     private TextField passwordField;
-    private Stage _dialogStage;
-
-    //closes dialogue box
-    @FXML
-    private void handleCloseMenu() {
-        System.exit(0);
-    }
 
     /**
      * Called when the user clicks ok.
@@ -45,24 +38,10 @@ public class LoginScreenController {
             User user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
             //Facade.getInstance().getPurityReports().createSampleReports();
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
-        } catch (InvalidUsernameException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle("Invalid Username");
-            alert.setHeaderText(e.getMessage());
-            alert.showAndWait();
-        } catch (InvalidPasswordException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle("Invalid Password");
-            alert.setHeaderText(e.getMessage());
-            alert.showAndWait();
+        } catch (InvalidUsernameException | InvalidPasswordException e) {
+            MainController.getInstance().showAlertMessage(e.getMessage());
         } catch (AuthenticationException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(_dialogStage);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Not a valid user.");
-            alert.showAndWait();
+            MainController.getInstance().showAlertMessage("Not a valid user.");
         }
     }
 

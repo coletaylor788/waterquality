@@ -68,8 +68,8 @@ public enum State {
     WYOMING("Wyoming", "WY"),
     UNKNOWN("Unknown", "");
 
-    private String name;
-    private String abbr;
+    private final String name;
+    private final String abbr;
 
     /**
      * Create a new state.
