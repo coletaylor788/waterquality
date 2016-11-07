@@ -66,11 +66,6 @@ public class HistoricalReportController {
     private void setGraph(int year, double lat, double lon, boolean isVirusPPM) throws EmptyRequiredFieldException {
         xAxis.setLabel("Month");
         yAxis.setLabel("PPM");
-        if (isVirusPPM) {
-            graph.setTitle("Virus PPM");
-        } else {
-            graph.setTitle("Contaminant PPM");
-        }
 
         graph.getData().clear();
         XYChart.Series<Number, Number> series = new XYChart.Series();
@@ -84,6 +79,7 @@ public class HistoricalReportController {
         boolean data = false;
         for (int i = 0; i < months.length; i++) {
             if (coordinates.containsKey(months[i])) {
+                System.out.println(months[i]);
                 series.getData().add(new XYChart.Data<>(
                         i + 1, coordinates.get(months[i])));
                 data = true;
@@ -91,6 +87,11 @@ public class HistoricalReportController {
         }
 
         if (data) {
+            if (isVirusPPM) {
+                series.setName("Virus PPM");
+            } else {
+                series.setName("Contaminant PPM");
+            }
             graph.getData().add(series);
         }
 

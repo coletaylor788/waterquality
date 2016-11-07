@@ -29,7 +29,7 @@ public class PurityReportGraph {
         Location location = new Location(latitude, longitude);
 
         for (PurityReport report: purityReports) {
-            if (report.getLocation().equals(location) && year == report.getTimestamp().getYear()) {
+            if (report.getLocation().equals(location) && year -1900 == report.getTimestamp().getYear()) {
                 int mon = report.getTimestamp().getMonth() + 1;
                 String month = monthToNumber(mon);
                 double ppm = report.getContaminantPPM();

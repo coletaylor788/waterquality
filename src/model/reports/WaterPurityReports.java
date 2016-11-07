@@ -53,42 +53,66 @@ public class WaterPurityReports implements Serializable {
                 || Facade.getInstance().getUsers().getCurrentUser().getRole() == Role.MANAGER)) {
             createdSamples = true;
             try {
-                purityReports.add(new PurityReport(new Date(2016, 01, 01),
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 0, 01),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.1,
-                        0.1));
-                purityReports.add(new PurityReport(new Date(2016, 02, 02),
+                        0.8));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 01, 02),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
-                        0.1,
-                        0.1));
-                purityReports.add(new PurityReport(new Date(2016, 02, 15),
+                        0.3,
+                        0.6));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 01, 15),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.5,
-                        0.5));
-                purityReports.add(new PurityReport(new Date(2016, 03, 01),
+                        0.6));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 02, 01),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.2,
-                        0.2));
-                purityReports.add(new PurityReport(new Date(2016, 03, 04),
+                        0.4));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 02, 04),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.4,
-                        0.4));
-                purityReports.add(new PurityReport(new Date(2016, 03, 20),
+                        0.5));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 02, 20),
                         Facade.getInstance().getUsers().getCurrentUser(),
                         OverallCondition.SAFE,
                         new Location(0, 0),
                         0.5,
                         0.5));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 10, 5),
+                        Facade.getInstance().getUsers().getCurrentUser(),
+                        OverallCondition.SAFE,
+                        new Location(0, 0),
+                        0.9,
+                        0.2));
+                purityReports.add(new PurityReport(new Date(2016 - 1900, 11, 5),
+                        Facade.getInstance().getUsers().getCurrentUser(),
+                        OverallCondition.SAFE,
+                        new Location(0, 0),
+                        0.95,
+                        0.1));
+                purityReports.add(new PurityReport(new Date(2015 - 1900, 03, 20),
+                        Facade.getInstance().getUsers().getCurrentUser(),
+                        OverallCondition.SAFE,
+                        new Location(0, 0),
+                        0.5,
+                        0.1));
+                purityReports.add(new PurityReport(new Date(2015 - 1900, 8, 20),
+                        Facade.getInstance().getUsers().getCurrentUser(),
+                        OverallCondition.SAFE,
+                        new Location(0, 0),
+                        0.5,
+                        0.1));
             } catch (EmptyRequiredFieldException e) {
                 System.out.println(e);
             }
