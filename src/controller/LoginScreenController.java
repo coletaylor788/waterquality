@@ -28,8 +28,6 @@ public class LoginScreenController {
 
     @FXML
     private TextField passwordField;
-
-    private User user;
     private Stage _dialogStage;
 
     //closes dialogue box
@@ -44,7 +42,7 @@ public class LoginScreenController {
     @FXML
     private void handleLoginPressed() {
         try {
-            user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
+            User user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
             //Facade.getInstance().getPurityReports().createSampleReports();
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (InvalidUsernameException e) {

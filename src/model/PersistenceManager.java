@@ -29,40 +29,6 @@ public class PersistenceManager {
         this.model = model;
     }
 
-    /**
-     * Saves the Model to Binary file
-     *
-     * @param file is the file to save to
-     */
-    public void saveToBinary(File file) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
-            oos.writeObject(model);
-            oos.close();
-        } catch (IOException e) {
-            System.out.println(e);
-            MainController.getInstance().showAlertMessage(
-                    "Failed to make an output stream for Binary", Alert.AlertType.ERROR);
-        }
-    }
-
-    /**
-     * Loads the model from a file into the application
-     *
-     * @param file is the file to load from
-     */
-    public void loadFromBinary(File file) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            model = (Facade) ois.readObject();
-            ois.close();
-        } catch (IOException ex) {
-            MainController.getInstance().showAlertMessage(
-                    "Failed to make an input stream for Binary", Alert.AlertType.ERROR);
-        } catch (ClassNotFoundException ex) {
-            MainController.getInstance().showAlertMessage(
-                    "Failed to find appropriate class in Binary", Alert.AlertType.ERROR);
-        }
-    }
-
     public void saveToJson(File file) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
             Gson gson = new Gson();
@@ -70,7 +36,6 @@ public class PersistenceManager {
             pw.println(str);
             pw.close();
         } catch (IOException e) {
-            System.out.println(e);
             MainController.getInstance().showAlertMessage(
                     "Exception working with Json Save File", Alert.AlertType.ERROR);
         }
@@ -89,7 +54,6 @@ public class PersistenceManager {
 
             br.close();
         } catch (IOException e) {
-            System.out.println(e);
             MainController.getInstance().showAlertMessage(
                     "Exception working with Json load file", Alert.AlertType.ERROR);
         }

@@ -13,7 +13,7 @@ public enum OverallCondition {
 
     private String condition;
 
-    private OverallCondition(String condition) {
+    OverallCondition(String condition) {
         this.condition = condition;
     }
 

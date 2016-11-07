@@ -15,7 +15,7 @@ public enum WaterCondition {
 
     private String condition;
 
-    private WaterCondition(String condition) {
+    WaterCondition(String condition) {
         this.condition = condition;
     }
 

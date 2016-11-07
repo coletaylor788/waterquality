@@ -14,7 +14,6 @@ import java.util.Map;
 public class PurityReportGraph {
 
     private Map<String, Double> reportsToGraph;
-    private List<PurityReport> purityReports;
 
     /**
      * Creates a map that are the coordinates for the graph of the historical report
@@ -24,7 +23,7 @@ public class PurityReportGraph {
      */
     public PurityReportGraph(int year, double latitude, double longitude, boolean isVirusPPM) throws EmptyRequiredFieldException {
         reportsToGraph = new HashMap<>();
-        purityReports = MainController.getInstance().getFacade()
+        List<PurityReport> purityReports = MainController.getInstance().getFacade()
                 .getPurityReports().getPurityReports();
         Location location = new Location(latitude, longitude);
 

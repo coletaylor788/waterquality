@@ -1,7 +1,9 @@
 package model.reports;
 
+import controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Facade;
 import model.auth.Role;
 import model.exceptions.EmptyRequiredFieldException;
@@ -114,7 +116,7 @@ public class WaterPurityReports implements Serializable {
                         0.5,
                         0.1));
             } catch (EmptyRequiredFieldException e) {
-                System.out.println(e);
+                MainController.getInstance().showAlertMessage("Required field is empty", Alert.AlertType.ERROR);
             }
         }
     }

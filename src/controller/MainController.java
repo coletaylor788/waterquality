@@ -65,7 +65,7 @@ public class MainController extends Application {
             primaryStage.setScene(new Scene(screen));
             primaryStage.show();
         } catch (IOException e) {
-            System.out.println(e);
+            showAlertMessage("Unable to load: " + title, Alert.AlertType.ERROR);
         }
     }
 

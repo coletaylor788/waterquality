@@ -77,7 +77,7 @@ public enum State {
      * @param name the state's name.
      * @param abbr the state's abbreviation.
      */
-    private State(String name, String abbr) {
+    State(String name, String abbr) {
         this.name = name;
         this.abbr = abbr;
     }

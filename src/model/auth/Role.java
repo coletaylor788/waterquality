@@ -19,7 +19,7 @@ public enum Role {
      * Create role
      * @param title is the string representation of the Role
      */
-    private Role(String title) {
+    Role(String title) {
         this.title = title;
     }
 

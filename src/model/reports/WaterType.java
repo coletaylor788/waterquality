@@ -16,7 +16,7 @@ public enum WaterType {
 
     private String type;
 
-    private WaterType(String type) {
+    WaterType(String type) {
         this.type = type;
     }
 
