@@ -10,13 +10,11 @@ import model.Facade;
 import model.PersistenceManager;
 
 import java.io.IOException;
-import java.net.URL;
 
 
 public class MainController extends Application {
 
     private Stage primaryStage;
-    private Stage dialogStage;
     private PersistenceManager persistenceManager;
     private static MainController mainController;
 
@@ -78,7 +76,6 @@ public class MainController extends Application {
      */
     public void showAlertMessage(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.initOwner(dialogStage);
         alert.setTitle(Alert.AlertType.ERROR.toString());
         alert.setHeaderText(message);
         alert.showAndWait();

@@ -1,12 +1,14 @@
 package model.reports;
 
 import controller.MainController;
-import model.exceptions.EmptyRequiredFieldException;
 
 import java.util.*;
 
 /**
- * Created by Patrick on 11/3/2016.
+ * Creates the data for a history graph of purity reports
+ *
+ * @author Patrick Black
+ * @version 1.0
  */
 public class PurityReportGraph {
 

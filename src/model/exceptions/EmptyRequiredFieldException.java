@@ -1,7 +1,10 @@
 package model.exceptions;
 
 /**
- * Created by cole on 9/21/16.
+ * Indicates a required field is empty
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class EmptyRequiredFieldException extends Exception{
     public EmptyRequiredFieldException(String message) {

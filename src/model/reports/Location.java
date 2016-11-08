@@ -3,7 +3,10 @@ package model.reports;
 import java.io.Serializable;
 
 /**
- * Created by cole on 9/30/16.
+ * Represents a location on the globe
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class Location implements Serializable {
 

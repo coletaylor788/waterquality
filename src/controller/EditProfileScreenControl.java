@@ -2,15 +2,9 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import model.auth.Role;
 import model.auth.State;
 import model.auth.User;
@@ -18,7 +12,7 @@ import javafx.fxml.FXML;
 import model.auth.exceptions.AuthenticationException;
 import model.exceptions.EmptyRequiredFieldException;
 
-import java.io.IOException;
+import java.util.Collections;
 
 
 public class EditProfileScreenControl {
@@ -56,25 +50,13 @@ public class EditProfileScreenControl {
     private User user;
 
     @FXML
-    /**
-     * populates combo boxes
-     */
     private void initialize() {
         role.getItems().addAll(generateRoles());
         state.getItems().addAll(generateState());
         setDefaultFields();
-        role.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                role.requestFocus();
-            }
-        });
-        state.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                state.requestFocus();
-            }
-        });
+
+        role.setOnMousePressed((MouseEvent event) -> role.requestFocus());
+        state.setOnMousePressed((MouseEvent event) -> state.requestFocus());
     }
 
     /**
@@ -84,9 +66,7 @@ public class EditProfileScreenControl {
     private static ObservableList<Role> generateRoles() {
         Role[] roles = Role.values();
         ObservableList<Role> roleList = FXCollections.observableArrayList();
-        for (Role role : roles) {
-            roleList.add(role);
-        }
+        Collections.addAll(roleList, roles);
         return roleList;
     }
 
@@ -97,9 +77,7 @@ public class EditProfileScreenControl {
     private static ObservableList<State> generateState() {
         State[] states = State.values();
         ObservableList<State> stateList = FXCollections.observableArrayList();
-        for (State state : states) {
-            stateList.add(state);
-        }
+        Collections.addAll(stateList, states);
         return stateList;
     }
 
@@ -117,9 +95,6 @@ public class EditProfileScreenControl {
     }
 
     @FXML
-    /**
-     * handles Save button
-     */
     private void handleSavePressed() throws Exception {
         try {
             user.setFirstName(firstNameField.getText());
@@ -142,9 +117,6 @@ public class EditProfileScreenControl {
     }
 
     @FXML
-    /**
-     * handles Cancel button
-     */
     private void handleCancelPressed() throws Exception {
         MainController.getInstance().changeScene("../view/Home.fxml", "Home");
     }

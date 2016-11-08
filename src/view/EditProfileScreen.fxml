@@ -16,11 +16,12 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditProfileScreenControl">
    <bottom>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="65.0" prefWidth="499.0" BorderPane.alignment="CENTER">
-         <items>
-            <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="48.0" prefWidth="182.0" text="Cancel" textAlignment="RIGHT" />
-            <Button mnemonicParsing="false" onAction="#handleSavePressed" prefHeight="48.0" prefWidth="182.0" text="Save" />
-         </items>
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="65.0" prefWidth="499.0"
+               BorderPane.alignment="CENTER">
+         <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="48.0"
+                 prefWidth="182.0" text="Cancel" textAlignment="RIGHT"/>
+         <Button mnemonicParsing="false" onAction="#handleSavePressed" prefHeight="48.0"
+                 prefWidth="182.0" text="Save"/>
       </ToolBar>
    </bottom>
    <right>
@@ -34,95 +35,120 @@
       </GridPane>
    </right>
    <top>
-      <GridPane alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="469.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="469.0"
+                prefWidth="450.0" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.66668701171875" minWidth="10.0" prefWidth="221.99996948242188" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.6666259765625" minWidth="10.0" prefWidth="327.0000305175781" />
+            <ColumnConstraints/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.66668701171875" minWidth="10.0"
+                               prefWidth="221.99996948242188"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.6666259765625" minWidth="10.0"
+                               prefWidth="327.0000305175781"/>
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0"
+                            vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
          </rowConstraints>
-         <children>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="First Name:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="Last Name:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="Email:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="Username:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Password:      " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="231.0" prefHeight="17.0" prefWidth="226.0" text="Role:      " GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="emailField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="usernameField" editable="false" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </PasswordField>
-            <ComboBox fx:id="role" prefHeight="25.0" prefWidth="283.0" promptText="Select Role" GridPane.columnIndex="2" GridPane.rowIndex="6">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </ComboBox>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Address:      " GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="City:      " GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="State:      " GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Zip Code:      " GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField fx:id="addressField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="cityField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <ComboBox fx:id="state" prefHeight="25.0" prefWidth="283.0" promptText="Select State" GridPane.columnIndex="2" GridPane.rowIndex="9">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </ComboBox>
-            <TextField fx:id="zipCodeField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@water_quality.png" />
-               </image>
-            </ImageView>
-         </children>
          <BorderPane.margin>
-            <Insets />
+            <Insets/>
          </BorderPane.margin>
+         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0"
+                text="First Name:    " textAlignment="RIGHT" GridPane.columnIndex="1"
+                GridPane.rowIndex="1"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0"
+                text="Last Name:    " textAlignment="RIGHT" GridPane.columnIndex="1"
+                GridPane.rowIndex="2"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0"
+                text="Email:    " textAlignment="RIGHT" GridPane.columnIndex="1"
+                GridPane.rowIndex="3"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0"
+                text="Username:    " textAlignment="RIGHT" GridPane.columnIndex="1"
+                GridPane.rowIndex="4"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0"
+                text="Password:      " GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="231.0"
+                prefHeight="17.0" prefWidth="226.0" text="Role:      " GridPane.columnIndex="1"
+                GridPane.rowIndex="6"/>
+         <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="411.0"
+                    GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="411.0"
+                    GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <TextField fx:id="emailField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2"
+                    GridPane.rowIndex="3">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <TextField fx:id="usernameField" editable="false" prefHeight="25.0" prefWidth="411.0"
+                    GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </PasswordField>
+         <ComboBox fx:id="role" prefHeight="25.0" prefWidth="283.0" promptText="Select Role"
+                   GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </ComboBox>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0"
+                text="Address:      " GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0"
+                text="City:      " GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0"
+                text="State:      " GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0"
+                text="Zip Code:      " GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+         <TextField fx:id="addressField" prefHeight="25.0" prefWidth="411.0"
+                    GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <TextField fx:id="cityField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2"
+                    GridPane.rowIndex="8">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <ComboBox fx:id="state" prefHeight="25.0" prefWidth="283.0" promptText="Select State"
+                   GridPane.columnIndex="2" GridPane.rowIndex="9">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </ComboBox>
+         <TextField fx:id="zipCodeField" prefHeight="25.0" prefWidth="411.0"
+                    GridPane.columnIndex="2" GridPane.rowIndex="10">
+            <GridPane.margin>
+               <Insets right="20.0"/>
+            </GridPane.margin>
+         </TextField>
+         <ImageView fitHeight="150.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true"
+                    GridPane.columnIndex="1">
+            <Image url="@water_quality.png"/>
+         </ImageView>
       </GridPane>
    </top>
 </BorderPane>

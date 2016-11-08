@@ -4,14 +4,11 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import model.auth.exceptions.AuthenticationException;
 import model.exceptions.EmptyRequiredFieldException;
 import model.reports.PurityReportGraph;
 import model.reports.exceptions.LocationOutOfRangeException;
@@ -42,9 +39,6 @@ public class HistoricalReportController {
     private ComboBox<String> ppm;
 
     @FXML
-    /**
-     * populates combo box
-     */
     private void initialize() {
         ppm.getItems().addAll(generatePPM());
         xAxis.setLowerBound(1);
@@ -55,7 +49,7 @@ public class HistoricalReportController {
 
     /**
      * Creates list to put combo box
-     * @return list for combobox
+     * @return list for combo box
      */
     private ObservableList<String> generatePPM() {
         ObservableList<String> strList = FXCollections.observableArrayList();
@@ -71,8 +65,8 @@ public class HistoricalReportController {
         graph.getData().clear();
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
-        PurityReportGraph coordSetup = new PurityReportGraph(year, lat, lon, isVirusPPM);
-        Map<String, Double> coordinates = coordSetup.getCoordinates();
+        PurityReportGraph cordSetup = new PurityReportGraph(year, lat, lon, isVirusPPM);
+        Map<String, Double> coordinates = cordSetup.getCoordinates();
 
         String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};

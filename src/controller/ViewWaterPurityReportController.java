@@ -1,14 +1,16 @@
 package controller;
 
-/**
- * Created by Nkosi Kee on 10/28/2016.
- */
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import model.reports.PurityReport;
 
+/**
+ * Controller for viewing water reports
+ *
+ * @author Nkosi Kee
+ * @version 1.0
+ */
 public class ViewWaterPurityReportController {
 
     @FXML

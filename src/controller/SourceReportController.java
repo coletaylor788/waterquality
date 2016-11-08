@@ -1,26 +1,12 @@
 package controller;
 
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 import javafx.collections.ObservableList;
-import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 
-import model.auth.Role;
-import model.auth.User;
-import model.auth.UsersData;
-import model.auth.exceptions.AuthenticationException;
-import model.auth.exceptions.UnableToCreateUserException;
 import model.exceptions.EmptyRequiredFieldException;
 import model.reports.Location;
 import model.reports.SourceReport;
@@ -28,7 +14,7 @@ import model.reports.WaterCondition;
 import model.reports.WaterType;
 import model.reports.exceptions.LocationOutOfRangeException;
 
-import java.io.IOException;
+import java.util.Collections;
 
 public class SourceReportController {
 
@@ -45,24 +31,12 @@ public class SourceReportController {
     private ComboBox<WaterCondition> waterConditions;
 
     @FXML
-    /**
-     * populates combo boxes
-     */
     private void initialize() {
         waterConditions.getItems().addAll(generateWaterConditions());
         waterTypes.getItems().addAll(generateWaterTypes());
-        waterConditions.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                waterConditions.requestFocus();
-            }
-        });
-        waterTypes.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                waterTypes.requestFocus();
-            }
-        });
+
+        waterConditions.setOnMousePressed((MouseEvent event) -> waterConditions.requestFocus());
+        waterTypes.setOnMousePressed((MouseEvent event) -> waterTypes.requestFocus());
     }
 
     /**
@@ -72,9 +46,7 @@ public class SourceReportController {
     private static ObservableList<WaterType> generateWaterTypes() {
         WaterType[] waterTypes = WaterType.values();
         ObservableList<WaterType> typeList = FXCollections.observableArrayList();
-        for (WaterType type: waterTypes) {
-            typeList.add(type);
-        }
+        Collections.addAll(typeList, waterTypes);
         return typeList;
     }
 
@@ -85,9 +57,7 @@ public class SourceReportController {
     private static ObservableList<WaterCondition> generateWaterConditions() {
         WaterCondition[] waterConditions = WaterCondition.values();
         ObservableList<WaterCondition> conditionList = FXCollections.observableArrayList();
-        for (WaterCondition type: waterConditions) {
-            conditionList.add(type);
-        }
+        Collections.addAll(conditionList, waterConditions);
         return conditionList;
     }
 

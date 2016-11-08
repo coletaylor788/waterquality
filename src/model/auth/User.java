@@ -3,7 +3,6 @@ package model.auth;
 import javafx.beans.property.*;
 import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.InvalidEmailException;
-import model.auth.exceptions.UnableToCreateUserException;
 import model.auth.exceptions.UnableToHashPasswordException;
 import model.exceptions.EmptyRequiredFieldException;
 
@@ -182,7 +181,7 @@ public class User implements Serializable {
      * @param password is the password to hash
      * @param salt is the salt (randomly generated number) to prepend to the password
      * @return the hashed password
-     * @throws UnableToCreateUserException if hashing algorithm isn't available from provider
+     * @throws UnableToHashPasswordException if hashing algorithm isn't available from provider
      */
     private String hashPassword(String password, String salt) throws UnableToHashPasswordException {
         String saltedPassword = salt + password;
@@ -193,15 +192,16 @@ public class User implements Serializable {
      * Returns the SHA-256 hash of a string
      * @param input is the string to hash
      * @return the hashed string
-     * @throws UnableToCreateUserException if the SHA-256 algorithm isn't provided from provider
+     * @throws UnableToHashPasswordException if the SHA-256 algorithm isn't provided from provider
      */
     private String sha256(String input) throws UnableToHashPasswordException {
         try {
             MessageDigest mDigest = MessageDigest.getInstance("SHA-256");
             byte[] result = mDigest.digest(input.getBytes());
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < result.length; i++) {
-                sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+            StringBuilder sb = new StringBuilder();
+
+            for (byte resultByte: result) {
+                sb.append(Integer.toString((resultByte & 0xff) + 0x100, 16).substring(1));
             }
 
             return sb.toString();

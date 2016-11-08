@@ -1,28 +1,17 @@
 package controller;
 
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
 import javafx.collections.ObservableList;
-import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 
 import model.auth.Role;
-import model.auth.User;
-import model.auth.UsersData;
 import model.auth.exceptions.AuthenticationException;
-import model.auth.exceptions.UnableToCreateUserException;
 import model.exceptions.EmptyRequiredFieldException;
 
-import java.io.IOException;
+import java.util.Collections;
 
 public class RegisterScreenController {
     @FXML
@@ -44,17 +33,9 @@ public class RegisterScreenController {
     private ComboBox<Role> role;
 
     @FXML
-    /**
-     * populates combo boxes
-     */
     private void initialize() {
         role.getItems().addAll(generateRoles());
-        role.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                role.requestFocus();
-            }
-        });
+        role.setOnMousePressed((MouseEvent event) -> role.requestFocus());
     }
 
     /**
@@ -64,16 +45,11 @@ public class RegisterScreenController {
     private static ObservableList<Role> generateRoles() {
         Role[] roles = Role.values();
         ObservableList<Role> roleList = FXCollections.observableArrayList();
-        for (Role role : roles) {
-            roleList.add(role);
-        }
+        Collections.addAll(roleList, roles);
         return roleList;
     }
 
     @FXML
-    /**
-     * handles Register button
-     */
     private void handleRegisterPressed() {
         try {
             MainController.getInstance().getFacade().getUsers().addUser(usernameField.getText(),
@@ -92,9 +68,6 @@ public class RegisterScreenController {
     }
 
     @FXML
-    /**
-     * handles Cancel button
-     */
     private void handleCancelPressed() throws Exception {
         MainController.getInstance().changeScene("../view/LoginScreen.fxml", "Login");
     }

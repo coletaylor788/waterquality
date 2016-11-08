@@ -15,43 +15,63 @@
 
 <BorderPane maxHeight="460.0" maxWidth="450.0" minHeight="-Infinity" minWidth="400.0" prefHeight="460.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterScreenController">
    <bottom>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="97.0" prefWidth="499.0" BorderPane.alignment="CENTER">
-         <items>
-            <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="48.0" prefWidth="182.0" text="Cancel" textAlignment="RIGHT" />
-            <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="48.0" prefWidth="182.0" text="Register" />
-         </items>
-      </ToolBar>
+       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="97.0" prefWidth="499.0"
+                BorderPane.alignment="CENTER">
+           <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="48.0"
+                   prefWidth="182.0" text="Cancel" textAlignment="RIGHT"/>
+           <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="48.0"
+                   prefWidth="182.0" text="Register"/>
+       </ToolBar>
    </bottom>
    <center>
-      <GridPane alignment="CENTER" maxHeight="200.0" minHeight="200.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="500.0" BorderPane.alignment="BOTTOM_CENTER">
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.66668701171875" minWidth="10.0" prefWidth="221.99996948242188" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.6666259765625" minWidth="10.0" prefWidth="327.0000305175781" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="First Name:    " textAlignment="RIGHT" GridPane.columnIndex="1" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="Last Name:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="Email:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="223.0" text="Username:    " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Password:      " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" />
-            <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="emailField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="411.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="226.0" text="Role:      " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="role" prefHeight="25.0" prefWidth="283.0" promptText="Select Role" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-         </children>
-      </GridPane>
+       <GridPane alignment="CENTER" maxHeight="200.0" minHeight="200.0"
+                 nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="500.0"
+                 BorderPane.alignment="BOTTOM_CENTER">
+           <columnConstraints>
+               <ColumnConstraints/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.66668701171875" minWidth="10.0"
+                                  prefWidth="221.99996948242188"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.6666259765625" minWidth="10.0"
+                                  prefWidth="327.0000305175781"/>
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+           </rowConstraints>
+           <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0"
+                  prefWidth="223.0" text="First Name:    " textAlignment="RIGHT"
+                  GridPane.columnIndex="1"/>
+           <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0"
+                  prefWidth="223.0" text="Last Name:    " textAlignment="RIGHT"
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+           <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0"
+                  prefWidth="223.0" text="Email:    " textAlignment="RIGHT" GridPane.columnIndex="1"
+                  GridPane.rowIndex="2"/>
+           <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0"
+                  prefWidth="223.0" text="Username:    " textAlignment="RIGHT"
+                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+           <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0"
+                  prefWidth="226.0" text="Password:      " GridPane.columnIndex="1"
+                  GridPane.rowIndex="4"/>
+           <TextField fx:id="firstNameField" prefHeight="25.0" prefWidth="411.0"
+                      GridPane.columnIndex="2"/>
+           <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="411.0"
+                      GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+           <TextField fx:id="emailField" prefHeight="25.0" prefWidth="411.0"
+                      GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+           <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="411.0"
+                      GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+           <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+           <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0"
+                  prefWidth="226.0" text="Role:      " GridPane.columnIndex="1"
+                  GridPane.rowIndex="5"/>
+           <ComboBox fx:id="role" prefHeight="25.0" prefWidth="283.0" promptText="Select Role"
+                     GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+       </GridPane>
    </center>
    <right>
       <GridPane prefHeight="301.0" prefWidth="51.0" BorderPane.alignment="CENTER">
@@ -64,10 +84,9 @@
       </GridPane>
    </right>
    <top>
-      <ImageView fitHeight="150.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@register.png" />
-         </image>
-      </ImageView>
+       <ImageView fitHeight="150.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true"
+                  BorderPane.alignment="CENTER">
+           <Image url="@register.png"/>
+       </ImageView>
    </top>
 </BorderPane>

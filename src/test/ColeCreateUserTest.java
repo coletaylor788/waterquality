@@ -39,9 +39,8 @@ public class ColeCreateUserTest {
      */
     @Test(expected = EmptyRequiredFieldException.class)
     public void testEmptyPassword() throws EmptyRequiredFieldException {
-        User u = null;
         try {
-            u = new User("user", "", "first", "last", Role.USER, "c@c.com", "title", "address",
+            new User("user", "", "first", "last", Role.USER, "c@c.com", "title", "address",
                     "city", State.ALABAMA, 12345);
         } catch (AuthenticationException e) {
             assert(false);
@@ -54,9 +53,8 @@ public class ColeCreateUserTest {
      */
     @Test(expected = EmptyRequiredFieldException.class)
     public void testEmptyFirstName() throws EmptyRequiredFieldException {
-        User u = null;
         try {
-            u = new User("user", "password", "", "last", Role.USER, "c@c.com", "title",
+            new User("user", "password", "", "last", Role.USER, "c@c.com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (AuthenticationException e) {
             assert(false);
@@ -69,9 +67,8 @@ public class ColeCreateUserTest {
      */
     @Test(expected = EmptyRequiredFieldException.class)
     public void testEmptyLastName() throws EmptyRequiredFieldException {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "", Role.USER, "c@c.com", "title",
+            new User("user", "password", "first", "", Role.USER, "c@c.com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (AuthenticationException e) {
             assert(false);
@@ -84,9 +81,8 @@ public class ColeCreateUserTest {
      */
     @Test(expected = EmptyRequiredFieldException.class)
     public void testEmptyRole() throws EmptyRequiredFieldException {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "last", null, "c@c.com", "title",
+            new User("user", "password", "first", "last", null, "c@c.com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (AuthenticationException e) {
             assert(false);
@@ -146,9 +142,8 @@ public class ColeCreateUserTest {
      */
     @Test
     public void testEmailWithoutAt() {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "last", Role.USER, "cc.com", "title",
+            new User("user", "password", "first", "last", Role.USER, "cc.com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (InvalidEmailException e) {
             assert(true);
@@ -162,9 +157,8 @@ public class ColeCreateUserTest {
      */
     @Test
     public void testEmailWithoutPrefix() {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "last", Role.USER, "@c.com", "title",
+            new User("user", "password", "first", "last", Role.USER, "@c.com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (InvalidEmailException e) {
             assert(true);
@@ -178,9 +172,8 @@ public class ColeCreateUserTest {
      */
     @Test
     public void testEmailWithoutDomain() {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "last", Role.USER, "c@.com", "title",
+            new User("user", "password", "first", "last", Role.USER, "c@.com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (InvalidEmailException e) {
             assert(true);
@@ -194,9 +187,8 @@ public class ColeCreateUserTest {
      */
     @Test
     public void testEmailWithoutSuffix() {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "last", Role.USER, "c@c.", "title",
+            new User("user", "password", "first", "last", Role.USER, "c@c.", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (InvalidEmailException e) {
             assert(true);
@@ -210,9 +202,8 @@ public class ColeCreateUserTest {
      */
     @Test
     public void testEmailWithoutDot() {
-        User u = null;
         try {
-            u = new User("user", "password", "first", "last", Role.USER, "c@ccom", "title",
+            new User("user", "password", "first", "last", Role.USER, "c@com", "title",
                     "address", "city", State.ALABAMA, 12345);
         } catch (InvalidEmailException e) {
             assert(true);

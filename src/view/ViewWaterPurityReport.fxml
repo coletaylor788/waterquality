@@ -10,22 +10,20 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewWaterPurityReportController">
    <top>
-      <ImageView fitHeight="169.0" fitWidth="481.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@WaterSourceReport.png" />
-         </image>
-      </ImageView>
+       <ImageView fitHeight="169.0" fitWidth="481.0" pickOnBounds="true" preserveRatio="true"
+                  BorderPane.alignment="CENTER">
+           <Image url="@WaterSourceReport.png"/>
+       </ImageView>
    </top>
    <bottom>
-      <HBox prefHeight="43.0" prefWidth="498.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0" prefWidth="81.0" text="Cancel">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
+       <HBox prefHeight="43.0" prefWidth="498.0" BorderPane.alignment="CENTER">
+           <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0"
+                   prefWidth="81.0" text="Cancel">
+              <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0"/>
+              </HBox.margin>
+           </Button>
+       </HBox>
    </bottom>
    <center>
       <ListView fx:id="purityReportList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

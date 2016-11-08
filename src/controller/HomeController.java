@@ -7,12 +7,10 @@ import com.lynden.gmapsfx.javascript.object.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import model.Facade;
 import model.auth.Role;
 import model.auth.User;
 import model.reports.SourceReport;
-import model.reports.WaterSourceReports;
 import netscape.javascript.JSObject;
 
 import java.net.URL;
@@ -45,8 +43,8 @@ public class HomeController implements Initializable, MapComponentInitializedLis
 
     /**
      * Initializes the Map Listener to communicate with Google Maps
-     * @param url
-     * @param rb
+     * @param url is the url to initialize the map with
+     * @param rb is the resource bundle to initialize the map with
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -131,25 +129,16 @@ public class HomeController implements Initializable, MapComponentInitializedLis
     }
 
     @FXML
-    /**
-     * handles Logout button
-     */
     private void handleLogoutPressed() throws Exception {
         Facade.getInstance().getUsers().logout();
         MainController.getInstance().changeScene("../view/LoginScreen.fxml", "Login");
     }
 
     @FXML
-    /**
-     * handles Edit button
-     */
     private void handleEditPressed() {
         MainController.getInstance().changeScene("../view/EditProfileScreen.fxml", "Edit Profile");
     }
 
-    /**
-     * Displays the water source report scene
-     */
     @FXML
     private void handleSubmitSourceReportPressed() {
         MainController.getInstance().changeScene("../view/WaterSourceReport.fxml", "Water Source Report");

@@ -1,7 +1,10 @@
 package model.auth.exceptions;
 
 /**
- * Created by cole on 9/21/16.
+ * Indicates their was an exception with hashing the password
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class UnableToHashPasswordException extends AuthenticationException {
     public UnableToHashPasswordException() {

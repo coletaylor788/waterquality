@@ -3,17 +3,18 @@ package model.reports;
 import controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import model.Facade;
 import model.auth.Role;
 import model.exceptions.EmptyRequiredFieldException;
 
-import javax.swing.border.EmptyBorder;
 import java.io.Serializable;
 import java.util.*;
 
 /**
- * Created by Nkosi Kee on 10/27/2016.
+ * Container class for holding water purity reports
+ *
+ * @author Nkosi Kee
+ * @version 1.0
  */
 public class WaterPurityReports implements Serializable {
 

@@ -1,7 +1,10 @@
 package model.auth.exceptions;
 
 /**
- * Created by cole on 9/21/16.
+ * Indicates email is in an invalid format
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class InvalidEmailException extends AuthenticationException{
     public InvalidEmailException() {

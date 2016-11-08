@@ -1,14 +1,11 @@
 package model.reports;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Structurer to contain all Water Source Reports
+ * Container class to contain all Water Source Reports
  *
  * This is a singleton class since there should only
  * be one instance of this class

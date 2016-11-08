@@ -3,12 +3,9 @@ package model;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import controller.MainController;
-import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.logging.Level;
 
 /**
  * Handles saving and loading data for the application
@@ -42,7 +39,7 @@ public class PersistenceManager {
     }
 
     public void loadFromJsonfile(File file) {
-        String ct = null;
+        String ct;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             Type modelType = new TypeToken<Facade>(){}.getType();
             Gson gson = new Gson();

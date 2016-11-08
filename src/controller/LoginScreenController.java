@@ -1,25 +1,14 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.application.Application;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 
-import model.Facade;
-import model.auth.User;
-import model.auth.UsersData;
 import model.auth.exceptions.AuthenticationException;
 import model.auth.exceptions.InvalidPasswordException;
 import model.auth.exceptions.InvalidUsernameException;
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class LoginScreenController {
@@ -35,8 +24,7 @@ public class LoginScreenController {
     @FXML
     private void handleLoginPressed() {
         try {
-            User user = MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
-            //Facade.getInstance().getPurityReports().createSampleReports();
+            MainController.getInstance().getFacade().getUsers().login(usernameField.getText(), passwordField.getText());
             MainController.getInstance().changeScene("../view/Home.fxml", "Home");
         } catch (InvalidUsernameException | InvalidPasswordException e) {
             MainController.getInstance().showAlertMessage(e.getMessage());

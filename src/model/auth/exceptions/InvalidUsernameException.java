@@ -1,7 +1,10 @@
 package model.auth.exceptions;
 
 /**
- * Created by cole on 9/14/16.
+ * Indicates the username is incorrect
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class InvalidUsernameException extends AuthenticationException {
     public InvalidUsernameException() {

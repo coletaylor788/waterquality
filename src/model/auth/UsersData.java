@@ -73,10 +73,9 @@ public class UsersData implements Serializable {
      *
      * @param username is the username of the account to be logged in
      * @param password is the password of the account to be logged in
-     * @return User object that is logged in.
      * @throws AuthenticationException if their is an error with authentication
      */
-    public User login(String username, String password) throws AuthenticationException {
+    public void login(String username, String password) throws AuthenticationException {
         if (!users.containsKey(username)) {
             throw new InvalidUsernameException();
         }
@@ -84,7 +83,6 @@ public class UsersData implements Serializable {
 
         if (user.isPasswordValid(password)) {
             currentUser = user;
-            return currentUser;
         } else {
             throw new InvalidPasswordException();
         }
@@ -92,8 +90,6 @@ public class UsersData implements Serializable {
 
     /**
      * Logs out the current user
-     *
-     * @return true if their was a user logged in, false otherwise
      */
     public void logout() {
         currentUser = null;

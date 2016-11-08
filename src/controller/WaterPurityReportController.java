@@ -2,18 +2,17 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import model.exceptions.EmptyRequiredFieldException;
 import model.reports.Location;
 import model.reports.OverallCondition;
 import model.reports.PurityReport;
 import model.reports.exceptions.LocationOutOfRangeException;
+
+import java.util.Collections;
 
 public class WaterPurityReportController {
 
@@ -35,20 +34,13 @@ public class WaterPurityReportController {
     @FXML
     private void initialize() {
         conditionBox.getItems().addAll(generateOverallConditions());
-        conditionBox.setOnMousePressed(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent event) {
-                conditionBox.requestFocus();
-            }
-        });
+        conditionBox.setOnMousePressed((MouseEvent event) -> conditionBox.requestFocus());
     }
 
     private static ObservableList<OverallCondition> generateOverallConditions() {
         OverallCondition[] overallConditions = OverallCondition.values();
         ObservableList<OverallCondition> conditionList = FXCollections.observableArrayList();
-        for (OverallCondition type: overallConditions) {
-            conditionList.add(type);
-        }
+        Collections.addAll(conditionList, overallConditions);
         return conditionList;
     }
 

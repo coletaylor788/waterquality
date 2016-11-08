@@ -1,7 +1,10 @@
 package model.auth.exceptions;
 
 /**
- * Created by cole on 9/14/16.
+ * Indicates the password is incorrect
+ *
+ * @author Cole Taylor
+ * @version 1.0
  */
 public class InvalidPasswordException extends AuthenticationException {
     public InvalidPasswordException () {
