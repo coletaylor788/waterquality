@@ -1,17 +1,18 @@
-package model.reports;
+package test;
 import model.auth.Role;
 import model.auth.State;
 import model.auth.exceptions.AuthenticationException;
 import model.exceptions.EmptyRequiredFieldException;
+import model.reports.Location;
+import model.reports.SourceReport;
+import model.reports.WaterCondition;
+import model.reports.WaterType;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
 import model.auth.Role;
 import model.auth.State;
 import model.auth.User;
 import org.junit.Test;
-
 import java.util.Date;
 
 public class ShellyTests {
