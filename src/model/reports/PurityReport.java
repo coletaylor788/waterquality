@@ -164,14 +164,14 @@ public class PurityReport implements Serializable {
      *
      * @return the reported user
      */
-    private User getReportedWorker() {
+    public User getReportedWorker() {
         return reportedWorker.get();
     }
 
     /**
      * @return the overall condition
      */
-    private OverallCondition getOverallCondition() {
+    public OverallCondition getOverallCondition() {
         return overallCondition.get();
     }
 
