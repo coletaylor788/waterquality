@@ -34,15 +34,26 @@ public class PatrickTests {
 
         OverallCondition condition = OverallCondition.SAFE;
         Location location = new Location(33.7490, 84.3880);
+        double virus = 0d;
+        double contaminant = 0d;
 
-        PurityReport purityReport = new PurityReport(user, condition, location, 0d, 0d);
+        PurityReport purityReport = new PurityReport(user, condition, location, virus, contaminant);
+
+        boolean virusTrue = false;
+        boolean contaminantTrue = false;
+        if (virus == purityReport.getVirusPPM()) {
+            virusTrue = true;
+        }
+        if (contaminant == purityReport.getContaminantPPM()) {
+            contaminantTrue = true;
+        }
 
         //asserts statement
         assertEquals("Report user must be user", user, purityReport.getReportedWorker());
         assertEquals("Report location must be location", location, purityReport.getLocation());
         assertEquals("Report overall condition must be overall condition", condition, purityReport.getOverallCondition());
-        assertEquals("Report virus ppm must be virus ppm", 0, purityReport.getVirusPPM());
-        assertEquals("Report contaminant ppm must be contaminant ppm", 0, purityReport.getContaminantPPM());
+        assertEquals("Report virus ppm must be virus ppm", true, virusTrue);
+        assertEquals("Report contaminant ppm must be contaminant ppm", true, contaminantTrue);
 
     }
 
@@ -72,7 +83,7 @@ public class PatrickTests {
      */
     @Test (expected = EmptyRequiredFieldException.class)
     public void testEmptyLocation() throws AuthenticationException, EmptyRequiredFieldException {
-        Role role = Role.USER;
+        Role role = Role.WORKER;
         State state = State.GEORGIA;
         User user = new User("PatrickB", "Password", "Patrick", "Black",
                 role, "p@gmail.com", "Hello", "100 Atlanta St", "Atlanta",
@@ -89,7 +100,7 @@ public class PatrickTests {
      */
     @Test (expected = EmptyRequiredFieldException.class)
     public void testEmptyOverallCondition() throws AuthenticationException, EmptyRequiredFieldException {
-        Role role = Role.USER;
+        Role role = Role.WORKER;
         State state = State.GEORGIA;
         User user = new User("PatrickB", "Password", "Patrick", "Black",
                 role, "p@gmail.com", "Hello", "100 Atlanta St", "Atlanta",
