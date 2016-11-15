@@ -11,7 +11,7 @@ public class AuthenticationException extends Exception {
      * Creates the exception
      * @param message is the message to pass along
      */
-    public AuthenticationException(String message) {
+    AuthenticationException(String message) {
         super(message);
     }
 }

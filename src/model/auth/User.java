@@ -105,7 +105,7 @@ public class User implements Serializable {
     /* ====== GETTERS ====== */
 
     /**
-     * @return the usename
+     * @return the username
      */
     public String getUsername() {
         return username.get();
