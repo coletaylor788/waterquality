@@ -58,28 +58,38 @@ public class KlestTest extends GuiTest {
     }
 
 
+    /**
+     * Tests the login method. First ensures login fails for invalid username, then invalid
+     * password then ensures its success for valid username and password
+     *
+     * @throws EmptyRequiredFieldException
+     * @throws AuthenticationException
+     */
     @Test
     public void LoginTest() throws EmptyRequiredFieldException, AuthenticationException {
         MainController.getInstance().getFacade().getUsers().addUser("user", "password", "first", "last", Role.USER, "c@c.com");
         try {
-            MainController.getInstance().getFacade().getUsers().login("a", "password");
-            assert(false);
-        } catch (InvalidUsernameException e) {
-
+            assert (!loginSuccessful("a", "password"));
         } catch (AuthenticationException e) {
             assert(false);
         }
         try {
-            MainController.getInstance().getFacade().getUsers().login("user", "a");
-            assert(false);
-        } catch (InvalidPasswordException e) {
-
+            assert(!loginSuccessful("user", "a"));
         } catch (AuthenticationException e) {
             assert(false);
         }
         assert(loginSuccessful("user", "password"));
     }
 
+    /**
+     * checks if the user was successfully logged in successfully
+     *
+     * @param username username of the user to be logged in
+     * @param password password of the user to be logged in
+     * @return a boolean, true if the user was logged in successfully and false otherwise
+     * @throws AuthenticationException if the user is not logged in for a reason other
+     *                                 than an invalid username or password
+     */
     private boolean loginSuccessful(String username, String password) throws AuthenticationException {
         if (username == null || password == null) {
             return false;
@@ -87,7 +97,9 @@ public class KlestTest extends GuiTest {
         try {
             MainController.getInstance().getFacade().getUsers().login(username, password);
             return true;
-        } catch (AuthenticationException e) {
+        } catch (InvalidUsernameException e) {
+            return false;
+        } catch (InvalidPasswordException e) {
             return false;
         }
     }
