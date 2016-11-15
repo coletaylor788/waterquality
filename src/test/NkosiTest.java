@@ -12,6 +12,11 @@ import static org.junit.Assert.assertEquals;
  */
 public class NkosiTest {
 
+    /**
+     * Test whether the set last name method works
+     * @throws AuthenticationException if the user takes in invalid data
+     * @throws EmptyRequiredFieldException if the required field is empty
+     */
     @Test
     public void properUserSetLastNameSet() throws AuthenticationException, EmptyRequiredFieldException {
         User user = new User("Km22","3040322","Nkosi","Kee",Role.USER,"juan@gogo.com");
@@ -21,6 +26,12 @@ public class NkosiTest {
         assert(isBart);
     }
 
+    /**
+     * Test whether the set Last name method throws an EmptyRequiredFieldException
+     * if the required field is empty
+     * @throws AuthenticationException if the user takes in invalid data
+     * @throws EmptyRequiredFieldException if the required field is empty
+     */
     @Test (expected = EmptyRequiredFieldException.class)
     public void testEmptyLastName() throws AuthenticationException, EmptyRequiredFieldException {
         User user = new User("Km22","3040322","Nkosi","Kee",Role.USER,"juan@gogo.com");
