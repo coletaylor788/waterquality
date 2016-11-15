@@ -81,7 +81,7 @@ public class PatrickTests {
      * @throws AuthenticationException
      * @throws EmptyRequiredFieldException
      */
-    @Test (expected = EmptyRequiredFieldException.class)
+    @Test
     public void testEmptyLocation() throws AuthenticationException, EmptyRequiredFieldException {
         Role role = Role.WORKER;
         State state = State.GEORGIA;
@@ -90,7 +90,9 @@ public class PatrickTests {
                 state, 30318);
 
         OverallCondition condition = OverallCondition.SAFE;
-        new PurityReport(user, condition, null, 0d, 0d);
+        PurityReport report = new PurityReport(user, condition, null, 0d, 0d);
+
+        assertEquals("Report location must be location", null, report.getLocation());
     }
 
     /**
