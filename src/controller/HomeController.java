@@ -144,16 +144,25 @@ public class HomeController implements Initializable, MapComponentInitializedLis
         MainController.getInstance().changeScene("../view/WaterSourceReport.fxml", "Water Source Report");
     }
 
+    /**
+     * Handles submitting a purity report
+     */
     @FXML
     public void handleSubmitPurityReportPressed() {
         MainController.getInstance().changeScene("../view/WaterPurityReport.fxml", "Water Purity Report");
     }
 
+    /**
+     * Handles viewing a purity report
+     */
     @FXML
     public void handleViewPurityReportPressed() {
         MainController.getInstance().changeScene("../view/ViewWaterPurityReport.fxml", "Water Purity Reports");
     }
 
+    /**
+     * Handles changing to historical report
+     */
     @FXML
     public void handleHistoricalReportPressed() {
         MainController.getInstance().changeScene("../view/HistoricalReport.fxml", "Historical Report");

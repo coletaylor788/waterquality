@@ -16,6 +16,9 @@ public class ViewWaterPurityReportController {
     @FXML
     private ListView<PurityReport> purityReportList;
 
+    /**
+     * Initializes the scene
+     */
     @FXML
     public void initialize () {
         ObservableList<PurityReport> purityReports = MainController.getInstance().getFacade().getPurityReports().getObservablePurityReports();

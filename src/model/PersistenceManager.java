@@ -26,6 +26,10 @@ public class PersistenceManager {
         this.model = model;
     }
 
+    /**
+     * Saves the model
+     * @param file the file to save to
+     */
     public void saveToJson(File file) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {
             Gson gson = new Gson();
@@ -38,6 +42,10 @@ public class PersistenceManager {
         }
     }
 
+    /**
+     * Loads the model from a file
+     * @param file the file to load from
+     */
     public void loadFromJsonfile(File file) {
         String ct;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

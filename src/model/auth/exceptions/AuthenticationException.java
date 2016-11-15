@@ -7,7 +7,11 @@ package model.auth.exceptions;
  * @version 1.0
  */
 public class AuthenticationException extends Exception {
-    AuthenticationException(String message) {
+    /**
+     * Creates the exception
+     * @param message is the message to pass along
+     */
+    public AuthenticationException(String message) {
         super(message);
     }
 }

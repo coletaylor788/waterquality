@@ -29,12 +29,24 @@ public class Facade implements Serializable {
     }
 
     /* ============== GETTERS ============== */
+
+    /**
+     * @return the users list
+     */
     public UsersData getUsers() {
         return users;
     }
+
+    /**
+     * @return the source reports list
+     */
     public WaterSourceReports getSourceReports() {
         return sourceReports;
     }
+
+    /**
+     * @return the purity reports list
+     */
     public WaterPurityReports getPurityReports() { return purityReports; }
 
     /**

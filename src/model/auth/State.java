@@ -100,6 +100,10 @@ public enum State {
         return name;
     }
 
+    /**
+     * Converts to string
+     * @return a string representation of the state
+     */
     @Override
     public String toString() {
         return name;

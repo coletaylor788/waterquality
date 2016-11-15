@@ -18,6 +18,11 @@ public class MainController extends Application {
     private PersistenceManager persistenceManager;
     private static MainController mainController;
 
+    /**
+     * Starts the application
+     * @param primaryStage is the main stage of the app
+     * @throws Exception if something goes wrong
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;

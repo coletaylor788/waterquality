@@ -7,6 +7,9 @@ package model.auth.exceptions;
  * @version 1.0
  */
 public class InvalidEmailException extends AuthenticationException{
+    /**
+     * Creates an invalid email exception
+     */
     public InvalidEmailException() {
         super("Email has an invalid format");
     }

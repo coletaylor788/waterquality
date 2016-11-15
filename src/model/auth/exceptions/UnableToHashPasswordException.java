@@ -7,6 +7,9 @@ package model.auth.exceptions;
  * @version 1.0
  */
 public class UnableToHashPasswordException extends AuthenticationException {
+    /**
+     * Creates an exception indicating the password couldn't be hashed.
+     */
     public UnableToHashPasswordException() {
         super("Unable to get provider for SHA-256 algorithm");
     }

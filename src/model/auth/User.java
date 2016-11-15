@@ -49,12 +49,39 @@ public class User implements Serializable {
     private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    /**
+     * Creates a user
+     * @param username is the username
+     * @param password is the password
+     * @param firstName the first name
+     * @param lastName the last name
+     * @param role the role
+     * @param email the email
+     * @throws AuthenticationException if there is a problem with authenticating
+     * @throws EmptyRequiredFieldException if a required field is empty
+     */
     public User(String username, String password, String firstName, String lastName,
                 Role role, String email)
             throws AuthenticationException, EmptyRequiredFieldException {
         this(username, password, firstName, lastName, role, email, "", "", "", null, 0);
     }
 
+    /**
+     * Creates a user
+     * @param username the username
+     * @param password the password
+     * @param firstName the first name
+     * @param lastName the last name
+     * @param role the role
+     * @param email the email
+     * @param title the title
+     * @param address the address
+     * @param city the city
+     * @param state the state
+     * @param zipCode the zip code
+     * @throws AuthenticationException if there is a problem with authentication
+     * @throws EmptyRequiredFieldException if a required field is empty
+     */
     public User(String username, String password, String firstName, String lastName,
                 Role role, String email, String title, String address, String city,
                 State state, int zipCode)
@@ -76,43 +103,97 @@ public class User implements Serializable {
     }
 
     /* ====== GETTERS ====== */
+
+    /**
+     * @return the usename
+     */
     public String getUsername() {
         return username.get();
     }
+
+    /**
+     * @return the password hash
+     */
     public String getPasswordHash() {
         return passwordHash.get();
     }
+
+    /**
+     * @return the password hash's salt
+     */
     public String getSalt() {
         return salt.get();
     }
+
+    /**
+     * @return the first name
+     */
     public String getFirstName() {
         return firstName.get();
     }
+
+    /**
+     * @return the last name
+     */
     public String getLastName() {
         return lastName.get();
     }
+
+    /**
+     * @return the role
+     */
     public Role getRole() {
         return role.get();
     }
+
+    /**
+     * @return the email
+     */
     public String getEmail() {
         return email.get();
     }
+
+    /**
+     * @return the title
+     */
     public String getTitle() {
         return title.get();
     }
+
+    /**
+     * @return the address
+     */
     public String getAddress() {
         return address.get();
     }
+
+    /**
+     * @return the city
+     */
     public String getCity() {
         return city.get();
     }
+
+    /**
+     * @return the state
+     */
     public State getState() {
         return state.get();
     }
+
+    /**
+     * @return the zip code
+     */
     public int getZipCode() {
         return zipCode.get();
     }
 
+    /**
+     * Checks password
+     * @param password is the password
+     * @return true if hashed password matches the stored hash
+     * @throws UnableToHashPasswordException if there is a problem hashing
+     */
     public boolean isPasswordValid(String password) throws UnableToHashPasswordException {
         String enteredPasswordHash = hashPassword(password, this.salt.get());
 
@@ -120,6 +201,13 @@ public class User implements Serializable {
     }
 
     /* ====== SETTERS ====== */
+
+    /**
+     * Sets the password hash given the password
+     * @param password is the password
+     * @throws UnableToHashPasswordException if there is a problem hashing
+     * @throws EmptyRequiredFieldException if password is empty
+     */
     public void setPassword(String password) throws UnableToHashPasswordException,
             EmptyRequiredFieldException {
         if (password.isEmpty()) {
@@ -133,18 +221,35 @@ public class User implements Serializable {
         this.passwordHash.set(hashPassword(password, salt));
     }
 
+    /**
+     * Sets the first name
+     * @param firstName the first name
+     * @throws EmptyRequiredFieldException if first name is empty
+     */
     public void setFirstName(String firstName) throws EmptyRequiredFieldException {
         if (firstName.isEmpty()) {
             throw new EmptyRequiredFieldException("First name cannot be empty");
         }
         this.firstName.set(firstName);
     }
+
+    /**
+     * Sets the last name
+     * @param lastName is the last name
+     * @throws EmptyRequiredFieldException if the last name is empty
+     */
     public void setLastName(String lastName) throws EmptyRequiredFieldException {
         if (lastName.isEmpty()) {
             throw new EmptyRequiredFieldException("Last name cannot be empty");
         }
         this.lastName.set(lastName);
     }
+
+    /**
+     * Sets the role
+     * @param role the role
+     * @throws EmptyRequiredFieldException if the role is empty
+     */
     public void setRole(Role role) throws EmptyRequiredFieldException {
         if (role == null) {
             throw new EmptyRequiredFieldException("Role cannot be empty");
@@ -152,6 +257,11 @@ public class User implements Serializable {
         this.role.set(role);
     }
 
+    /**
+     * Sets the email
+     * @param email the email
+     * @throws InvalidEmailException if email is of an invalid format
+     */
     public void setEmail(String email) throws InvalidEmailException {
         if (!email.isEmpty() && !validate(email)) {
             throw new InvalidEmailException();
@@ -159,18 +269,42 @@ public class User implements Serializable {
         this.email.set(email);
     }
 
+    /**
+     * Sets the title
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title.set(title);
     }
+
+    /**
+     * Sets the address
+     * @param address the address to set
+     */
     public void setAddress(String address) {
         this.address.set(address);
     }
+
+    /**
+     * Sets the city
+     * @param city the city
+     */
     public void setCity(String city) {
         this.city.set(city);
     }
+
+    /**
+     * Sets the state
+     * @param state the state
+     */
     public void setState(State state) {
         this.state.set(state);
     }
+
+    /**
+     * Sets the zip code
+     * @param zipCode the zip code
+     */
     public void setZipCode(int zipCode) {
         this.zipCode.set(zipCode);
     }
@@ -221,6 +355,10 @@ public class User implements Serializable {
         return matcher.find();
     }
 
+    /**
+     * Returns the string
+     * @return a string representation of the User
+     */
     @Override
     public String toString() {
         return lastName.get() + ", " + firstName.get();
