@@ -17,12 +17,13 @@ public class NkosiTest {
         User user = new User("Km22","3040322","Nkosi","Kee",Role.USER,"juan@gogo.com");
         String bart = "Bart"
         user.setLastName(bart);
-        assertEqauls("Last Name must be Bart", bart, user.getLastName());
+        Boolean isBart = bart.equals(user.getLastName());
+        assert(isBart);
     }
 
     @Test (expected = EmptyRequiredFieldException.class)
     public void testEmptyLastName() throws AuthenticationException, EmptyRequiredFieldException {
         User user = new User("Km22","3040322","Nkosi","Kee",Role.USER,"juan@gogo.com");
-        user.setLastName(23);
+        user.setLastName(null);
     }
 }
