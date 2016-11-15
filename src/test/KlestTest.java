@@ -21,7 +21,7 @@ import static org.junit.Assume.assumeTrue;
 
 
 /**
- * Created by Klest Sula on 11/14/2016.
+ * @author Klest Sula
  */
 public class KlestTest extends GuiTest {
 
@@ -62,8 +62,8 @@ public class KlestTest extends GuiTest {
      * Tests the login method. First ensures login fails for invalid username, then invalid
      * password then ensures its success for valid username and password
      *
-     * @throws EmptyRequiredFieldException
-     * @throws AuthenticationException
+     * @throws EmptyRequiredFieldException when a field is left empty
+     * @throws AuthenticationException when login fails for a reason other than invalid username or password
      */
     @Test
     public void LoginTest() throws EmptyRequiredFieldException, AuthenticationException {
