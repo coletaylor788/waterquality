@@ -13,18 +13,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoricalReportController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoricalReportController">
    <top>
-      <ImageView fitHeight="113.0" fitWidth="432.0" BorderPane.alignment="CENTER">
-         <Image url="@home screen.png"/>
+      <ImageView fitHeight="154.0" fitWidth="505.0" BorderPane.alignment="CENTER">
+         <Image url="@hr%20small.png" />
       </ImageView>
    </top>
    <bottom>
       <HBox prefHeight="39.0" prefWidth="462.0" BorderPane.alignment="CENTER">
-         <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0"
-                 prefWidth="66.0" text="Cancel">
+         <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0" prefWidth="66.0" text="Cancel">
             <HBox.margin>
-               <Insets left="10.0"/>
+               <Insets left="10.0" />
             </HBox.margin>
          </Button>
       </HBox>
@@ -33,43 +32,42 @@
       <VBox prefHeight="337.0" prefWidth="115.0" BorderPane.alignment="CENTER">
          <Label text="Latitude">
             <VBox.margin>
-               <Insets top="10.0"/>
+               <Insets top="10.0" />
             </VBox.margin>
          </Label>
          <TextField fx:id="latitude">
             <VBox.margin>
-               <Insets right="10.0" top="10.0"/>
+               <Insets right="10.0" top="10.0" />
             </VBox.margin>
          </TextField>
          <Label text="Longitude">
             <VBox.margin>
-               <Insets top="20.0"/>
+               <Insets top="20.0" />
             </VBox.margin>
          </Label>
          <TextField fx:id="longitude">
             <VBox.margin>
-               <Insets right="10.0" top="10.0"/>
+               <Insets right="10.0" top="10.0" />
             </VBox.margin>
          </TextField>
          <Label prefHeight="17.0" prefWidth="31.0" text="Year">
             <VBox.margin>
-               <Insets top="20.0"/>
+               <Insets top="20.0" />
             </VBox.margin>
          </Label>
          <TextField fx:id="year">
             <VBox.margin>
-               <Insets right="10.0" top="10.0"/>
+               <Insets right="10.0" top="10.0" />
             </VBox.margin>
          </TextField>
          <ComboBox fx:id="ppm" prefWidth="150.0" promptText="Select PPM">
             <VBox.margin>
-               <Insets right="10.0" top="20.0"/>
+               <Insets right="10.0" top="20.0" />
             </VBox.margin>
          </ComboBox>
-         <Button mnemonicParsing="false" onAction="#handleEnterPressed" prefHeight="25.0"
-                 prefWidth="80.0" text="Enter">
+         <Button mnemonicParsing="false" onAction="#handleEnterPressed" prefHeight="25.0" prefWidth="80.0" text="Enter">
             <VBox.margin>
-               <Insets top="30.0"/>
+               <Insets top="30.0" />
             </VBox.margin>
          </Button>
       </VBox>
@@ -77,7 +75,7 @@
    <center>
       <LineChart fx:id="graph" animated="false" prefHeight="280.0" prefWidth="362.0" title="Historical Report" BorderPane.alignment="CENTER">
         <xAxis>
-          <NumberAxis fx:id="xAxis" lowerBound="1" upperBound="12" autoRanging="false" tickUnit="1" side="BOTTOM" />
+          <NumberAxis autoRanging="false" lowerBound="1" side="BOTTOM" tickUnit="1" upperBound="12" fx:id="xAxis" />
         </xAxis>
         <yAxis>
           <NumberAxis fx:id="yAxis" side="LEFT" />

@@ -9,44 +9,35 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <top>
-       <ImageView fitHeight="150.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true"
-                  BorderPane.alignment="CENTER">
-           <Image url="@home screen.png"/>
+       <ImageView fitHeight="183.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+           <Image url="@home%20screen.png" />
        </ImageView>
    </top>
    <right>
        <VBox prefHeight="300.0" prefWidth="150.0" BorderPane.alignment="CENTER">
            <padding>
-               <Insets right="10.0"/>
+               <Insets right="10.0" />
            </padding>
-           <Button fx:id="submitSourceReport" mnemonicParsing="false"
-                   onAction="#handleSubmitSourceReportPressed" prefHeight="25.0" prefWidth="170.0"
-                   text="New Water Source">
+           <Button fx:id="submitSourceReport" mnemonicParsing="false" onAction="#handleSubmitSourceReportPressed" prefHeight="25.0" prefWidth="170.0" text="New Water Source">
               <VBox.margin>
-                  <Insets top="10.0"/>
+                  <Insets top="10.0" />
               </VBox.margin>
            </Button>
-           <Button fx:id="submitPurityReport" mnemonicParsing="false"
-                   onAction="#handleSubmitPurityReportPressed" prefHeight="25.0" prefWidth="170.0"
-                   text="New Purity Report">
+           <Button fx:id="submitPurityReport" mnemonicParsing="false" onAction="#handleSubmitPurityReportPressed" prefHeight="25.0" prefWidth="170.0" text="New Purity Report">
               <VBox.margin>
-                  <Insets top="10.0"/>
+                  <Insets top="10.0" />
               </VBox.margin>
            </Button>
-           <Button fx:id="viewPurityReport" mnemonicParsing="false"
-                   onAction="#handleViewPurityReportPressed" prefHeight="39.0" prefWidth="154.0"
-                   text="View Purity Reports">
+           <Button fx:id="viewPurityReport" mnemonicParsing="false" onAction="#handleViewPurityReportPressed" prefHeight="39.0" prefWidth="154.0" text="View Purity Reports">
               <VBox.margin>
-                  <Insets top="10.0"/>
+                  <Insets top="10.0" />
               </VBox.margin>
            </Button>
-           <Button fx:id="historicalReport" mnemonicParsing="false"
-                   onAction="#handleHistoricalReportPressed" prefHeight="25.0" prefWidth="160.0"
-                   text="Historical Report">
+           <Button fx:id="historicalReport" mnemonicParsing="false" onAction="#handleHistoricalReportPressed" prefHeight="25.0" prefWidth="160.0" text="Historical Report">
               <VBox.margin>
-                  <Insets top="10.0"/>
+                  <Insets top="10.0" />
               </VBox.margin>
            </Button>
        </VBox>
@@ -54,22 +45,22 @@
    <bottom>
        <HBox prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER">
            <BorderPane.margin>
-               <Insets bottom="10.0"/>
+               <Insets bottom="10.0" />
            </BorderPane.margin>
            <Button mnemonicParsing="false" onAction="#handleLogoutPressed" text="Logout">
               <HBox.margin>
-                  <Insets left="10.0"/>
+                  <Insets left="10.0" />
               </HBox.margin>
            </Button>
            <Button mnemonicParsing="false" onAction="#handleEditPressed" text="Edit Profile">
               <HBox.margin>
-                  <Insets left="10.0"/>
+                  <Insets left="10.0" />
               </HBox.margin>
            </Button>
-           <Button mnemonicParsing="false" text="Button" visible="false"/>
+           <Button mnemonicParsing="false" text="Button" visible="false" />
            <Button mnemonicParsing="false" text="Admin Access" visible="false">
               <HBox.margin>
-                  <Insets left="10.0"/>
+                  <Insets left="10.0" />
               </HBox.margin>
            </Button>
        </HBox>

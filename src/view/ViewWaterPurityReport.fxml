@@ -8,19 +8,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewWaterPurityReportController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewWaterPurityReportController">
    <top>
-       <ImageView fitHeight="169.0" fitWidth="481.0" pickOnBounds="true" preserveRatio="true"
-                  BorderPane.alignment="CENTER">
-           <Image url="@WaterSourceReport.png"/>
+       <ImageView fitHeight="167.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+           <Image url="@purity%20report%20-%20Copy.png" />
        </ImageView>
    </top>
    <bottom>
        <HBox prefHeight="43.0" prefWidth="498.0" BorderPane.alignment="CENTER">
-           <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0"
-                   prefWidth="81.0" text="Cancel">
+           <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0" prefWidth="81.0" text="Cancel">
               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" top="10.0"/>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
               </HBox.margin>
            </Button>
        </HBox>

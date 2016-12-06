@@ -5,51 +5,45 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WaterPurityReportController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WaterPurityReportController">
    <top>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+      <ImageView fitHeight="196.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@water%20purity%202.png" />
+         </image></ImageView>
    </top>
    <center>
        <GridPane BorderPane.alignment="CENTER">
            <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.33334350585938" minWidth="10.0"
-                                  prefWidth="91.33334350585938"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.66665649414062" minWidth="10.0"
-                                  prefWidth="147.66668701171875"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.33331298828125" minWidth="10.0"
-                                  prefWidth="286.33331298828125"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.33331298828125" minWidth="10.0"
-                                  prefWidth="41.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.33334350585938" minWidth="10.0" prefWidth="91.33334350585938" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.66665649414062" minWidth="10.0" prefWidth="147.66668701171875" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.33331298828125" minWidth="10.0" prefWidth="286.33331298828125" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.33331298828125" minWidth="10.0" prefWidth="41.0" />
            </columnConstraints>
            <rowConstraints>
-               <RowConstraints maxHeight="41.33331298828125" minHeight="10.0"
-                               prefHeight="41.33331298828125" vgrow="SOMETIMES"/>
-               <RowConstraints maxHeight="75.66665649414062" minHeight="10.0"
-                               prefHeight="55.66668701171875" vgrow="SOMETIMES"/>
-               <RowConstraints maxHeight="75.66665649414062" minHeight="10.0"
-                               prefHeight="55.66668701171875" vgrow="SOMETIMES"/>
-               <RowConstraints maxHeight="75.66665649414062" minHeight="10.0"
-                               prefHeight="55.66668701171875" vgrow="SOMETIMES"/>
-               <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="68.0"
-                               vgrow="SOMETIMES"/>
+               <RowConstraints maxHeight="41.33331298828125" minHeight="10.0" prefHeight="41.33331298828125" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="75.66665649414062" minHeight="10.0" prefHeight="55.66668701171875" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="75.66665649414062" minHeight="10.0" prefHeight="55.66668701171875" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="75.66665649414062" minHeight="10.0" prefHeight="55.66668701171875" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
            </rowConstraints>
-           <TextField fx:id="virusPPM" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-           <TextField fx:id="contaminantPPM" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-           <Label text="Virus PPM" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-           <Label text="Contaminant PPM" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-           <Label text="Over all Condition" GridPane.columnIndex="1"/>
-           <ComboBox fx:id="conditionBox" prefWidth="150.0" promptText="Select Condition"
-                     GridPane.columnIndex="2"/>
-           <Label text="Latitude" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-           <Label text="Longitude" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-           <TextField fx:id="latitude" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-           <TextField fx:id="longitude" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+           <TextField fx:id="virusPPM" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+           <TextField fx:id="contaminantPPM" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+           <Label text="Virus PPM" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+           <Label text="Contaminant PPM" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+           <Label text="Over all Condition" GridPane.columnIndex="1" />
+           <ComboBox fx:id="conditionBox" prefWidth="150.0" promptText="Select Condition" GridPane.columnIndex="2" />
+           <Label text="Latitude" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+           <Label text="Longitude" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+           <TextField fx:id="latitude" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+           <TextField fx:id="longitude" GridPane.columnIndex="2" GridPane.rowIndex="2" />
        </GridPane>
    </center>
    <bottom>
